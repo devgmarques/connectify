@@ -1,4 +1,5 @@
 import { beforeEach, describe, expect, it } from "vitest";
+
 import { UserInMemoryRepository } from "../repositories/in-memory/users-in-memory";
 import { EditUserProfileUseCase } from "./edit-user-profile";
 

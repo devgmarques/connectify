@@ -6,7 +6,7 @@ Connectify - A rede social
 
 - [x] Deve ser possível se cadastrar;
 - [] Deve ser possível se autenticar;
-- [] Deve ser possível obter o perfil de um usuário logado;
+- [x] Deve ser possível obter o perfil de um usuário logado;
 - [x] Deve ser possível editar o perfil de um usuário logado;
 - [] Deve ser possível seguir e deixar de seguir usuários;
 - [] Deve ser possível visualizar postagens no feed de notícias;
@@ -32,6 +32,5 @@ Connectify - A rede social
 - [x] Os dados da aplicação precisam estar persistidos em um banco PostgreSQL;
 - [] Todas listas de dados precisam estar paginadas com 20 itens por página;
 - [] O usuário deve ser identificado por um JWT (JSON Web Token);
-- [] A aplicação deve suportar um alto volume de usuários e interações simultâneas;
 - [] A aplicação deve garantir conformidade com regulamentações de proteção de dados (ex. GDPR, CCPA);
 - [] A aplicação deve ter monitoramento e logs de erros para manutenção e otimização contínua.

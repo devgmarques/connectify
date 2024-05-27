@@ -30,4 +30,14 @@ export class PostsInMemoryRepository implements PostsRepository {
 
     return post;
   }
+
+  async findById(id: number) {
+    const post = this.posts.find((item) => item.id === id);
+
+    if (!post) {
+      return null;
+    }
+
+    return post;
+  }
 }

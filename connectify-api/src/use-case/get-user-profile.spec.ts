@@ -1,4 +1,5 @@
 import { beforeEach, describe, expect, it } from "vitest";
+
 import { GetUserProfileUseCase } from "./get-user-profile";
 import { UserInMemoryRepository } from "../repositories/in-memory/users-in-memory";
 
@@ -18,6 +19,8 @@ describe("Get user profile use case", () => {
       email: "gui@gmail",
       name: "Guilherme",
       password: "123456",
+      details: "",
+      nickname: "",
     });
 
     const { user } = await sup.execute({ userId: "user_01" });
