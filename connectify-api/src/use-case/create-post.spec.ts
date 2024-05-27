@@ -18,6 +18,8 @@ describe("Create post use case", () => {
     usersRepository.users.push({
       createdAt: new Date(),
       id: "user_01",
+      details: "",
+      nickname: "",
       email: "gui@gmail",
       name: "Guilherme",
       password: "123456",
@@ -40,6 +42,8 @@ describe("Create post use case", () => {
       email: "gui@gmail",
       name: "Guilherme",
       password: "123456",
+      details: "",
+      nickname: "",
     });
 
     const { post } = await sup.execute({

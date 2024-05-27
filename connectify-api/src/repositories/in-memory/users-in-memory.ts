@@ -11,7 +11,25 @@ export class UserInMemoryRepository implements UsersRepository {
       email: data.email,
       password: data.password,
       createdAt: new Date(),
+      nickname: data.nickname,
+      details: "Seja bem vindo",
     };
+
+    return user;
+  }
+
+  async updateUser(userId: string, data: Prisma.UserCreateInput) {
+    const user = {
+      id: "user_01",
+      name: data.name,
+      email: data.email,
+      password: data.password,
+      createdAt: new Date(),
+      nickname: data.nickname,
+      details: data.details ?? "",
+    };
+
+    this.users.map((item) => (item.id === userId ? user : item));
 
     return user;
   }
@@ -34,5 +52,17 @@ export class UserInMemoryRepository implements UsersRepository {
     }
 
     return userById;
+  }
+
+  async findByNickName(nickname: string) {
+    const userByNickname = this.users.find(
+      (item) => item.nickname === nickname
+    );
+
+    if (!userByNickname) {
+      return null;
+    }
+
+    return userByNickname;
   }
 }

@@ -16,6 +16,7 @@ describe("Register use case", () => {
       email: "gui@gmail.com",
       name: "Guilherme",
       password: "123456",
+      nickname: "Gui",
     });
 
     expect(user.email).toEqual(expect.any(String));
@@ -26,12 +27,34 @@ describe("Register use case", () => {
       email: "gui@gmail.com",
       name: "Guilherme",
       password: "123456",
+      nickname: "gui",
     });
 
-    expect(await sup.execute({
-      email: "gui@gmail.com",
+    expect(
+      await sup.execute({
+        email: "gui@gmail.com",
+        name: "Guilherme",
+        password: "123456",
+        nickname: "gui",
+      })
+    ).toThrowError(Error);
+  });
+
+  it("should be able to return an error because the nickname was repeated", async () => {
+    await usersRepository.create({
+      email: "gi@gmail.com",
       name: "Guilherme",
       password: "123456",
-    })).toThrowError(Error);
+      nickname: "gui",
+    });
+
+    expect(
+      await sup.execute({
+        email: "gui@gmail.com",
+        name: "Guilherme",
+        password: "123456",
+        nickname: "gui",
+      })
+    ).toThrowError(Error);
   });
 });
