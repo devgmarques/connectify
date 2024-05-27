@@ -29,7 +29,6 @@ describe("Create post use case", () => {
     const { post } = await sup.execute({
       userId: "user_01",
       body: "Não concordo com sua opinião",
-      likes: 0,
       title: "Sobre RS",
     });
 
@@ -50,7 +49,6 @@ describe("Create post use case", () => {
     const { post } = await sup.execute({
       userId: "user_01",
       body: "Não concordo com sua opinião",
-      likes: 0,
       title: "Sobre RS",
     });
 
@@ -63,7 +61,6 @@ describe("Create post use case", () => {
         await sup.execute({
           userId: "user_01",
           body: "Não concordo com sua opinião",
-          likes: 0,
           title: "Sobre RS",
         })
     ).rejects.toThrowError(Error);

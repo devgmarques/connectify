@@ -5,7 +5,6 @@ type CreatePostUseCaseRequest = {
   userId: string;
   title: string;
   body: string;
-  likes: number;
 };
 
 export class CreatePostUseCase {
@@ -14,7 +13,7 @@ export class CreatePostUseCase {
     private postsRepository: PostsRepository
   ) {}
 
-  async execute({ userId, body, likes, title }: CreatePostUseCaseRequest) {
+  async execute({ userId, body, title }: CreatePostUseCaseRequest) {
     const user = await this.usersRepository.findById(userId);
 
     if (!user) {
@@ -31,7 +30,6 @@ export class CreatePostUseCase {
     const post = await this.postsRepository.create({
       body,
       title,
-      likes,
       userId,
     });
 

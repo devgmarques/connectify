@@ -2,23 +2,22 @@ import { beforeEach, describe, expect, it } from "vitest";
 
 import { UserInMemoryRepository } from "../repositories/in-memory/users-in-memory";
 import { PostsInMemoryRepository } from "../repositories/in-memory/posts-in-memory-repository";
-import { CommentInMemoryRepository } from "../repositories/in-memory/comments-in-memory-repository";
 import { CreateCommentsInPostUseCase } from "./create-comments-in-post";
+import { LikeInMemoryRepository } from "../repositories/in-memory/like-in-memory-repository";
+import { CreateLikesInPostUseCase } from "./create-like-in-post";
 
 let usersRepository: UserInMemoryRepository;
-let commentRepository: CommentInMemoryRepository;
+let likesRepository: LikeInMemoryRepository;
 let postsRepository: PostsInMemoryRepository;
-let sup: CreateCommentsInPostUseCase;
+let sup: CreateLikesInPostUseCase;
 
-describe("Create comment in post use case", () => {
+describe("Create like in post use case", () => {
   beforeEach(() => {
     usersRepository = new UserInMemoryRepository();
-    commentRepository = new CommentInMemoryRepository();
+    likesRepository = new LikeInMemoryRepository();
     postsRepository = new PostsInMemoryRepository();
-    sup = new CreateCommentsInPostUseCase(commentRepository, postsRepository);
-  });
+    sup = new CreateLikesInPostUseCase(likesRepository, postsRepository);
 
-  it("should be able to create comment", async () => {
     usersRepository.users.push({
       createdAt: new Date(),
       id: "user_01",
@@ -36,13 +35,29 @@ describe("Create comment in post use case", () => {
       title: "Sobre RS",
       createdAt: new Date(),
     });
+  });
 
-    const { comment } = await sup.execute({
+  it("should be able to create like in post", async () => {
+    const { like } = await sup.execute({
       postId: 0,
-      title: "Discordo nesse assunto",
-      body: "Não concordo com sua opinião",
+      userId: "user_01",
     });
 
-    expect(comment.id).toEqual(expect.any(Number));
+    expect(like.id).toEqual(expect.any(Number));
+  });
+
+  it("should be able to returning an error user already liked the post.", async () => {
+    await sup.execute({
+      postId: 0,
+      userId: "user_01",
+    });
+
+    expect(
+      async () =>
+        await sup.execute({
+          postId: 0,
+          userId: "user_01",
+        })
+    ).rejects.toThrowError(Error);
   });
 });

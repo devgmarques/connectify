@@ -16,6 +16,7 @@ model User {
   details  String?
 
   posts Post[]
+  likes Like[]
 
   createdAt DateTime @default(now()) @map("created_at")
 
@@ -26,15 +27,32 @@ model Post {
   id    Int    @id @default(autoincrement())
   title String
   body  String
-  likes Int    @default(0)
 
-  userId   String
-  user     User      @relation(fields: [userId], references: [id])
+  userId String @map("user_id")
+  user   User   @relation(fields: [userId], references: [id])
+
   comments Comment[]
+  likes    Like[]
 
   createdAt DateTime @default(now()) @map("created_at")
 
   @@map("posts")
+}
+
+model Like {
+  id        Int @id @default(autoincrement())
+  likeCount Int @default(0) @map("like_count")
+
+  userId String @map("user_id")
+  user   User   @relation(fields: [userId], references: [id])
+
+  postId Int  @map("post_id")
+  post   Post @relation(fields: [postId], references: [id])
+
+  createdAt DateTime @default(now()) @map("created_at")
+
+  @@unique([userId, postId])
+  @@map("likes")
 }
 
 model Comment {
@@ -42,7 +60,7 @@ model Comment {
   title String
   body  String
 
-  postId Int
+  postId Int  @map("post_id")
   post   Post @relation(fields: [postId], references: [id])
 
   createdAt DateTime @default(now()) @map("created_at")

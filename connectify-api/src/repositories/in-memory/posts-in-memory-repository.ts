@@ -9,7 +9,6 @@ export class PostsInMemoryRepository implements PostsRepository {
       id: 1,
       title: data.title,
       body: data.body,
-      likes: data.likes ?? 0,
       userId: data.userId,
       createdAt: new Date(),
     };

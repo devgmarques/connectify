@@ -1,6 +1,6 @@
 ## App
 
-Connectify - A rede social
+Connectify - A rede social 
 
 ## RFs (Requisitos funcionais)
 
@@ -11,10 +11,10 @@ Connectify - A rede social
 - [] Deve ser possível seguir e deixar de seguir usuários;
 - [] Deve ser possível visualizar postagens no feed de notícias;
 - [x] Deve ser possível criar postagens com texto;
-- [] Deve ser possível curtir e comentar em postagens;
-- [] Deve ser possível enviar mensagens diretas para outros usuários;
+- [x] Deve ser possível curtir e comentar em postagens;
 - [] Deve ser possível buscar usuários e postagens;
 - [] Deve ser possível visualizar o histórico de mensagens diretas;
+- [] Deve ser possível enviar mensagens diretas para outros usuários;
 
 ## RNs (Regras de negócio)
 
