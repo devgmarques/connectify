@@ -25,4 +25,14 @@ export class UserInMemoryRepository implements UsersRepository {
 
     return userByEmail;
   }
+
+  async findById(id: string) {
+    const userById = this.users.find((item) => item.id === id);
+
+    if (!userById) {
+      return null;
+    }
+
+    return userById;
+  }
 }

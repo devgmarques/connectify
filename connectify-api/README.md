@@ -4,13 +4,13 @@ Connectify - A rede social
 
 ## RFs (Requisitos funcionais)
 
-- [] Deve ser possível se cadastrar;
+- [x] Deve ser possível se cadastrar;
 - [] Deve ser possível se autenticar;
 - [] Deve ser possível obter o perfil de um usuário logado;
 - [] Deve ser possível editar o perfil de um usuário logado;
 - [] Deve ser possível seguir e deixar de seguir usuários;
-- [] Deve ser possível criar postagens com texto;
 - [] Deve ser possível visualizar postagens no feed de notícias;
+- [] Deve ser possível criar postagens com texto;
 - [] Deve ser possível curtir e comentar em postagens;
 - [] Deve ser possível enviar mensagens diretas para outros usuários;
 - [] Deve ser possível buscar usuários e postagens;
@@ -18,7 +18,7 @@ Connectify - A rede social
 
 ## RNs (Regras de negócio)
 
-- [] O usuário não deve poder se cadastrar com um e-mail duplicado;
+- [x] O usuário não deve poder se cadastrar com um e-mail duplicado;
 - [] O usuário pode ajustar as configurações de privacidade para seu perfil e postagens;
 - [] O usuário só pode enviar mensagens diretas para seguidores;
 - [] Administradores podem remover postagens ou comentários que violem os termos de serviço;
