@@ -39,4 +39,10 @@ export class PostsInMemoryRepository implements PostsRepository {
 
     return post;
   }
+
+  async fetchPosts(page: number) {
+    const posts = this.posts.slice((page - 1) * 20, page * 20);
+    
+    return posts;
+  }
 }
