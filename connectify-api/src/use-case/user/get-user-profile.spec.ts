@@ -1,7 +1,7 @@
 import { beforeEach, describe, expect, it } from "vitest";
 
 import { GetUserProfileUseCase } from "./get-user-profile";
-import { UserInMemoryRepository } from "../repositories/in-memory/users-in-memory";
+import { UserInMemoryRepository } from "../../repositories/in-memory/users-in-memory";
 
 let usersRepository: UserInMemoryRepository;
 let sup: GetUserProfileUseCase;

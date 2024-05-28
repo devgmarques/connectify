@@ -1,5 +1,5 @@
 import { hash } from "bcryptjs";
-import { UsersRepository } from "../repositories/users";
+import { UsersRepository } from "../../repositories/users";
 
 type RegisterUseCaseRequest = {
   email: string;

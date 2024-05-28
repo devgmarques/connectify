@@ -1,10 +1,10 @@
-import { PostsRepository } from "../repositories/post";
+import { PostsRepository } from "../../repositories/post";
 
 type FetchPostsUseCaseRequest = {
   page: number;
 };
 
-export class FetchPostsUseCase {
+export class FetchPostUseCase {
   constructor(private postsRepository: PostsRepository) {}
 
   async execute({ page }: FetchPostsUseCaseRequest) {

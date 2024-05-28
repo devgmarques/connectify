@@ -9,7 +9,7 @@ Connectify - A rede social
 - [x] Deve ser possível obter o perfil de um usuário logado;
 - [x] Deve ser possível editar o perfil de um usuário logado;
 - [] Deve ser possível seguir e deixar de seguir usuários;
-- [] Deve ser possível visualizar postagens no feed de notícias;
+- [x] Deve ser possível visualizar postagens no feed de notícias;
 - [x] Deve ser possível criar postagens com texto;
 - [x] Deve ser possível curtir e comentar em postagens;
 - [] Deve ser possível buscar usuários e postagens;
@@ -25,6 +25,7 @@ Connectify - A rede social
 - [] Administradores podem suspender ou banir usuários que violarem repetidamente as regras da comunidade;
 - [] Notificações de interações devem ser enviadas em tempo real;
 - [] As postagens no feed de notícias devem ser ordenadas cronologicamente ou por relevância;
+- [] O usuário deve poder desativar ou excluir sua conta.
 
 ## RNFs (Requisitos não-funcionais)
 

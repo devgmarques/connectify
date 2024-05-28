@@ -1,4 +1,4 @@
-import { UsersRepository } from "../repositories/users";
+import { UsersRepository } from "../../repositories/users";
 
 type EditUserProfileUseCaseRequest = {
   userId: string;

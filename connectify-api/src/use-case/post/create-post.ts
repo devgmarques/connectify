@@ -1,5 +1,5 @@
-import { PostsRepository } from "../repositories/post";
-import { UsersRepository } from "../repositories/users";
+import { PostsRepository } from "../../repositories/post";
+import { UsersRepository } from "../../repositories/users";
 
 type CreatePostUseCaseRequest = {
   userId: string;

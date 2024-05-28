@@ -1,18 +1,18 @@
 import { beforeEach, describe, expect, it } from "vitest";
 
-import { UserInMemoryRepository } from "../repositories/in-memory/users-in-memory";
-import { PostsInMemoryRepository } from "../repositories/in-memory/posts-in-memory-repository";
-import { FetchPostsUseCase } from "./fetch-posts";
+import { UserInMemoryRepository } from "../../repositories/in-memory/users-in-memory";
+import { PostsInMemoryRepository } from "../../repositories/in-memory/posts-in-memory-repository";
+import { FetchPostUseCase } from "./fetch-post";
 
 let usersRepository: UserInMemoryRepository;
 let postsRepository: PostsInMemoryRepository;
-let sup: FetchPostsUseCase;
+let sup: FetchPostUseCase;
 
 describe("Fetch post use case", () => {
   beforeEach(() => {
     usersRepository = new UserInMemoryRepository();
     postsRepository = new PostsInMemoryRepository();
-    sup = new FetchPostsUseCase(postsRepository);
+    sup = new FetchPostUseCase(postsRepository);
 
     usersRepository.users.push({
       createdAt: new Date(),

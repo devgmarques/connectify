@@ -1,9 +1,9 @@
 import { beforeEach, describe, expect, it } from "vitest";
 
-import { UserInMemoryRepository } from "../repositories/in-memory/users-in-memory";
-import { PostsInMemoryRepository } from "../repositories/in-memory/posts-in-memory-repository";
-import { CommentInMemoryRepository } from "../repositories/in-memory/comments-in-memory-repository";
-import { CreateCommentsInPostUseCase } from "./create-comments-in-post";
+import { CreateCommentsInPostUseCase } from "./create-comment-in-post";
+import { UserInMemoryRepository } from "../../repositories/in-memory/users-in-memory";
+import { CommentInMemoryRepository } from "../../repositories/in-memory/comments-in-memory-repository";
+import { PostsInMemoryRepository } from "../../repositories/in-memory/posts-in-memory-repository";
 
 let usersRepository: UserInMemoryRepository;
 let commentRepository: CommentInMemoryRepository;
