@@ -6,4 +6,5 @@ export type UsersRepository = {
   findByEmail(email: string): Promise<User | null>;
   findById(id: string): Promise<User | null>;
   findByNickName(nickname: string): Promise<User | null>;
+  findMany(page: number, query: string): Promise<User[] | null>;
 };

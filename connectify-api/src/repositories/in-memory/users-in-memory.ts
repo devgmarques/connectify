@@ -34,6 +34,18 @@ export class UserInMemoryRepository implements UsersRepository {
     return user;
   }
 
+  async findMany(page: number, query: string) {
+    const users = this.users
+      .filter((item) => item.nickname.toLowerCase().includes(query.toLowerCase()))
+      .slice((page - 1) * 20, page * 20);
+
+    if (!users) {
+      return null;
+    }
+
+    return users;
+  }
+
   async findByEmail(email: string) {
     const userByEmail = this.users.find((item) => item.email === email);
 
