@@ -8,7 +8,7 @@ Connectify - A rede social
 - [] Deve ser possível se autenticar;
 - [x] Deve ser possível obter o perfil de um usuário logado;
 - [x] Deve ser possível editar o perfil de um usuário logado;
-- [] Deve ser possível seguir e deixar de seguir usuários;
+- [x] Deve ser possível seguir e deixar de seguir usuários;
 - [x] Deve ser possível visualizar postagens no feed de notícias;
 - [x] Deve ser possível criar postagens com texto;
 - [x] Deve ser possível curtir e comentar em postagens;

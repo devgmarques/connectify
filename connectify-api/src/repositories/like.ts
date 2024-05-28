@@ -7,5 +7,6 @@ type LikesCreate = {
 
 export type LikesRepository = {
   create(data: LikesCreate): Promise<Like>;
+  removeLike(id: number): Promise<number>;
   findByUserIdAndPostId({ postId, userId }: LikesCreate): Promise<Like | null>;
 };

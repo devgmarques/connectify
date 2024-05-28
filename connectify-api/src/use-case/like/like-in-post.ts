@@ -23,7 +23,11 @@ export class CreateLikesInPostUseCase {
       await this.likesRepository.findByUserIdAndPostId({ postId, userId });
 
     if (checkIfTheUserHasAlreadyLikedThePost) {
-      throw new Error("The user has already liked the post.");
+      const countLike = await this.likesRepository.removeLike(
+        checkIfTheUserHasAlreadyLikedThePost.id
+      );
+
+      return { countLike };
     }
 
     const like = await this.likesRepository.create({
@@ -32,7 +36,7 @@ export class CreateLikesInPostUseCase {
     });
 
     return {
-      like,
+      countLike: like.likeCount,
     };
   }
 }

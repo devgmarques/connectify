@@ -35,4 +35,12 @@ export class LikeInMemoryRepository implements LikesRepository {
 
     return likeByUserIdAndPostId;
   }
+
+  async removeLike(id: number) {
+    this.likes.map((item) => (item.id === id ? item.likeCount-- : item));
+
+    return this.likes.reduce((acc, item) => {
+      return acc + item.likeCount;
+    }, 0);
+  }
 }

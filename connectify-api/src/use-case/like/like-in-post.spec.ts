@@ -3,7 +3,7 @@ import { beforeEach, describe, expect, it } from "vitest";
 import { UserInMemoryRepository } from "../../repositories/in-memory/users-in-memory";
 import { PostsInMemoryRepository } from "../../repositories/in-memory/posts-in-memory-repository";
 import { LikeInMemoryRepository } from "../../repositories/in-memory/like-in-memory-repository";
-import { CreateLikesInPostUseCase } from "./create-like-in-post";
+import { CreateLikesInPostUseCase } from "./like-in-post";
 
 let usersRepository: UserInMemoryRepository;
 let likesRepository: LikeInMemoryRepository;
@@ -37,26 +37,25 @@ describe("Create like in post use case", () => {
   });
 
   it("should be able to create like in post", async () => {
-    const { like } = await sup.execute({
+    const { countLike } = await sup.execute({
       postId: 0,
       userId: "user_01",
     });
 
-    expect(like.id).toEqual(expect.any(Number));
+    expect(countLike).toEqual(1);
   });
 
-  it("should be able to returning an error user already liked the post.", async () => {
+  it("should be able to return deslike in post.", async () => {
     await sup.execute({
       postId: 0,
       userId: "user_01",
     });
 
-    expect(
-      async () =>
-        await sup.execute({
-          postId: 0,
-          userId: "user_01",
-        })
-    ).rejects.toThrowError(Error);
+    const { countLike } = await sup.execute({
+      postId: 0,
+      userId: "user_01",
+    });
+
+    expect(countLike).toEqual(0);
   });
 });
