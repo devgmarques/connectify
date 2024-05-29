@@ -34,7 +34,7 @@ export class UserInMemoryRepository implements UsersRepository {
     return user;
   }
 
-  async findMany(page: number, query: string) {
+  async searchMany(page: number, query: string) {
     const users = this.users
       .filter((item) => item.nickname.toLowerCase().includes(query.toLowerCase()))
       .slice((page - 1) * 20, page * 20);

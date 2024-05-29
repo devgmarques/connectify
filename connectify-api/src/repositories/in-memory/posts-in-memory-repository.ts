@@ -18,6 +18,14 @@ export class PostsInMemoryRepository implements PostsRepository {
     return post;
   }
 
+  async searchMany(page: number, query: string) {
+    const posts = this.posts
+      .filter((item) => item.title.toLowerCase().includes(query.toLowerCase()))
+      .slice((page - 1) * 20, page * 20);
+
+    return posts;
+  }
+
   async findByTitle(userId: string, title: string) {
     const post = this.posts.find(
       (item) => item.userId === userId && item.title === title
@@ -40,9 +48,9 @@ export class PostsInMemoryRepository implements PostsRepository {
     return post;
   }
 
-  async fetchPosts(page: number) {
+  async findMany(page: number) {
     const posts = this.posts.slice((page - 1) * 20, page * 20);
-    
+
     return posts;
   }
 }

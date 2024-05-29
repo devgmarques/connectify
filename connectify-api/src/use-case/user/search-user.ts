@@ -1,15 +1,15 @@
 import { UsersRepository } from "../../repositories/users";
 
-type FetchUserUseCaseRequest = {
+type SearchUserUseCaseRequest = {
   query: string;
   page: number;
 };
 
-export class FetchUserUseCase {
+export class SearchUserUseCase {
   constructor(private usersRepository: UsersRepository) {}
 
-  async execute({ page, query }: FetchUserUseCaseRequest) {
-    const users = await this.usersRepository.findMany(page, query);
+  async execute({ page, query }: SearchUserUseCaseRequest) {
+    const users = await this.usersRepository.searchMany(page, query);
 
     return {
       users,

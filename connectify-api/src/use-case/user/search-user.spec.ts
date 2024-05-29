@@ -1,15 +1,15 @@
 import { beforeEach, describe, expect, it } from "vitest";
 
 import { UserInMemoryRepository } from "../../repositories/in-memory/users-in-memory";
-import { FetchUserUseCase } from "./fetch-user";
+import { SearchUserUseCase } from "./search-user";
 
 let usersRepository: UserInMemoryRepository;
-let sup: FetchUserUseCase;
+let sup: SearchUserUseCase;
 
 describe("Fetch users use case", () => {
   beforeEach(() => {
     usersRepository = new UserInMemoryRepository();
-    sup = new FetchUserUseCase(usersRepository);
+    sup = new SearchUserUseCase(usersRepository);
   });
 
   it("should be able to fetch users", async () => {
