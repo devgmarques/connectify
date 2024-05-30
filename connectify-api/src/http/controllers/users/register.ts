@@ -1,9 +1,10 @@
 import { FastifyReply, FastifyRequest } from "fastify";
-
 import { z } from "zod";
-import { RegisterUseCase } from "../../use-case/user/register";
-import { UserPrismaRepository } from "../../repositories/prisma/user-prisma-repository";
-import { CreadentialsAlreadyExistError } from "../../use-case/errors/credentials-already-exist-error";
+
+import { RegisterUseCase } from "../../../use-case/user/register";
+import { UserPrismaRepository } from "../../../repositories/prisma/user-prisma-repository";
+import { EmailAlreadyExistError } from "../../../use-case/errors/email-already-exist-error";
+import { NicknameAlreadyExistError } from "../../../use-case/errors/nickname-already-exist-error";
 
 export async function register(req: FastifyRequest, reply: FastifyReply) {
   const registerBody = z.object({
@@ -28,7 +29,11 @@ export async function register(req: FastifyRequest, reply: FastifyReply) {
 
     return reply.status(201).send();
   } catch (error) {
-    if (error instanceof CreadentialsAlreadyExistError) {
+    if (error instanceof EmailAlreadyExistError) {
+      return reply.status(400).send({ message: error.message });
+    }
+
+    if (error instanceof NicknameAlreadyExistError) {
       return reply.status(400).send({ message: error.message });
     }
 

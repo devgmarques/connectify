@@ -1,6 +1,8 @@
 import { hash } from "bcryptjs";
+
 import { UsersRepository } from "../../repositories/users";
-import { CreadentialsAlreadyExistError } from "../errors/credentials-already-exist-error";
+import { NicknameAlreadyExistError } from "../errors/nickname-already-exist-error";
+import { EmailAlreadyExistError } from "../errors/email-already-exist-error";
 
 type RegisterUseCaseRequest = {
   email: string;
@@ -16,7 +18,7 @@ export class RegisterUseCase {
     const emailAlreadyExists = await this.usersRespository.findByEmail(email);
 
     if (emailAlreadyExists) {
-      throw new CreadentialsAlreadyExistError()
+      throw new EmailAlreadyExistError()
     }
 
     const nicknameAlreadyExists = await this.usersRespository.findByNickName(
@@ -24,7 +26,7 @@ export class RegisterUseCase {
     );
 
     if (nicknameAlreadyExists) {
-      throw new CreadentialsAlreadyExistError()
+      throw new NicknameAlreadyExistError()
     }
 
     const passwordHash = await hash(password, 6);

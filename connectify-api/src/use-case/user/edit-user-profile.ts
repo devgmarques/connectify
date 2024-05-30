@@ -1,4 +1,6 @@
 import { UsersRepository } from "../../repositories/users";
+import { EmailAlreadyExistError } from "../errors/email-already-exist-error";
+import { UserNotExistError } from "../errors/user-not-exist-error";
 
 type EditUserProfileUseCaseRequest = {
   userId: string;
@@ -18,7 +20,7 @@ export class EditUserProfileUseCase {
     const userById = await this.usersRepository.findById(userId);
 
     if (!userById) {
-      throw new Error("User not exists with this id.");
+      throw new UserNotExistError();
     }
 
     const emailAlreadyExists = await this.usersRepository.findByEmail(
@@ -26,7 +28,7 @@ export class EditUserProfileUseCase {
     );
 
     if (emailAlreadyExists && emailAlreadyExists.id !== userId) {
-      throw new Error("User already exists with this email.");
+      throw new EmailAlreadyExistError()
     }
 
     const nicknameAlreadyExists = await this.usersRepository.findByNickName(

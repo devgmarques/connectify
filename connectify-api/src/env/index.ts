@@ -3,6 +3,7 @@ import "dotenv/config"
 
 const schemaEnv = z.object({
   DATABASE_URL: z.string(),
+  JWT_SECRET:z.string(),
   PORT: z.coerce.number().default(3333),
 });
 
