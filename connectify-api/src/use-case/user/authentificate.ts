@@ -1,6 +1,6 @@
 import { compare } from "bcryptjs";
 
-import { UsersRepository } from "../../repositories/users";
+import { UsersRepository } from "../../repositories/user";
 import { CredentialsInvalidateError } from "../errors/credential-invalid-error";
 import { UserNotExistError } from "../errors/user-not-exist-error";
 

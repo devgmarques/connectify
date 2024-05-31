@@ -17,8 +17,8 @@ export async function register(req: FastifyRequest, reply: FastifyReply) {
   const { email, name, password, nickname } = registerBody.parse(req.body);
 
   try {
-    const repository = new UserPrismaRepository();
-    const useCase = new RegisterUseCase(repository);
+    const userRepository = new UserPrismaRepository();
+    const useCase = new RegisterUseCase(userRepository);
 
     await useCase.execute({
       email,

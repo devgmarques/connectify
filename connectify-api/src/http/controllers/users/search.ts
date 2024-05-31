@@ -13,8 +13,8 @@ export async function search(req: FastifyRequest, reply: FastifyReply) {
   const { page, query } = SearchBody.parse(req.query);
 
   try {
-    const repository = new UserPrismaRepository();
-    const useCase = new SearchUserUseCase(repository);
+    const userRepository = new UserPrismaRepository();
+    const useCase = new SearchUserUseCase(userRepository);
 
     const { users } = await useCase.execute({
       page,

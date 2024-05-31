@@ -1,4 +1,4 @@
-import { UsersRepository } from "../../repositories/users";
+import { UsersRepository } from "../../repositories/user";
 import { EmailAlreadyExistError } from "../errors/email-already-exist-error";
 import { UserNotExistError } from "../errors/user-not-exist-error";
 

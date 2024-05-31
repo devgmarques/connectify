@@ -18,8 +18,8 @@ export async function edit(req: FastifyRequest, reply: FastifyReply) {
   const { details, email, name, password, nickname } = editBody.parse(req.body);
 
   try {
-    const repository = new UserPrismaRepository();
-    const useCase = new EditUserProfileUseCase(repository);
+    const userRepository = new UserPrismaRepository();
+    const useCase = new EditUserProfileUseCase(userRepository);
 
     const { user } = await useCase.execute({
       userId: req.user.sub,
