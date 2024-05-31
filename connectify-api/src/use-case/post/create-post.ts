@@ -1,30 +1,23 @@
 import { PostsRepository } from "../../repositories/post";
-import { UsersRepository } from "../../repositories/users";
+import { TitleAlreadyExistInUserError } from "../errors/title-already-exist-in-user-error";
 
 type CreatePostUseCaseRequest = {
   userId: string;
-  title: string;
-  body: string;
+  data: {
+    title: string;
+    body: string;
+  };
 };
 
 export class CreatePostUseCase {
-  constructor(
-    private usersRepository: UsersRepository,
-    private postsRepository: PostsRepository
-  ) {}
+  constructor(private postsRepository: PostsRepository) {}
 
-  async execute({ userId, body, title }: CreatePostUseCaseRequest) {
-    const user = await this.usersRepository.findById(userId);
-
-    if (!user) {
-      throw new Error("User not exists with this id.");
-    }
-
+  async execute({ userId, data: { body, title } }: CreatePostUseCaseRequest) {
     const postWithThisTitleAlreadyExistsInTheUser =
       await this.postsRepository.findByTitle(userId, title);
 
     if (postWithThisTitleAlreadyExistsInTheUser) {
-      throw new Error("Post with this title already exists in the user");
+      throw new TitleAlreadyExistInUserError();
     }
 
     const post = await this.postsRepository.create({
