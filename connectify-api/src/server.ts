@@ -1,8 +1,11 @@
-import fastify from "fastify";
-import { env } from "./env";
-import { routesUsers } from "./http/controllers/users/routes";
-import { ZodError } from "zod";
+import fastify from "fastify"
 import fastifyJwt from "@fastify/jwt";
+
+import { ZodError } from "zod";
+import { env } from "@/env";
+
+import { routesUsers } from "@/http/controllers/users/routes";
+import { routesPost } from '@/http/controllers/post/routes';
 
 const app = fastify();
 
@@ -11,6 +14,7 @@ app.register(fastifyJwt, {
 });
 
 app.register(routesUsers);
+app.register(routesPost);
 
 app.setErrorHandler((error, _, reply) => {
   if (error instanceof ZodError) {
