@@ -1,4 +1,4 @@
-import { PostsRepository } from "../../repositories/post";
+import { PostsRepository } from "@/repositories/post";
 
 type SearchPostUseCaseRequest = {
   query: string;

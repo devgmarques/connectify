@@ -1,8 +1,8 @@
 import { FastifyReply, FastifyRequest } from "fastify";
 import z from "zod";
-import { UserPrismaRepository } from "../../../repositories/prisma/user-prisma-repository";
-import { AuthentificateUseCase } from "../../../use-case/user/authentificate";
-import { CredentialsInvalidateError } from "../../../use-case/errors/credential-invalid-error";
+import { UserPrismaRepository } from "@/repositories/prisma/user-prisma-repository";
+import { AuthentificateUseCase } from "@/use-case/user/authentificate";
+import { CredentialsInvalidateError } from "@/use-case/errors/credential-invalid-error";
 
 export async function authentificate(req: FastifyRequest, reply: FastifyReply) {
   const authentificateBody = z.object({

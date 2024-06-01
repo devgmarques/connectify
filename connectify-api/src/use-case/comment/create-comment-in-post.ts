@@ -1,5 +1,5 @@
-import { CommentRepository } from "../../repositories/comment";
-import { PostsRepository } from "../../repositories/post";
+import { CommentRepository } from "@/repositories/comment";
+import { PostsRepository } from "@/repositories/post";
 
 type CreateCommentsInPostUseCaseRequest = {
   title: string;

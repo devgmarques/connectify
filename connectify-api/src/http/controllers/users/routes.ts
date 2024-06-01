@@ -1,6 +1,6 @@
 import { FastifyInstance } from "fastify";
 
-import { verifyJwt } from "../../middlewares/verify-jwt";
+import { verifyJwt } from "@/http/middlewares/verify-jwt";
 
 import { register } from "./register";
 import { search } from "./search";

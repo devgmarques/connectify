@@ -1,10 +1,10 @@
 import { FastifyReply, FastifyRequest } from "fastify";
 
 import { z } from "zod";
-import { EmailAlreadyExistError } from "../../../use-case/errors/email-already-exist-error";
-import { UserNotExistError } from "../../../use-case/errors/user-not-exist-error";
-import { UserPrismaRepository } from "../../../repositories/prisma/user-prisma-repository";
-import { EditUserProfileUseCase } from "../../../use-case/user/edit-user-profile";
+import { EmailAlreadyExistError } from "@/use-case/errors/email-already-exist-error";
+import { UserNotExistError } from "@/use-case/errors/user-not-exist-error";
+import { UserPrismaRepository } from "@/repositories/prisma/user-prisma-repository";
+import { EditUserProfileUseCase } from "@/use-case/user/edit-user-profile";
 
 export async function edit(req: FastifyRequest, reply: FastifyReply) {
   const editBody = z.object({

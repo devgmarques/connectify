@@ -1,6 +1,6 @@
 import { hash } from "bcryptjs";
 
-import { UsersRepository } from "../../repositories/user";
+import { UsersRepository } from "@/repositories/user";
 import { NicknameAlreadyExistError } from "../errors/nickname-already-exist-error";
 import { EmailAlreadyExistError } from "../errors/email-already-exist-error";
 

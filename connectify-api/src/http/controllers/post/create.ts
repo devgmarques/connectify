@@ -1,9 +1,9 @@
 import { FastifyReply, FastifyRequest } from "fastify";
 import { z } from "zod";
 
-import { CreatePostUseCase } from "../../../use-case/post/create-post";
-import { PostPrismaRepository } from "../../../repositories/prisma/post-repository";
-import { TitleAlreadyExistInUserError } from "../../../use-case/errors/title-already-exist-in-user-error";
+import { CreatePostUseCase } from "@/use-case/post/create-post";
+import { PostPrismaRepository } from "@/repositories/prisma/post-repository";
+import { TitleAlreadyExistInUserError } from "@/use-case/errors/title-already-exist-in-user-error";
 
 export async function register(req: FastifyRequest, reply: FastifyReply) {
   const registerBody = z.object({

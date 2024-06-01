@@ -12,7 +12,7 @@ describe("Create post use case", () => {
   beforeEach(() => {
     usersRepository = new UserInMemoryRepository();
     postsRepository = new PostsInMemoryRepository();
-    sup = new CreatePostUseCase(usersRepository, postsRepository);
+    sup = new CreatePostUseCase(postsRepository);
   });
 
   it("should be able to create post", async () => {
@@ -28,8 +28,10 @@ describe("Create post use case", () => {
 
     const { post } = await sup.execute({
       userId: "user_01",
-      body: "Não concordo com sua opinião",
-      title: "Sobre RS",
+      data: {
+        title: "Sobre RS",
+        body: "Não concordo com sua opinião",
+      }
     });
 
     expect(post.id).toEqual(expect.any(Number));
@@ -48,21 +50,12 @@ describe("Create post use case", () => {
 
     const { post } = await sup.execute({
       userId: "user_01",
-      body: "Não concordo com sua opinião",
-      title: "Sobre RS",
+      data: {
+        title: "Sobre RS",
+        body: "Não concordo com sua opinião",
+      }
     });
 
     expect(post.id).toEqual(expect.any(Number));
-  });
-
-  it("should be able return a user error does not exist", () => {
-    expect(
-      async () =>
-        await sup.execute({
-          userId: "user_01",
-          body: "Não concordo com sua opinião",
-          title: "Sobre RS",
-        })
-    ).rejects.toThrowError(Error);
   });
 });

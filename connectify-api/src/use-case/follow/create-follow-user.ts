@@ -1,4 +1,4 @@
-import { FollowRepository } from "../../repositories/follow";
+import { FollowRepository } from "@/repositories/follow";
 
 type CreateFollowUserUseCaseRequest = {
   userId: string;

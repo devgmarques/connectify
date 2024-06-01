@@ -1,8 +1,8 @@
 import { FastifyReply, FastifyRequest } from "fastify";
 import { z } from "zod";
 
-import { UserPrismaRepository } from "../../../repositories/prisma/user-prisma-repository";
-import { SearchUserUseCase } from "../../../use-case/user/search-user";
+import { UserPrismaRepository } from "@/repositories/prisma/user-prisma-repository";
+import { SearchUserUseCase } from "@/use-case/user/search-user";
 
 export async function search(req: FastifyRequest, reply: FastifyReply) {
   const SearchBody = z.object({

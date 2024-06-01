@@ -1,6 +1,6 @@
 import { Prisma } from "@prisma/client";
 import { PostsRepository } from "../post";
-import { prisma } from "../../lib/prisma";
+import { prisma } from "@/lib/prisma";
 
 export class PostPrismaRepository implements PostsRepository {
   async create(data: Prisma.PostCreateManyInput) {

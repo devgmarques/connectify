@@ -1,4 +1,4 @@
-import { PostsRepository } from "../../repositories/post";
+import { PostsRepository } from "@/repositories/post";
 import { TitleAlreadyExistInUserError } from "../errors/title-already-exist-in-user-error";
 
 type CreatePostUseCaseRequest = {
