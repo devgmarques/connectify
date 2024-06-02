@@ -10,7 +10,7 @@ export class CreateLikeInPostUseCase {
   constructor(
     private likesRepository: LikesRepository,
     private postsRepository: PostsRepository
-  ) {}
+  ) { }
 
   async execute({ postId, userId }: CreateLikeInPostUseCaseRequest) {
     const postById = await this.postsRepository.findById(postId);
@@ -23,22 +23,18 @@ export class CreateLikeInPostUseCase {
       await this.likesRepository.findByUserIdAndPostId({ postId, userId });
 
     if (checkIfTheUserHasAlreadyLikedThePost) {
-      const countLike = await this.likesRepository.removeLike(
+      await this.likesRepository.removeLike(
         checkIfTheUserHasAlreadyLikedThePost.id
       );
 
-      return { countLike };
+      return { like: false };
     }
 
-    const like = await this.likesRepository.create({
+    await this.likesRepository.create({
       postId,
       userId,
     });
 
-    const countLike = await this.likesRepository.increment(like.id)    
-
-    return {
-      countLike,
-    };
+    return { like: true };
   }
 }

@@ -37,18 +37,10 @@ export class LikeInMemoryRepository implements LikesRepository {
   }
 
   async removeLike(id: number) {
-    this.likes.map((item) => (item.id === id ? item.likeCount-- : item));
+    const likes = this.likes.filter((item) => item.id !== id);
 
-    return this.likes.reduce((acc, item) => {
-      return acc + item.likeCount;
-    }, 0);
-  }
+    this.likes = likes
 
-  async increment(id: number){
-      const like = this.likes.findIndex(item => item.id === id)
-
-      this.likes[like].likeCount ++
-
-      return this.likes[like].likeCount
+    return true
   }
 }

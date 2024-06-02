@@ -37,12 +37,12 @@ describe("Create like in post use case", () => {
   });
 
   it("should be able to create like in post", async () => {
-    const { countLike } = await sup.execute({
+    const { like } = await sup.execute({
       postId: 0,
       userId: "user_01",
     });
 
-    expect(countLike).toEqual(1);
+    expect(like).toEqual(true);
   });
 
   it("should be able to return deslike in post.", async () => {
@@ -51,11 +51,11 @@ describe("Create like in post use case", () => {
       userId: "user_01",
     });
 
-    const { countLike } = await sup.execute({
+    const { like } = await sup.execute({
       postId: 0,
       userId: "user_01",
     });
 
-    expect(countLike).toEqual(0);
+    expect(like).toEqual(false);
   });
 });

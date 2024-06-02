@@ -26,30 +26,13 @@ export class LikePrismaRepository implements LikesRepository {
     return like
   }
 
-  async increment(id: number) {
-    const like = await prisma.like.update({
-      where: { id },
-      data: {
-        likeCount: { increment: 1 }
-      }
-    })
-
-    return like.likeCount
-  }
-
   async removeLike(id: number) {
-    const like = await prisma.like.update({
-      where: { id }, data: {
-        likeCount: { decrement: 1 }
-      }
-    })
-
-    await prisma.like.delete({
+    const like = await prisma.like.delete({
       where: {
         id
       }
     })
 
-    return like.likeCount
+    return like ? true : false
   }
 }

@@ -51,8 +51,7 @@ model Post {
 }
 
 model Like {
-  id        Int @id @default(autoincrement())
-  likeCount Int @default(0) @map("like_count")
+  id Int @id @default(autoincrement())
 
   userId String @map("user_id")
   user   User   @relation(fields: [userId], references: [id])

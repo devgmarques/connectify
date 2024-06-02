@@ -2,10 +2,10 @@
   "name": "connectify-api",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "src/server.ts",
   "scripts": {
     "dev": "tsx watch src/server.ts",
-    "test:watch": "vitest --dir src/use-case"
+    "test": "vitest"
   },
   "keywords": [],
   "author": "",
