@@ -6,29 +6,29 @@ type CreateFollowUserUseCaseRequest = {
 };
 
 export class CreateFollowUserUseCase {
-  constructor(private followsRepository: FollowRepository) {}
+  constructor(private followsRepository: FollowRepository) { }
 
   async execute({ followedId, userId }: CreateFollowUserUseCaseRequest) {
-    const findFollowById = await this.followsRepository.findById({
+    const findFollowById = await this.followsRepository.findByFollowedIdAndUserId({
       userId,
       followedId,
     });
 
     if (findFollowById) {
-      await this.followsRepository.removeFollow({
+      const follow = await this.followsRepository.removeFollow({
         followedId,
         userId,
       });
 
       return {
-        type: "remove_follow",
+        follow: false
       };
     }
 
-    await this.followsRepository.create({ followedId, userId });
+    const follow = await this.followsRepository.create({ followedId, userId });
 
     return {
-      type: "created",
+      follow: follow ? true : false
     };
   }
 }

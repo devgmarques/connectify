@@ -36,12 +36,12 @@ describe("Create comment in post use case", () => {
       password: "123456",
     });
 
-    const { type } = await sup.execute({
+    const { follow } = await sup.execute({
       followedId: "user_01",
       userId: "user_02",
     });
 
-    expect(type).toEqual("created");
+    expect(follow).toEqual(true);
   });
 
   it("should be able to remove one follow", async () => {
@@ -70,11 +70,11 @@ describe("Create comment in post use case", () => {
       userId: "user_02",
     });
 
-    const {type} = await sup.execute({
+    const { follow } = await sup.execute({
       followedId: "user_01",
       userId: "user_02",
     });
 
-    expect(type).toEqual("remove_follow");
+    expect(follow).toEqual(false);
   });
 });

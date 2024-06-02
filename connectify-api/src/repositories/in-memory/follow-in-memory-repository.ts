@@ -27,7 +27,7 @@ export class FollowInMemoryRepository implements FollowRepository {
     return true;
   }
 
-  async findById(data: { followedId: string; userId: string }) {
+  async findByFollowedIdAndUserId(data: { followedId: string; userId: string }) {
     const followById = this.follows.find(
       (item) =>
         item.userId === data.userId && item.followedId === data.followedId
