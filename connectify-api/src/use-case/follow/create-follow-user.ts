@@ -15,7 +15,7 @@ export class CreateFollowUserUseCase {
     });
 
     if (findFollowById) {
-      const follow = await this.followsRepository.removeFollow({
+      await this.followsRepository.removeFollow({
         followedId,
         userId,
       });

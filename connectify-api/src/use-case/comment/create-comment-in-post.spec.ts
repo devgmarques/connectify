@@ -1,6 +1,6 @@
 import { beforeEach, describe, expect, it } from "vitest";
 
-import { CreateCommentsInPostUseCase } from "./create-comment-in-post";
+import { CreateCommentInPostUseCase } from "./create-comment-in-post";
 import { UserInMemoryRepository } from "../../repositories/in-memory/users-in-memory";
 import { CommentInMemoryRepository } from "../../repositories/in-memory/comments-in-memory-repository";
 import { PostsInMemoryRepository } from "../../repositories/in-memory/posts-in-memory-repository";
@@ -8,14 +8,14 @@ import { PostsInMemoryRepository } from "../../repositories/in-memory/posts-in-m
 let usersRepository: UserInMemoryRepository;
 let commentRepository: CommentInMemoryRepository;
 let postsRepository: PostsInMemoryRepository;
-let sup: CreateCommentsInPostUseCase;
+let sup: CreateCommentInPostUseCase;
 
 describe("Create comment in post use case", () => {
   beforeEach(() => {
     usersRepository = new UserInMemoryRepository();
     commentRepository = new CommentInMemoryRepository();
     postsRepository = new PostsInMemoryRepository();
-    sup = new CreateCommentsInPostUseCase(commentRepository, postsRepository);
+    sup = new CreateCommentInPostUseCase(commentRepository, postsRepository);
   });
 
   it("should be able to create comment", async () => {

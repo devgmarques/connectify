@@ -8,8 +8,9 @@ import { routesUser } from "@/http/controllers/users/routes";
 import { routesPost } from '@/http/controllers/post/routes';
 import { routesLike } from "./http/controllers/like/routes";
 import { routesFollow } from "./http/controllers/follow/routes";
+import { routesComment } from "./http/controllers/comment/routes";
 
-const app = fastify();
+export const app = fastify();
 
 app.register(fastifyJwt, {
   secret: env.JWT_SECRET,
@@ -19,6 +20,7 @@ app.register(routesUser);
 app.register(routesPost);
 app.register(routesLike)
 app.register(routesFollow)
+app.register(routesComment)
 
 app.setErrorHandler((error, _, reply) => {
   if (error instanceof ZodError) {
@@ -33,5 +35,5 @@ app.setErrorHandler((error, _, reply) => {
 });
 
 app.listen({ port: env.PORT }, () => {
-  console.log("Server is running");
+  console.log(`Server is running on port ${env.PORT}`);
 });
