@@ -8,7 +8,7 @@ import { profile } from "./profile";
 import { authentificate } from "./authentificate";
 import { edit } from "./edit";
 
-export async function routesUsers(app: FastifyInstance) {
+export async function routesUser(app: FastifyInstance) {
   app.post("/user", register);
   app.post("/session", authentificate);
 

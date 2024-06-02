@@ -2,7 +2,7 @@ import { FastifyReply, FastifyRequest } from "fastify";
 import { z } from "zod";
 
 import { SearchPostUseCase } from "@/use-case/post/search-post";
-import { PostPrismaRepository } from "@/repositories/prisma/post-repository";
+import { PostPrismaRepository } from "@/repositories/prisma/post-prisma-repository";
 
 export async function search(req: FastifyRequest, reply: FastifyReply) {
   const searchBody = z.object({

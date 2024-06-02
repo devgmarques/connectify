@@ -2,7 +2,7 @@ import { FastifyReply, FastifyRequest } from "fastify";
 import { z } from "zod";
 
 import { FetchPostUseCase } from "@/use-case/post/fetch-post";
-import { PostPrismaRepository } from "@/repositories/prisma/post-repository";
+import { PostPrismaRepository } from "@/repositories/prisma/post-prisma-repository";
 
 export async function fetch(req: FastifyRequest, reply: FastifyReply) {
   const fetchBody = z.object({

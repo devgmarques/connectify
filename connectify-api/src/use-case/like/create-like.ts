@@ -1,18 +1,18 @@
 import { LikesRepository } from "@/repositories/like";
 import { PostsRepository } from "@/repositories/post";
 
-type CreateLikesInPostUseCaseRequest = {
+type CreateLikeInPostUseCaseRequest = {
   postId: number;
   userId: string;
 };
 
-export class CreateLikesInPostUseCase {
+export class CreateLikeInPostUseCase {
   constructor(
     private likesRepository: LikesRepository,
     private postsRepository: PostsRepository
   ) {}
 
-  async execute({ postId, userId }: CreateLikesInPostUseCaseRequest) {
+  async execute({ postId, userId }: CreateLikeInPostUseCaseRequest) {
     const postById = await this.postsRepository.findById(postId);
 
     if (!postById) {
@@ -35,8 +35,10 @@ export class CreateLikesInPostUseCase {
       userId,
     });
 
+    const countLike = await this.likesRepository.increment(like.id)    
+
     return {
-      countLike: like.likeCount,
+      countLike,
     };
   }
 }

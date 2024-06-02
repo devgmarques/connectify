@@ -4,8 +4,9 @@ import fastifyJwt from "@fastify/jwt";
 import { ZodError } from "zod";
 import { env } from "@/env";
 
-import { routesUsers } from "@/http/controllers/users/routes";
+import { routesUser } from "@/http/controllers/users/routes";
 import { routesPost } from '@/http/controllers/post/routes';
+import { routesLike } from "./http/controllers/like/routes";
 
 const app = fastify();
 
@@ -13,8 +14,9 @@ app.register(fastifyJwt, {
   secret: env.JWT_SECRET,
 });
 
-app.register(routesUsers);
+app.register(routesUser);
 app.register(routesPost);
+app.register(routesLike)
 
 app.setErrorHandler((error, _, reply) => {
   if (error instanceof ZodError) {

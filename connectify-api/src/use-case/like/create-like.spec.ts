@@ -3,19 +3,19 @@ import { beforeEach, describe, expect, it } from "vitest";
 import { UserInMemoryRepository } from "../../repositories/in-memory/users-in-memory";
 import { PostsInMemoryRepository } from "../../repositories/in-memory/posts-in-memory-repository";
 import { LikeInMemoryRepository } from "../../repositories/in-memory/like-in-memory-repository";
-import { CreateLikesInPostUseCase } from "./like-in-post";
+import { CreateLikeInPostUseCase } from "./create-like";
 
 let usersRepository: UserInMemoryRepository;
 let likesRepository: LikeInMemoryRepository;
 let postsRepository: PostsInMemoryRepository;
-let sup: CreateLikesInPostUseCase;
+let sup: CreateLikeInPostUseCase;
 
 describe("Create like in post use case", () => {
   beforeEach(() => {
     usersRepository = new UserInMemoryRepository();
     likesRepository = new LikeInMemoryRepository();
     postsRepository = new PostsInMemoryRepository();
-    sup = new CreateLikesInPostUseCase(likesRepository, postsRepository);
+    sup = new CreateLikeInPostUseCase(likesRepository, postsRepository);
 
     usersRepository.users.push({
       createdAt: new Date(),
