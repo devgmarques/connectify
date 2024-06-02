@@ -17,12 +17,12 @@ export async function create(req: FastifyRequest, reply: FastifyReply) {
     const postsRepository = new PostPrismaRepository()
     const useCase = new CreateLikeInPostUseCase(likesRepository, postsRepository);
 
-    const { countLike } = await useCase.execute({
+    await useCase.execute({
       postId,
       userId: req.user.sub
     });
 
-    return reply.status(201).send({ countLike });
+    return reply.status(201).send();
   } catch (error) {
     throw error;
   }
