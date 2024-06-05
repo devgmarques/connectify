@@ -1,5 +1,6 @@
 import fastify from "fastify"
 import fastifyJwt from "@fastify/jwt";
+import fastifyCors from '@fastify/cors'
 
 import { ZodError } from "zod";
 import { env } from "@/env";
@@ -15,6 +16,8 @@ export const app = fastify();
 app.register(fastifyJwt, {
   secret: env.JWT_SECRET,
 });
+
+app.register(fastifyCors, { origin: "http://localhost:3000" })
 
 app.register(routesUser);
 app.register(routesPost);
