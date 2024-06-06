@@ -3,6 +3,7 @@
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 
+import { setCookie } from 'nookies'
 import { z } from 'zod'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
@@ -40,7 +41,15 @@ export function LoginForm() {
 
       toast.success('Você fez o login com sucesso.')
 
-      localStorage.setItem('connectify_token', JSON.stringify(token.data))
+      setCookie(
+        undefined,
+        'connectify.token',
+        JSON.stringify(token.data.token),
+        {
+          maxAge: 30 * 24 * 60 * 60,
+          path: '/',
+        },
+      )
 
       router.push('/')
     } catch (err) {
