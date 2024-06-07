@@ -19,7 +19,7 @@ export async function fetch(req: FastifyRequest, reply: FastifyReply) {
       page
     });
 
-    return reply.status(200).send(posts);
+    return reply.status(200).send({ posts });
   } catch (error) {
     throw error;
   }

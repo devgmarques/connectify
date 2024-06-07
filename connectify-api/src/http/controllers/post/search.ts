@@ -21,7 +21,7 @@ export async function search(req: FastifyRequest, reply: FastifyReply) {
       query
     });
 
-    return reply.status(200).send(posts);
+    return reply.status(200).send({ posts });
   } catch (error) {
     throw error;
   }

@@ -2,6 +2,8 @@ import type { Metadata } from 'next'
 
 import { redirect } from 'next/navigation'
 import { cookies } from 'next/headers'
+import { Layout } from '@/components/shared/layout'
+import { Grid } from '@/components/pages/feed/grid'
 
 export const metadata: Metadata = {
   title: 'Feed | connectify',
@@ -15,5 +17,9 @@ export default async function Feed() {
     redirect('/accounts/login')
   }
 
-  return <h1>Feed</h1>
+  return (
+    <Layout>
+      <Grid />
+    </Layout>
+  )
 }

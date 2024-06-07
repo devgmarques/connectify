@@ -1,6 +1,8 @@
 import fastify from "fastify"
 import fastifyJwt from "@fastify/jwt";
 import fastifyCors from '@fastify/cors'
+import fastifySwagger from "@fastify/swagger";
+import fastifySwaggerUi from "@fastify/swagger-ui";
 
 import { ZodError } from "zod";
 import { env } from "@/env";
@@ -10,6 +12,7 @@ import { routesPost } from '@/http/controllers/post/routes';
 import { routesLike } from "./http/controllers/like/routes";
 import { routesFollow } from "./http/controllers/follow/routes";
 import { routesComment } from "./http/controllers/comment/routes";
+import { jsonSchemaTransform, serializerCompiler, validatorCompiler } from "fastify-type-provider-zod";
 
 export const app = fastify();
 
@@ -18,6 +21,26 @@ app.register(fastifyJwt, {
 });
 
 app.register(fastifyCors, { origin: "http://localhost:3000" })
+
+app.register(fastifySwagger, {
+  swagger: {
+    consumes: ["application/json"],
+    produces: ["application/json"],
+    info: {
+      title: "Connectify API",
+      description: "Esta é a documentação da connectify API",
+      version: "1.0.0"
+    },
+  },
+  transform: jsonSchemaTransform
+})
+
+app.register(fastifySwaggerUi, {
+  routePrefix: "/docs"
+})
+
+app.setValidatorCompiler(validatorCompiler);
+app.setSerializerCompiler(serializerCompiler);
 
 app.register(routesUser);
 app.register(routesPost);

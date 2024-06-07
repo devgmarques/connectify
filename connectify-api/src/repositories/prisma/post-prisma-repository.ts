@@ -44,4 +44,14 @@ export class PostPrismaRepository implements PostsRepository {
 
     return posts;
   }
+
+  async findPostForUser(userId: string) {
+    const posts = await prisma.post.findMany({
+      where: {
+        userId
+      }
+    })
+
+    return posts
+  }
 }
