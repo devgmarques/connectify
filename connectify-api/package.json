@@ -5,6 +5,7 @@
   "main": "src/server.ts",
   "scripts": {
     "dev": "tsx watch src/server.ts",
+    "build": "tsup src --out-dir build",
     "test": "vitest"
   },
   "keywords": [],
@@ -26,6 +27,7 @@
     "fastify": "^4.27.0",
     "fastify-type-provider-zod": "^1.2.0",
     "prisma": "^5.14.0",
+    "tsup": "^8.1.0",
     "tsx": "^4.11.0",
     "vitest": "^1.6.0",
     "zod": "^3.23.8"
