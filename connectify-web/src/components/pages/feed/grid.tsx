@@ -1,8 +1,24 @@
+import { CardPost } from './card-post'
+
 export function Grid() {
   return (
-    <div className="w-full m-auto">
-      <h2>Titulo do post</h2>
-      <p>nicahsiohcsa</p>
+    <div className="flex flex-col gap-5 items-center py-10 px-20">
+      <CardPost />
+      <CardPost />
+      <CardPost />
+      <CardPost />
+      <CardPost />
+      <CardPost />
+      <CardPost />
+      <CardPost />
+      <CardPost />
+      <CardPost />
+      <CardPost />
+      <CardPost />
+      <CardPost />
+      <CardPost />
+      <CardPost />
+      <CardPost />
     </div>
   )
 }
