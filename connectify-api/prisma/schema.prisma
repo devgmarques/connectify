@@ -35,9 +35,10 @@ model User {
 }
 
 model Post {
-  id    Int    @id @default(autoincrement())
-  title String
-  body  String
+  id     Int    @id @default(autoincrement())
+  title  String
+  body   String
+  author String
 
   userId String @map("user_id")
   user   User   @relation(fields: [userId], references: [id])

@@ -20,6 +20,7 @@ export async function create(req: FastifyRequest, reply: FastifyReply) {
     await useCase.execute({
       userId: req.user.sub,
       data: {
+        author: req.user.nickname,
         body,
         title,
       },

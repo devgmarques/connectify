@@ -218,15 +218,8 @@
         "tags": [
           "posts"
         ],
-        "summary": "Busca posts por query",
+        "summary": "Listagens de posts",
         "parameters": [
-          {
-            "name": "query",
-            "in": "query",
-            "description": "Query para busca de posts",
-            "required": true,
-            "type": "string"
-          },
           {
             "name": "page",
             "in": "query",
