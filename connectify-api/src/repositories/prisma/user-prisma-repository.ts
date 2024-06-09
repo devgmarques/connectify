@@ -45,8 +45,9 @@ export class UserPrismaRepository implements UsersRepository {
     return user;
   }
 
-  async findMany(page: number) {
+  async findMany(page: number, userId: string) {
     const user = await prisma.user.findMany({
+      where: { NOT: { id: userId } },
       take: 20,
       skip: (page - 1) * 20,
     });
