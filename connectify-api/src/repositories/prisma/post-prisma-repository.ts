@@ -50,7 +50,8 @@ export class PostPrismaRepository implements PostsRepository {
     const posts = await prisma.post.findMany({
       where: {
         userId
-      }
+      },
+      orderBy: { createdAt: "desc" }
     })
 
     return posts

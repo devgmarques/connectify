@@ -17,6 +17,7 @@ export async function fetch(req: FastifyRequest, reply: FastifyReply) {
 
     const { users } = await useCase.execute({
       page,
+      userId: req.user.sub
     });
 
     return reply.status(200).send({ users });
