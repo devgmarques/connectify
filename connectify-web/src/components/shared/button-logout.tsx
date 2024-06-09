@@ -1,28 +1,31 @@
 'use client'
 
-import { ButtonHTMLAttributes } from 'react'
+import { ButtonHTMLAttributes, ReactNode } from 'react'
 import { useRouter } from 'next/navigation'
 
-import { LogOut } from 'lucide-react'
 import { toast } from 'sonner'
 import { destroyCookie } from 'nookies'
 
 import { Button } from '../ui/button'
 
-export function ButtonLogout(props: ButtonHTMLAttributes<HTMLButtonElement>) {
+interface ButtonLogoutProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+  children: ReactNode
+}
+
+export function ButtonLogout({ children, ...props }: ButtonLogoutProps) {
   const router = useRouter()
 
   function logOut() {
     destroyCookie(null, 'connectify.token')
 
-    toast.success('Você se saiu de sua conta com sucesso.')
+    toast.success('Você saiu de sua conta com sucesso.')
 
     router.push('/accounts/login')
   }
 
   return (
     <Button {...props} variant="outline" onClick={logOut}>
-      <LogOut />
+      {children}
     </Button>
   )
 }

@@ -1,7 +1,7 @@
 import axios from 'axios'
-import { parseCookies } from 'nookies'
+import nookies from 'nookies'
 
-const cookies = parseCookies()
+const cookies = nookies.get(null)
 const token = cookies['connectify.token']
 
 export const api = axios.create({
@@ -9,5 +9,6 @@ export const api = axios.create({
 })
 
 if (token) {
-  api.defaults.headers.Authtorization = `Bearer ${token}`
+  console.log(token)
+  api.defaults.headers.Authorization = `Bearer ${token.replace(/["]/g, '')}`
 }
