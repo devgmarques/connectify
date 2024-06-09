@@ -8,6 +8,7 @@ export class PostsInMemoryRepository implements PostsRepository {
     const post = {
       id: 1,
       title: data.title,
+      author: data.author,
       body: data.body,
       userId: data.userId,
       createdAt: new Date(),
@@ -36,6 +37,13 @@ export class PostsInMemoryRepository implements PostsRepository {
     }
 
     return post;
+  }
+
+  async findPostForUser(userId: string) {
+    const posts = this.posts
+      .filter((item) => item.userId === userId)
+      
+    return posts;
   }
 
   async findById(id: number) {

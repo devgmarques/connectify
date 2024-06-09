@@ -6,13 +6,13 @@ import { SearchUserUseCase } from "./search-user";
 let usersRepository: UserInMemoryRepository;
 let sup: SearchUserUseCase;
 
-describe("Fetch users use case", () => {
+describe("Search users use case", () => {
   beforeEach(() => {
     usersRepository = new UserInMemoryRepository();
     sup = new SearchUserUseCase(usersRepository);
   });
 
-  it("should be able to fetch users", async () => {
+  it("should be able to search users", async () => {
     usersRepository.users.push({
       id: "01",
       email: "gui@gmail.com",

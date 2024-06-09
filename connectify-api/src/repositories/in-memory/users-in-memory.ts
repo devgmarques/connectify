@@ -4,6 +4,13 @@ import { UsersRepository } from "../user";
 export class UserInMemoryRepository implements UsersRepository {
   users: User[] = [];
 
+  async findMany(page: number){
+    const users = this.users
+    .slice((page - 1) * 20, page * 20)
+
+    return users
+  }
+
   async create(data: Prisma.UserCreateInput) {
     const user = {
       id: "user_01",

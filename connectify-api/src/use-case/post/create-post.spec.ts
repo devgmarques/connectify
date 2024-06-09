@@ -29,6 +29,7 @@ describe("Create post use case", () => {
     const { post } = await sup.execute({
       userId: "user_01",
       data: {
+        author:"",
         title: "Sobre RS",
         body: "Não concordo com sua opinião",
       }
@@ -51,6 +52,7 @@ describe("Create post use case", () => {
     const { post } = await sup.execute({
       userId: "user_01",
       data: {
+        author:"da",
         title: "Sobre RS",
         body: "Não concordo com sua opinião",
       }

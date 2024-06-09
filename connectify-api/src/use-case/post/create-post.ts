@@ -6,13 +6,14 @@ type CreatePostUseCaseRequest = {
   data: {
     title: string;
     body: string;
+    author: string;
   };
 };
 
 export class CreatePostUseCase {
   constructor(private postsRepository: PostsRepository) {}
 
-  async execute({ userId, data: { body, title } }: CreatePostUseCaseRequest) {
+  async execute({ userId, data: { body, title, author } }: CreatePostUseCaseRequest) {
     const postWithThisTitleAlreadyExistsInTheUser =
       await this.postsRepository.findByTitle(userId, title);
 
@@ -23,6 +24,7 @@ export class CreatePostUseCase {
     const post = await this.postsRepository.create({
       body,
       title,
+      author,
       userId,
     });
 

@@ -30,6 +30,7 @@ export class PostPrismaRepository implements PostsRepository {
     const posts = await prisma.post.findMany({
       take: 20,
       skip: (page - 1) * 20,
+      orderBy: { createdAt: "desc" }
     });
 
     return posts;
