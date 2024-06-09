@@ -10,6 +10,26 @@ export class FollowPrismaRepository implements FollowRepository {
     return follow
   }
 
+  async findManyFollowers(userId: string) {
+    const followers = await prisma.follow.count({
+      where: {
+        followedId: userId
+      }
+    })
+
+    return followers
+  }
+  
+  async findManyFollowing(userId: string) {
+    const followers = await prisma.follow.count({
+      where: {
+        userId
+      }
+    })
+
+    return followers
+  }
+
   async findByFollowedIdAndUserId({ followedId, userId }: { followedId: string; userId: string; }) {
     const follow = await prisma.follow.findUnique({
       where: {
