@@ -8,16 +8,19 @@ import { Post } from '@/types/post'
 import { api } from '@/lib/axios'
 import { Avatar, AvatarFallback } from '@/components/ui/avatar'
 import { Separator } from '@/components/ui/separator'
+import { Follow } from '@/types/follow'
 
 export function InformationsAccount() {
   const [user, setUser] = useState<User>()
   const [posts, setPosts] = useState<Post[]>([])
+  const [follows, setFollows] = useState<Follow>()
 
   const fetchData = useCallback(async () => {
     const feedPosts = await api.get('/me')
 
     setUser(feedPosts.data.user)
     setPosts(feedPosts.data.posts)
+    setFollows(feedPosts.data.follows)
   }, [])
 
   useEffect(() => {
@@ -38,18 +41,15 @@ export function InformationsAccount() {
       <Separator />
 
       <div className="flex justify-between w-full">
-        <p className="text-sm">Qnt. de seguidores</p>
-        <span className="text-blue-500 dark:text-blue-400">{posts.length}</span>
-      </div>
-
-      <div className="flex justify-between w-full">
         <p className="text-sm">Qnt. de posts</p>
         <span className="text-blue-500 dark:text-blue-400">{posts.length}</span>
       </div>
 
       <div className="flex justify-between w-full">
-        <p className="text-sm">Qnt. de curtidas</p>
-        <span className="text-blue-500 dark:text-blue-400">{posts.length}</span>
+        <p className="text-sm">Qnt. de seguidores</p>
+        <span className="text-blue-500 dark:text-blue-400">
+          {follows?.followers}
+        </span>
       </div>
     </aside>
   )

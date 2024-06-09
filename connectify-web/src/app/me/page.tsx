@@ -2,13 +2,13 @@ import type { Metadata } from 'next'
 
 import { redirect } from 'next/navigation'
 import { cookies } from 'next/headers'
-import { Grid } from '@/components/pages/feed/grid'
+import { Grid } from '@/components/pages/profile/grid'
 
 export const metadata: Metadata = {
-  title: 'Feed | connectify',
+  title: 'Perfil | connectify',
 }
 
-export default async function Feed() {
+export default async function Profile() {
   const cookieStore = cookies()
   const token = cookieStore.get('connectify.token')?.value
 
@@ -16,9 +16,5 @@ export default async function Feed() {
     redirect('/accounts/login')
   }
 
-  return (
-    <>
-      <Grid />
-    </>
-  )
+  return <Grid />
 }

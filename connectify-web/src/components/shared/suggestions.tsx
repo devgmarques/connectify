@@ -20,7 +20,7 @@ export function Suggestions() {
   }, [fetchData])
 
   return (
-    <aside className="rounded-md w-64 my-5 p-4 bg-background flex flex-col gap-3 justify-center items-center border border-foreground/20">
+    <aside className="rounded-md w-64 my-5 p-5 bg-background flex flex-col gap-3 justify-center items-center border border-foreground/20">
       <h2 className="text-md font-bold">Sugestões para você</h2>
 
       <Separator />
