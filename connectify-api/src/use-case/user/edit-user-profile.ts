@@ -1,6 +1,7 @@
 import { UsersRepository } from "@/repositories/user";
-import { EmailAlreadyExistError } from "../errors/email-already-exist-error";
 import { UserNotExistError } from "../errors/user-not-exist-error";
+import { NicknameAlreadyExistError } from "../errors/nickname-already-exist-error";
+import { hash } from "bcryptjs";
 
 type EditUserProfileUseCaseRequest = {
   userId: string;
@@ -14,32 +15,32 @@ type EditUserProfileUseCaseRequest = {
 };
 
 export class EditUserProfileUseCase {
-  constructor(private usersRepository: UsersRepository) {}
+  constructor(private usersRepository: UsersRepository) { }
 
-  async execute({ userId, data }: EditUserProfileUseCaseRequest) {
+  async execute({ userId, data: { details, email, name, nickname, password } }: EditUserProfileUseCaseRequest) {
     const userById = await this.usersRepository.findById(userId);
 
     if (!userById) {
       throw new UserNotExistError();
     }
 
-    const emailAlreadyExists = await this.usersRepository.findByEmail(
-      data.email
-    );
-
-    if (emailAlreadyExists && emailAlreadyExists.id !== userId) {
-      throw new EmailAlreadyExistError()
-    }
-
     const nicknameAlreadyExists = await this.usersRepository.findByNickName(
-      data.nickname
+      nickname
     );
 
     if (nicknameAlreadyExists && nicknameAlreadyExists.id !== userId) {
-      throw new Error("User already exists with this nickname.");
+      throw new NicknameAlreadyExistError();
     }
 
-    const user = await this.usersRepository.updateUser(userId, data);
+    const passwordHash = await hash(password, 6)
+
+    const user = await this.usersRepository.updateUser(userId, {
+      email,
+      nickname,
+      name,
+      password: passwordHash,
+      details,
+    });
 
     return {
       user,

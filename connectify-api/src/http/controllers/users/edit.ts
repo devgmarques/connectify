@@ -1,8 +1,6 @@
 import { FastifyReply, FastifyRequest } from "fastify";
 
 import { z } from "zod";
-import { EmailAlreadyExistError } from "@/use-case/errors/email-already-exist-error";
-import { UserNotExistError } from "@/use-case/errors/user-not-exist-error";
 import { UserPrismaRepository } from "@/repositories/prisma/user-prisma-repository";
 import { EditUserProfileUseCase } from "@/use-case/user/edit-user-profile";
 import { NicknameAlreadyExistError } from "@/use-case/errors/nickname-already-exist-error";
