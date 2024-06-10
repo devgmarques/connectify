@@ -9,6 +9,25 @@ export class PostPrismaRepository implements PostsRepository {
     return post;
   }
 
+  async update({ author, body, title, userId, createdAt, id }: Prisma.PostCreateManyInput) {
+    const post = await prisma.post.update({
+      where: {
+        userId,
+        id
+      },
+      data: {
+        id,
+        author, 
+        body, 
+        title, 
+        userId, 
+        createdAt, 
+      }
+    })
+
+    return post
+  }
+
   async findById(id: number) {
     const post = await prisma.post.findFirst({ where: { id } });
 
