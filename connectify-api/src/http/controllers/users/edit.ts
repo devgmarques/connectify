@@ -5,14 +5,15 @@ import { EmailAlreadyExistError } from "@/use-case/errors/email-already-exist-er
 import { UserNotExistError } from "@/use-case/errors/user-not-exist-error";
 import { UserPrismaRepository } from "@/repositories/prisma/user-prisma-repository";
 import { EditUserProfileUseCase } from "@/use-case/user/edit-user-profile";
+import { NicknameAlreadyExistError } from "@/use-case/errors/nickname-already-exist-error";
 
 export async function edit(req: FastifyRequest, reply: FastifyReply) {
   const editBody = z.object({
-    details: z.string(),
-    name: z.string(),
-    nickname: z.string(),
-    email: z.string(),
-    password: z.string().min(6),
+      details: z.string(),
+      name: z.string(),
+      nickname: z.string(),
+      email: z.string(),
+      password: z.string().min(6),
   });
 
   const { details, email, name, password, nickname } = editBody.parse(req.body);
@@ -28,11 +29,7 @@ export async function edit(req: FastifyRequest, reply: FastifyReply) {
 
     return reply.status(201).send({ user });
   } catch (error) {
-    if (error instanceof EmailAlreadyExistError) {
-      return reply.status(400).send({ message: error.message });
-    }
-
-    if (error instanceof UserNotExistError) {
+    if (error instanceof NicknameAlreadyExistError) {
       return reply.status(400).send({ message: error.message });
     }
 
