@@ -4,15 +4,23 @@ import { PiCaretRight, PiHeartBold, PiNoteLight } from 'react-icons/pi'
 
 import { formatDistanceToNow } from 'date-fns'
 import { ptBR } from 'date-fns/locale'
+import { ButtonOpenOperations } from './button-open-operations'
 
 type CardPostProps = {
   data: Post
+  isMe: boolean
 }
 
-export function CardPost({ data }: CardPostProps) {
+export function CardPost({ data, isMe = false }: CardPostProps) {
   return (
     <article className="w-full px-4 py-3 bg-background rounded-md border border-foreground/20">
-      <div className="space-y-5 pb-3">
+      {isMe && (
+        <div className="w-full text-end">
+          <ButtonOpenOperations data={data} />
+        </div>
+      )}
+
+      <div className="space-y-5 py-3">
         <div className="flex gap-5 items-center justify-between border-b border-foreground/20 pb-3 whitespace-nowrap overflow-auto">
           <div className="flex gap-3 items-center">
             <h2 className="font-bold text-md text-foreground/80">
