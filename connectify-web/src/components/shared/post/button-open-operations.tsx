@@ -11,18 +11,16 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
-import { PiDotsThreeVerticalBold, PiTrashBold } from 'react-icons/pi'
-import { ButtonDeleteProject } from './button-delete-project'
-import { EditPostDialog } from '@/components/pages/profile/edit-post'
+import { PiDotsThreeVerticalBold } from 'react-icons/pi'
 import { Post } from '@/types/post'
+import { EditPostDialog } from './edit-post'
+import { DeletePostDialog } from './delete-project'
 
 type ButtonOpenOperationsProps = {
   data: Post
 }
 
 export function ButtonOpenOperations({ data }: ButtonOpenOperationsProps) {
-  console.log(data)
-
   const [dropdownOpen, setDropdownOpen] = React.useState(false)
 
   function handleToggleDropdown() {
@@ -54,10 +52,9 @@ export function ButtonOpenOperations({ data }: ButtonOpenOperationsProps) {
         </DropdownMenuCheckboxItem>
 
         <DropdownMenuCheckboxItem className="p-2">
-          <ButtonDeleteProject className="flex gap-3 text-red-500 dark:text-red-400 bg-transparent hover:bg-transparent p-0 m-0">
-            <PiTrashBold className="text-red-500 dark:text-red-400 w-5 h-5" />
-            Deletar projeto
-          </ButtonDeleteProject>
+          <div onClick={handleDialogClick}>
+            <DeletePostDialog id={data.id} />
+          </div>
         </DropdownMenuCheckboxItem>
       </DropdownMenuContent>
     </DropdownMenu>

@@ -9,6 +9,7 @@ import { User } from '@/types/user'
 import { useCallback, useEffect, useState } from 'react'
 import { CreatePostDialog } from '../../shared/post/create-post'
 import { Follow } from '@/types/follow'
+import { EditProfile } from './edit-profile'
 
 export function Grid() {
   const [user, setUser] = useState<User>()
@@ -28,6 +29,10 @@ export function Grid() {
     fetchData()
   }, [fetchData])
 
+  if (!user) {
+    return
+  }
+
   return (
     <>
       <header className="rounded-md m-5 p-4 bg-background flex flex-col gap-8 justify-center items-center border border-foreground/20">
@@ -40,13 +45,25 @@ export function Grid() {
             </Avatar>
 
             <div className="flex flex-col">
-              <h2 className="text-md text-center font-bold">
-                {user?.name}
-                {' / '}
-                <span className="text-foreground/60 text-sm text-center">
-                  @{user?.nickname}
-                </span>
-              </h2>
+              <div className="flex items-center gap-5">
+                <h2 className="text-md text-center font-bold">
+                  {user?.name}
+                  {' / '}
+                  <span className="text-foreground/60 text-sm text-center">
+                    @{user?.nickname}
+                  </span>
+                </h2>
+
+                <EditProfile
+                  data={{
+                    email: user.email,
+                    details: user!.details ?? '',
+                    name: user!.name,
+                    nickname: user!.nickname,
+                    password: '',
+                  }}
+                />
+              </div>
 
               <p className="text-foreground/60 text-sm mt-1">
                 {user?.details ?? 'Adicione sua descrição'}
@@ -88,7 +105,7 @@ export function Grid() {
 
       <section className="m-5 grid grid-cols-1 gap-5 lg:grid-cols-2 ">
         {posts.map((item) => (
-          <CardPost data={item} key={item.id} />
+          <CardPost isMe data={item} key={item.id} />
         ))}
       </section>
     </>

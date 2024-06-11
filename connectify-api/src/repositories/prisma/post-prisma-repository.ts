@@ -9,6 +9,14 @@ export class PostPrismaRepository implements PostsRepository {
     return post;
   }
 
+  async delete(postId: number) {
+    await prisma.post.delete({
+      where: {
+        id: postId
+      }
+    })
+  }
+
   async update({ author, body, title, userId, createdAt, id }: Prisma.PostCreateManyInput) {
     const post = await prisma.post.update({
       where: {
@@ -17,11 +25,11 @@ export class PostPrismaRepository implements PostsRepository {
       },
       data: {
         id,
-        author, 
-        body, 
-        title, 
-        userId, 
-        createdAt, 
+        author,
+        body,
+        title,
+        userId,
+        createdAt,
       }
     })
 
