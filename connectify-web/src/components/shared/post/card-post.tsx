@@ -8,7 +8,7 @@ import { ButtonOpenOperations } from './button-open-operations'
 
 type CardPostProps = {
   data: Post
-  isMe: boolean
+  isMe?: boolean
 }
 
 export function CardPost({ data, isMe = false }: CardPostProps) {

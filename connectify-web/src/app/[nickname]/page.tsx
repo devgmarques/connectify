@@ -8,7 +8,11 @@ export const metadata: Metadata = {
   title: 'Perfil | connectify',
 }
 
-export default async function Profile() {
+type ProfileProps = {
+  params: { nickname: string }
+}
+
+export default async function Profile({ params }: ProfileProps) {
   const cookieStore = cookies()
   const token = cookieStore.get('connectify.token')?.value
 
@@ -16,5 +20,5 @@ export default async function Profile() {
     redirect('/accounts/login')
   }
 
-  return <Grid />
+  return <Grid token={token} nickname={params.nickname} />
 }

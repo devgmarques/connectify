@@ -9,6 +9,7 @@ import { api } from '@/lib/axios'
 import { Avatar, AvatarFallback } from '@/components/ui/avatar'
 import { Separator } from '@/components/ui/separator'
 import { Follow } from '@/types/follow'
+import { getTokenData } from '@/utils/get-token-data'
 
 export function InformationsAccount() {
   const [user, setUser] = useState<User>()
@@ -16,7 +17,9 @@ export function InformationsAccount() {
   const [follows, setFollows] = useState<Follow>()
 
   const fetchData = useCallback(async () => {
-    const feedPosts = await api.get('/me')
+    const { payload } = getTokenData()
+
+    const feedPosts = await api.get(`/users/${payload.nickname}/profile`)
 
     setUser(feedPosts.data.user)
     setPosts(feedPosts.data.posts)

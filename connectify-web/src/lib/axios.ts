@@ -9,6 +9,5 @@ export const api = axios.create({
 })
 
 if (token) {
-  console.log(token)
   api.defaults.headers.Authorization = `Bearer ${token.replace(/["]/g, '')}`
 }

@@ -10,20 +10,30 @@ import { useCallback, useEffect, useState } from 'react'
 import { CreatePostDialog } from '../../shared/post/create-post'
 import { Follow } from '@/types/follow'
 import { EditProfile } from './edit-profile'
+import { getTokenData } from '@/utils/get-token-data'
 
-export function Grid() {
+type GridProps = {
+  nickname: string
+  token: string
+}
+
+export function Grid({ nickname }: GridProps) {
   const [user, setUser] = useState<User>()
   const [follow, setFollow] = useState<Follow>()
   const [posts, setPosts] = useState<Post[]>([])
+  const [isMyProfile, setIsMyProfile] = useState<boolean>(false)
 
   const fetchData = useCallback(async () => {
-    const feedPosts = await api.get('/me')
-    console.log(feedPosts)
+    const feedPosts = await api.get(`/users/${nickname}/profile`)
+
+    const { payload } = getTokenData()
+
+    setIsMyProfile(feedPosts.data.user.nickname === payload.nickname)
 
     setUser(feedPosts.data.user)
     setPosts(feedPosts.data.posts)
     setFollow(feedPosts.data.follows)
-  }, [])
+  }, [nickname])
 
   useEffect(() => {
     fetchData()
@@ -54,15 +64,17 @@ export function Grid() {
                   </span>
                 </h2>
 
-                <EditProfile
-                  data={{
-                    email: user.email,
-                    details: user!.details ?? '',
-                    name: user!.name,
-                    nickname: user!.nickname,
-                    password: '',
-                  }}
-                />
+                {isMyProfile && (
+                  <EditProfile
+                    data={{
+                      email: user.email,
+                      details: user!.details ?? '',
+                      name: user!.name,
+                      nickname: user!.nickname,
+                      password: '',
+                    }}
+                  />
+                )}
               </div>
 
               <p className="text-foreground/60 text-sm mt-1">
@@ -99,14 +111,17 @@ export function Grid() {
 
         <div className="w-full flex justify-between gap-5">
           <h2>Minhas postagens</h2>
-          <CreatePostDialog />
+
+          {isMyProfile && <CreatePostDialog />}
         </div>
       </header>
 
       <section className="m-5 grid grid-cols-1 gap-5 lg:grid-cols-2 ">
-        {posts.map((item) => (
-          <CardPost isMe data={item} key={item.id} />
-        ))}
+        {isMyProfile &&
+          posts.map((item) => <CardPost isMe data={item} key={item.id} />)}
+
+        {!isMyProfile &&
+          posts.map((item) => <CardPost data={item} key={item.id} />)}
       </section>
     </>
   )
