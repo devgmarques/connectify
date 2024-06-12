@@ -4,8 +4,15 @@ import { UserPrismaRepository } from "@/repositories/prisma/user-prisma-reposito
 import { GetUserProfileUseCase } from "@/use-case/user/get-user-profile";
 import { PostPrismaRepository } from "@/repositories/prisma/post-prisma-repository";
 import { FollowPrismaRepository } from "@/repositories/prisma/follow-prisma-repository";
+import { z } from "zod";
 
 export async function profile(req: FastifyRequest, reply: FastifyReply) {
+  const profileParams = z.object({
+    nickname: z.string()
+  })
+
+  const { nickname } = profileParams.parse(req.params)
+
   try {
     const userRepository = new UserPrismaRepository();
     const postRepository = new PostPrismaRepository()
@@ -14,7 +21,7 @@ export async function profile(req: FastifyRequest, reply: FastifyReply) {
     const useCase = new GetUserProfileUseCase(userRepository, postRepository, followRepository);
 
     const { user, posts, follows } = await useCase.execute({
-      userId: req.user.sub,
+      nickname,
     });
 
     return reply.send({ user, posts, follows });
