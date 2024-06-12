@@ -37,7 +37,6 @@ app.register(fastifySwaggerUi, {
   routePrefix: "/docs"
 });
 
-
 app.register(routesUser);
 app.register(routesPost);
 app.register(routesLike)

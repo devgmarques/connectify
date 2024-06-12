@@ -4,6 +4,20 @@ import { PostsRepository } from "../post";
 export class PostsInMemoryRepository implements PostsRepository {
   posts: Post[] = [];
 
+  async delete(postId: number) {
+    const posts = this.posts.filter(item => item.id !== postId)
+
+    this.posts = posts
+  }
+
+  async update(data: Post) {
+    const posts = this.posts.map(item => item.id === data.id ? data : item)
+
+    this.posts = posts
+
+    return data
+  }
+
   async create(data: Prisma.PostCreateManyInput) {
     const post = {
       id: 1,
@@ -42,7 +56,7 @@ export class PostsInMemoryRepository implements PostsRepository {
   async findPostForUser(userId: string) {
     const posts = this.posts
       .filter((item) => item.userId === userId)
-      
+
     return posts;
   }
 

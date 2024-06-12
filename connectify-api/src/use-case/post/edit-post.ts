@@ -16,15 +16,22 @@ type EditPostUseCaseRequest = {
 export class EditPostUseCase {
   constructor(private postsRepository: PostsRepository) { }
 
-  async execute({ userId, data }: EditPostUseCaseRequest) {
+  async execute({ userId, data: { author, body, createdAt, id, title, userId: idUser } }: EditPostUseCaseRequest) {
     const postWithThisTitleAlreadyExistsInTheUser =
-      await this.postsRepository.findByTitle(userId, data.title);
+      await this.postsRepository.findByTitle(userId, title);
 
     if (postWithThisTitleAlreadyExistsInTheUser) {
       throw new TitleAlreadyExistInUserError();
     }
 
-    const post = await this.postsRepository.update(data);
+    const post = await this.postsRepository.update({
+      author,
+      body,
+      createdAt: new Date(createdAt),
+      id,
+      title,
+      userId: idUser
+    });
 
     return {
       post,

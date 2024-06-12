@@ -30,6 +30,7 @@ describe("Fetch post use case", () => {
       id: 0,
       body: "",
       title: "",
+      author: "",
       userId: "user_01",
       createdAt: new Date(),
     });
@@ -37,6 +38,7 @@ describe("Fetch post use case", () => {
     postsRepository.posts.push({
       id: 1,
       body: "",
+      author: "",
       title: "",
       userId: "user_01",
       createdAt: new Date(),
@@ -54,6 +56,7 @@ describe("Fetch post use case", () => {
       postsRepository.posts.push({
         id: i,
         body: "",
+        author: "",
         title: "",
         userId: "user_01",
         createdAt: new Date(),

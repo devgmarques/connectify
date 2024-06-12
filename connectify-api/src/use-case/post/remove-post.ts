@@ -18,7 +18,7 @@ export class RemovePostUseCase {
     const post = await this.postsRepository.delete(postId);
 
     return {
-      post,
+      isPostDelete: true,
     };
   }
 }

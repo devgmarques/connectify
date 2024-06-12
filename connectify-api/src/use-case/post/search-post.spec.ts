@@ -29,6 +29,7 @@ describe("Search posts use case", () => {
     postsRepository.posts.push({
       id: 0,
       body: "",
+      author: "",
       title: "titulo 01",
       userId: "user_01",
       createdAt: new Date(),
@@ -37,6 +38,7 @@ describe("Search posts use case", () => {
     postsRepository.posts.push({
       id: 1,
       body: "",
+      author: "",
       title: "titulo 01",
       userId: "user_01",
       createdAt: new Date(),
@@ -55,6 +57,7 @@ describe("Search posts use case", () => {
       postsRepository.posts.push({
         id: 0,
         body: "",
+        author: "",
         title: "titulo 01",
         userId: "user_01",
         createdAt: new Date(),

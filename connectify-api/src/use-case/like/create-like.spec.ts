@@ -30,6 +30,7 @@ describe("Create like in post use case", () => {
     postsRepository.posts.push({
       id: 0,
       userId: "user_01",
+      author: "",
       body: "Globo",
       title: "Sobre RS",
       createdAt: new Date(),

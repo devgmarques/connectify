@@ -1,7 +1,7 @@
 import { prisma } from "@/lib/prisma";
-import { FollowRepository } from "../follow";
+import { FollowsRepository } from "../follow";
 
-export class FollowPrismaRepository implements FollowRepository {
+export class FollowPrismaRepository implements FollowsRepository {
   async create(data: { followedId: string; userId: string; }) {
     const follow = await prisma.follow.create({
       data,

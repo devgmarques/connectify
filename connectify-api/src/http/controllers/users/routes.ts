@@ -14,7 +14,7 @@ export async function routesUser(app: FastifyInstance) {
   app.post("/session", authentificate);
 
   app.put("/user", { onRequest: verifyJwt }, edit);
-  app.get("/me", { onRequest: verifyJwt }, profile);
+  app.get("/users/:nickname/profile", { onRequest: verifyJwt }, profile);
   app.get("/users/search", { onRequest: verifyJwt }, search);
   app.get("/users/fetch", { onRequest: verifyJwt }, fetch);
 }

@@ -4,6 +4,18 @@ import { FollowRepository } from "../follow";
 export class FollowInMemoryRepository implements FollowRepository {
   follows: Follow[] = [];
 
+  async findManyFollowers(userId: string) {
+    const followers = this.follows.filter(item => item.followedId === userId)
+
+    return followers.length
+  }
+
+  async findManyFollowing(userId: string) {
+    const following = this.follows.filter(item => item.userId === userId)
+
+    return following.length
+  }
+
   async create(data: Prisma.FollowCreateManyInput) {
     const follow = {
       id: 0,
