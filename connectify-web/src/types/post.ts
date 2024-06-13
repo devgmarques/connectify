@@ -1,3 +1,5 @@
+import { Like } from './like'
+
 export type Post = {
   id: number
   author: string
@@ -5,4 +7,8 @@ export type Post = {
   body: string
   createdAt: string
   userId: string
+  likes: Like[]
+  _count: {
+    likes: number
+  }
 }
