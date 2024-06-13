@@ -40,11 +40,11 @@ export function Grid({ nickname }: GridProps) {
   }, [fetchData])
 
   if (!user) {
-    return
+    return <p>Loading ...</p>
   }
 
   return (
-    <>
+    <section>
       <header className="rounded-md m-5 p-4 bg-background flex flex-col gap-8 justify-center items-center border border-foreground/20">
         <div className="w-full flex flex-col gap-5 items-center justify-between md:flex-row">
           <div className="flex gap-5 items-center">
@@ -78,7 +78,7 @@ export function Grid({ nickname }: GridProps) {
               </div>
 
               <p className="text-foreground/60 text-sm mt-1">
-                {user?.details ?? 'Adicione sua descrição'}
+                {user.details ?? 'Adicione sua descrição'}
               </p>
             </div>
           </div>
@@ -123,6 +123,6 @@ export function Grid({ nickname }: GridProps) {
         {!isMyProfile &&
           posts.map((item) => <CardPost data={item} key={item.id} />)}
       </section>
-    </>
+    </section>
   )
 }

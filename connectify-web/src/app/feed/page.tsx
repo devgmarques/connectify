@@ -26,7 +26,7 @@ export default async function Feed() {
   }
 
   return (
-    <section className="flex flex-col gap-5 items-center py-5 px-8 sm:px-20">
+    <section className="flex m-auto max-w-[750px] flex-col gap-5 items-center py-5 px-5 sm:px-10">
       <header className="flex justify-between items-center w-full px-4 py-3 bg-background rounded-md border border-foreground/20">
         <p>Digite o que está pensando</p>
         <CreatePostDialog />

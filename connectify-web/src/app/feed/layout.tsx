@@ -9,17 +9,23 @@ type FeedLayoutProps = {
 
 export default async function FeedLayout({ children }: FeedLayoutProps) {
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen w-full flex flex-col">
       <Header />
 
-      <div className="pt-24 flex-1 h-full grid grid-cols-1 sm:grid-cols-[280px_1fr_286px]">
-        <div className="hidden pl-5 sm:block">
-          <InformationsAccount />
+      <div className="pt-24 flex-1 h-full grid grid-cols-1 lg:grid-cols-[280px_1fr_286px]">
+        <div className="hidden pl-5 sm:flex justify-between lg:block">
+          <div className="hidden pl-5 sm:block mx-auto">
+            <InformationsAccount />
+          </div>
+
+          <div className="hidden pr-5 sm:block lg:hidden mx-auto">
+            <Suggestions />
+          </div>
         </div>
 
         <div>{children}</div>
 
-        <div className="hidden pr-5 sm:block">
+        <div className="hidden pr-5 lg:block mx-auto">
           <Suggestions />
         </div>
       </div>
