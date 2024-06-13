@@ -4,7 +4,6 @@ export function getTokenData() {
   const cookies = nookies.get()
   const token = cookies['connectify.token']
 
-  console.log(token)
   const payload = JSON.parse(window.atob(token!.split('.')[1]))
 
   return {

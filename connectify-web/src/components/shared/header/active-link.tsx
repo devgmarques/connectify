@@ -13,7 +13,7 @@ export function ActiveLink(props: ActiveLink) {
     <Link
       {...props}
       data-current={pathname === props.href}
-      className="flex px-3 py-2 rounded-md items-center gap-1.5 text-md font-medium text-foreground/60 transition-colors hover:text-foreground/20 data-[current=true]:text-foreground"
+      className="flex w-full px-3 py-2 rounded-md items-center gap-1.5 text-md font-medium text-foreground/60 transition-colors hover:text-foreground/20 data-[current=true]:text-foreground"
     ></Link>
   )
 }

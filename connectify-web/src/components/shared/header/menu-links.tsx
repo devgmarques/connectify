@@ -12,7 +12,11 @@ import { LuHome, LuUser } from 'react-icons/lu'
 import { LogOut } from 'lucide-react'
 import { ButtonLogout } from '../button-logout'
 
-export function LinkMenu() {
+type LinkMenuProps = {
+  nickname: string
+}
+
+export function LinkMenu({ nickname }: LinkMenuProps) {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -31,7 +35,7 @@ export function LinkMenu() {
           </ActiveLink>
         </DropdownMenuItem>
         <DropdownMenuItem>
-          <ActiveLink href="/me">
+          <ActiveLink href={`/${nickname}`}>
             <LuUser />
             <span className="text-sm font-medium">Perfil</span>
           </ActiveLink>

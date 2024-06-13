@@ -10,9 +10,15 @@ import { Separator } from '../../ui/separator'
 import { LinkMenu } from './menu-links'
 import { LogOut } from 'lucide-react'
 import { getTokenData } from '@/utils/get-token-data'
+import { useEffect, useState } from 'react'
 
 export function Header() {
-  const { payload } = getTokenData()
+  const [nickname, setNickname] = useState<string>()
+
+  useEffect(() => {
+    const { payload } = getTokenData()
+    setNickname(payload.nickname as string)
+  }, [])
 
   return (
     <header className="z-10 fixed flex w-full justify-between items-center bg-background py-5 px-6 antialiased border-b-2 border-foreground/20">
@@ -28,7 +34,7 @@ export function Header() {
             <span className="text-sm font-medium">Inicio</span>
           </ActiveLink>
 
-          <ActiveLink href={`/${payload.nickname}`}>
+          <ActiveLink href={`/${nickname}`}>
             <LuUser />
             <span className="text-sm font-medium">Perfil</span>
           </ActiveLink>
@@ -43,7 +49,7 @@ export function Header() {
           </ButtonLogout>
         </div>
         <div className="block sm:hidden">
-          <LinkMenu />
+          <LinkMenu nickname={nickname as string} />
         </div>
       </div>
     </header>

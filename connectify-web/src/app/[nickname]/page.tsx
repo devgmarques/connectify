@@ -4,12 +4,18 @@ import { redirect } from 'next/navigation'
 import { cookies } from 'next/headers'
 import { Grid } from '@/components/pages/profile/grid'
 
-export const metadata: Metadata = {
-  title: 'Perfil | connectify',
-}
-
 type ProfileProps = {
   params: { nickname: string }
+}
+
+export async function generateMetadata({
+  params,
+}: ProfileProps): Promise<Metadata> {
+  const { nickname } = params
+
+  return {
+    title: `${nickname} | connectify`,
+  }
 }
 
 export default async function Profile({ params }: ProfileProps) {
