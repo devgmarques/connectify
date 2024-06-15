@@ -3,11 +3,11 @@ import { Header } from '../../components/shared/header/header'
 import { InformationsAccount } from '../../components/pages/feed/informations-account'
 import { Suggestions } from '../../components/shared/suggestions'
 
-type FeedLayoutProps = {
+type UsersLayoutProps = {
   children: ReactNode
 }
 
-export default async function FeedLayout({ children }: FeedLayoutProps) {
+export default async function UsersLayout({ children }: UsersLayoutProps) {
   return (
     <div className="min-h-screen w-full flex flex-col">
       <Header />
