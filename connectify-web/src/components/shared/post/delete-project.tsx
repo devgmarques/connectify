@@ -46,7 +46,7 @@ export function DeletePostDialog({ id }: DeletePostDialog) {
           className="flex gap-3 bg-transparent hover:bg-transparent p-0 m-0 text-red-500 dark:text-red-400"
         >
           <PiTrashBold className="text-red-500 dark:text-red-400 w-5 h-5" />
-          Deletar projeto
+          Deletar postagem
         </Button>
       </AlertDialogTrigger>
       <AlertDialogContent>

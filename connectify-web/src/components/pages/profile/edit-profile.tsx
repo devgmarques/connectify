@@ -19,6 +19,8 @@ import { PiNotePencilBold } from 'react-icons/pi'
 import { api } from '@/lib/axios'
 import { toast } from 'sonner'
 import { AxiosError } from 'axios'
+import { setCookie } from 'nookies'
+import { useRouter } from 'next/navigation'
 
 const schemaEditProfile = z.object({
   name: z.string().nonempty('O nome deve ser preenchido.'),
@@ -56,9 +58,25 @@ export function EditProfile({
     resolver: zodResolver(schemaEditProfile),
   })
 
+  const router = useRouter()
+
   async function onSubmit({ details, name, nickname, password }: EditProfile) {
     try {
       await api.put('/user', { details, name, nickname, password, email })
+
+      const token = await api.post('/session', { email, password })
+
+      setCookie(
+        undefined,
+        'connectify.token',
+        JSON.stringify(token.data.token),
+        {
+          maxAge: 30 * 24 * 60 * 60,
+          path: '/',
+        },
+      )
+
+      router.push('/')
 
       toast.success('A edição foi feita com sucesso.')
     } catch (err) {
