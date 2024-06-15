@@ -13,6 +13,6 @@ export async function routesPost(app: FastifyInstance) {
   app.put("/me/posts/:postId", edit)
   app.delete("/me/posts/:postId", remove)
 
-  app.get("/posts/fetch", fetch)
+  app.get("/posts/fetch", fetch)  
   app.get("/posts/search", search)
 }

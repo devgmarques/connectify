@@ -4,6 +4,7 @@ export type PostsRepository = {
   create(data: Prisma.PostCreateManyInput): Promise<Post>;
   update(data: Post): Promise<Post>
   delete(postId: number): Promise<void>
+  countAllPosts(query: string): Promise<number>
   findPostForUser(userId: string): Promise<Post[]>
   searchMany(page: number, query: string): Promise<Post[] | null>;
   findMany(page: number): Promise<Post[]>;

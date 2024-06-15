@@ -16,12 +16,12 @@ export async function search(req: FastifyRequest, reply: FastifyReply) {
     const userRepository = new UserPrismaRepository();
     const useCase = new SearchUserUseCase(userRepository);
 
-    const { users } = await useCase.execute({
+    const { users, meta } = await useCase.execute({
       page,
       query,
     });
 
-    return reply.status(200).send({ users });
+    return reply.status(200).send({ users, meta });
   } catch (error) {
     throw error;
   }

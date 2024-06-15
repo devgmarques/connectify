@@ -3,6 +3,7 @@ import { Prisma, User } from "@prisma/client";
 export type UsersRepository = {
   create(data: Prisma.UserCreateInput): Promise<User>;
   updateUser(userId: string, data: Prisma.UserCreateInput): Promise<User>;
+  countAllUsers(query: string): Promise<number>;
   searchMany(page: number, query: string): Promise<User[] | null>;
   findMany(page: number, userId: string): Promise<User[]>
   findByEmail(email: string): Promise<User | null>;

@@ -11,6 +11,14 @@ export class UserPrismaRepository implements UsersRepository {
     return user;
   }
 
+  async countAllUsers(query: string): Promise<number> {
+    const userCount = await prisma.user.count(
+      { where: { nickname: { contains: query } } }
+    )
+
+    return userCount
+  }
+
   async findByEmail(email: string) {
     const user = await prisma.user.findUnique({ where: { email } });
 
@@ -32,8 +40,8 @@ export class UserPrismaRepository implements UsersRepository {
   async searchMany(page: number, query: string) {
     const user = await prisma.user.findMany({
       where: { nickname: { contains: query } },
-      take: 20,
-      skip: (page - 1) * 20,
+      take: 10,
+      skip: (page - 1) * 10,
     });
 
     return user;
@@ -48,8 +56,8 @@ export class UserPrismaRepository implements UsersRepository {
   async findMany(page: number, userId: string) {
     const user = await prisma.user.findMany({
       where: { NOT: { id: userId } },
-      take: 20,
-      skip: (page - 1) * 20,
+      take: 10,
+      skip: (page - 1) * 10,
     });
 
     return user;

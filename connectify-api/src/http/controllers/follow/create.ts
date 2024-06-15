@@ -15,12 +15,12 @@ export async function create(req: FastifyRequest, reply: FastifyReply) {
     const followsRepository = new FollowPrismaRepository()
     const useCase = new CreateFollowUserUseCase(followsRepository);
 
-    await useCase.execute({
+    const { follow } = await useCase.execute({
       followedId,
       userId: req.user.sub
     });
 
-    return reply.status(201).send();
+    return reply.status(201).send({ follow });
   } catch (error) {
     throw error;
   }

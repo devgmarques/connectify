@@ -9,6 +9,14 @@ export class PostPrismaRepository implements PostsRepository {
     return post;
   }
 
+  async countAllPosts(query: string) {
+    const posts = await prisma.post.count({
+      where: { title: { contains: query } },
+    })
+
+    return posts
+  }
+
   async delete(postId: number) {
     await prisma.post.delete({
       where: {
@@ -55,8 +63,8 @@ export class PostPrismaRepository implements PostsRepository {
 
   async findMany(page: number) {
     const posts = await prisma.post.findMany({
-      take: 20,
-      skip: (page - 1) * 20,
+      take: 10,
+      skip: (page - 1) * 10,
       orderBy: { createdAt: "desc" },
       include: {
         likes: true,
@@ -72,8 +80,15 @@ export class PostPrismaRepository implements PostsRepository {
   async searchMany(page: number, query: string) {
     const posts = await prisma.post.findMany({
       where: { title: { contains: query } },
-      take: 20,
-      skip: (page - 1) * 20,
+      take: 10,
+      skip: (page - 1) * 10,
+      orderBy: { createdAt: "desc" },
+      include: {
+        likes: true,
+        _count: {
+          select: { likes: true }
+        }
+      }
     });
 
     return posts;
