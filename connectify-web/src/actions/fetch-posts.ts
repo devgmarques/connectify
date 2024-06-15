@@ -12,7 +12,5 @@ export async function fetchPosts(page: number, token: string) {
     return feedPosts.data.posts as Post[]
   } catch (error) {
     console.log(error)
-
-    throw error
   }
 }

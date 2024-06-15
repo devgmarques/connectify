@@ -11,6 +11,7 @@ import { LinkMenu } from './menu-links'
 import { LogOut } from 'lucide-react'
 import { getTokenData } from '@/utils/get-token-data'
 import { useEffect, useState } from 'react'
+import { SearchInput } from './search-input'
 
 export function Header() {
   const [nickname, setNickname] = useState<string>()
@@ -28,7 +29,7 @@ export function Header() {
 
         <Separator orientation="vertical" className="h-6" />
 
-        <nav className="hidden gap-2 items-center sm:flex">
+        <nav className="hidden gap-2 items-center md:flex">
           <ActiveLink href="/feed">
             <LuHome />
             <span className="text-sm font-medium">Inicio</span>
@@ -42,13 +43,17 @@ export function Header() {
       </div>
 
       <div className="flex gap-5 items-center">
+        <SearchInput />
+
         <ToggleTheme />
-        <div className="hidden sm:block">
+
+        <div className="hidden md:block">
           <ButtonLogout>
             <LogOut />
           </ButtonLogout>
         </div>
-        <div className="block sm:hidden">
+
+        <div className="block md:hidden">
           <LinkMenu nickname={nickname as string} />
         </div>
       </div>
