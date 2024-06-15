@@ -3,6 +3,7 @@ import type { Metadata } from 'next'
 import { redirect } from 'next/navigation'
 import { cookies } from 'next/headers'
 import { Grid } from '@/components/pages/profile/grid'
+import { fetchProfile } from '@/actions/fetch-profile'
 
 type ProfileProps = {
   params: { nickname: string }
@@ -26,5 +27,11 @@ export default async function Profile({ params }: ProfileProps) {
     redirect('/accounts/login')
   }
 
-  return <Grid token={token} nickname={params.nickname} />
+  const fetch = await fetchProfile(params.nickname, token)
+
+  if (!fetch) {
+    return <p>loading...</p>
+  }
+
+  return <Grid data={fetch} />
 }
