@@ -78,14 +78,14 @@ export function Grid({ data: { follows, posts, user } }: GridProps) {
 
             <div className="flex flex-col gap-2 items-center">
               <span className="text-blue-500 dark:text-blue-400 text-xl">
-                {follows.followers ?? 0}
+                {follows._count.followersAmount ?? 0}
               </span>
               <p className="text-sm">Seguidores</p>
             </div>
 
             <div className="flex flex-col gap-2 items-center">
               <span className="text-blue-500 dark:text-blue-400 text-xl">
-                {follows?.following ?? 0}
+                {follows._count.followingAmount ?? 0}
               </span>
               <p className="text-sm">Seguindo</p>
             </div>

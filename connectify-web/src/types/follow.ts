@@ -1,4 +1,11 @@
+type FollowFollowing = {
+  followedId: string
+}
+
 export type Follow = {
-  followers: number
-  following: number
+  following: FollowFollowing[]
+  _count: {
+    followersAmount: number
+    followingAmount: number
+  }
 }

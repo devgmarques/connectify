@@ -18,7 +18,6 @@ export function ButtonLike({ data }: ButtonLikeProps) {
 
   async function handleClick() {
     const response = await api.post(`/posts/${data.id}/likes`)
-    console.log(response.data.like)
 
     setIsPostLiked(response.data.like)
   }

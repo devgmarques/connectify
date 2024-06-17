@@ -1,6 +1,6 @@
 import { ReactNode } from 'react'
 import { Header } from '../../components/shared/header/header'
-import { InformationsAccount } from '../../components/pages/feed/informations-account'
+import { InformationsAccount } from '../../components/shared/informations-account'
 import { Suggestions } from '../../components/shared/suggestions'
 
 type FeedLayoutProps = {

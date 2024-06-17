@@ -3,16 +3,29 @@
 import { Separator } from '@/components/ui/separator'
 import { api } from '@/lib/axios'
 import { User } from '@/types/user'
+import Link from 'next/link'
 import { useCallback, useEffect, useState } from 'react'
+import { ButtonFollow } from './follow/button-follow'
+import { Follow } from '@/types/follow'
+import { getTokenData } from '@/utils/get-token-data'
 
 export function Suggestions() {
   const [users, setUsers] = useState<User[]>([])
+  const [follows, setFollows] = useState<Follow>()
 
   const fetchData = useCallback(async () => {
-    const feedPosts = await api.get('/users/fetch')
+    const { payload } = getTokenData()
 
-    console.log(feedPosts)
-    setUsers(feedPosts.data.users)
+    const [usersResponse, meResponse] = await Promise.all([
+      api.get('/users/fetch'),
+      api.get(`/users/${payload.nickname}/profile`),
+    ])
+
+    console.log('Users response:', usersResponse.data)
+    console.log('Me response:', meResponse.data)
+
+    setFollows(meResponse.data.follows)
+    setUsers(usersResponse.data.users)
   }, [])
 
   useEffect(() => {
@@ -20,22 +33,38 @@ export function Suggestions() {
   }, [fetchData])
 
   return (
-    <aside className="rounded-md w-64 my-5 p-5 bg-background flex flex-col gap-3 justify-center items-center border border-foreground/20">
+    <aside className="rounded-md space-y-[2px] w-64 my-5 p-5 bg-background flex flex-col gap-3 justify-center items-center border border-foreground/20">
       <h2 className="text-md font-bold">Sugestões para você</h2>
-
       <Separator />
 
-      {users.map((item, i) => {
-        if (i > 9) {
-          return <></>
+      {users.slice(0, 10).map((item) => {
+        const alreadyFollowing = follows?.following.find(
+          (following) => following.followedId === item.id,
+        )
+
+        if (alreadyFollowing) {
+          return (
+            <div
+              className="flex items-center justify-between w-full"
+              key={item.nickname}
+            >
+              <Link href={`/${item.nickname}`} className="text-sm">
+                {item.nickname}
+              </Link>
+              <ButtonFollow isFollowing={true} data={item} />
+            </div>
+          )
         }
 
         return (
-          <div className="flex justify-between w-full" key={item.nickname}>
-            <p className="text-sm">{item.nickname}</p>
-            <button className="text-blue-500 dark:text-blue-400 text-md font-bold">
-              Seguir
-            </button>
+          <div
+            className="flex items-center justify-between w-full"
+            key={item.nickname}
+          >
+            <Link href={`/${item.nickname}`} className="text-sm">
+              {item.nickname}
+            </Link>
+            <ButtonFollow data={item} />
           </div>
         )
       })}

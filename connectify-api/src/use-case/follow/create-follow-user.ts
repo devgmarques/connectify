@@ -1,4 +1,4 @@
-import { FollowRepository } from "@/repositories/follow";
+import { FollowsRepository } from "@/repositories/follow";
 
 type CreateFollowUserUseCaseRequest = {
   userId: string;
@@ -6,7 +6,7 @@ type CreateFollowUserUseCaseRequest = {
 };
 
 export class CreateFollowUserUseCase {
-  constructor(private followsRepository: FollowRepository) { }
+  constructor(private followsRepository: FollowsRepository) { }
 
   async execute({ followedId, userId }: CreateFollowUserUseCaseRequest) {
     const findFollowById = await this.followsRepository.findByFollowedIdAndUserId({
@@ -25,10 +25,10 @@ export class CreateFollowUserUseCase {
       };
     }
 
-    const follow = await this.followsRepository.create({ followedId, userId });
+    await this.followsRepository.create({ followedId, userId });
 
     return {
-      follow: follow ? true : false
+      follow: true
     };
   }
 }

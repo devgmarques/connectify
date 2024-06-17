@@ -2,15 +2,32 @@ import { prisma } from "@/lib/prisma";
 import { FollowsRepository } from "../follow";
 
 export class FollowPrismaRepository implements FollowsRepository {
-  async create(data: { followedId: string; userId: string; }) {
+  async create({ followedId, userId }: { followedId: string; userId: string; }) {
+
     const follow = await prisma.follow.create({
-      data,
+      data: {
+        followedId,
+        userId
+      },
     })
 
     return follow
   }
 
-  async findManyFollowers(userId: string) {
+  async findManyFollowing(userId: string) {
+    const following = await prisma.follow.findMany({
+      where: {
+        userId
+      },
+      select: {
+        followedId: true
+      }
+    })
+
+    return following
+  }
+
+  async countManyFollowersAmount(userId: string) {
     const followers = await prisma.follow.count({
       where: {
         followedId: userId
@@ -19,8 +36,8 @@ export class FollowPrismaRepository implements FollowsRepository {
 
     return followers
   }
-  
-  async findManyFollowing(userId: string) {
+
+  async countManyFollowingAmount(userId: string) {
     const followers = await prisma.follow.count({
       where: {
         userId

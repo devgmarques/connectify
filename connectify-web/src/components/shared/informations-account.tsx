@@ -51,7 +51,7 @@ export function InformationsAccount() {
       <div className="flex justify-between w-full">
         <p className="text-sm">Qnt. de seguidores</p>
         <span className="text-blue-500 dark:text-blue-400">
-          {follows?.followers}
+          {follows?._count.followersAmount}
         </span>
       </div>
     </aside>

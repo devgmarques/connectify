@@ -22,8 +22,10 @@ export class GetUserProfileUseCase {
     }
 
     const posts = await this.postsRepository.findPostForUser(user.id)
-    const followers = await this.followsRepository.findManyFollowers(user.id)
     const following = await this.followsRepository.findManyFollowing(user.id)
+
+    const followersAmount = await this.followsRepository.countManyFollowersAmount(user.id)
+    const followingAmount = await this.followsRepository.countManyFollowingAmount(user.id)
 
     return {
       user: {
@@ -33,8 +35,11 @@ export class GetUserProfileUseCase {
         details: user.details
       },
       follows: {
-        followers,
-        following
+        following,
+        _count: {
+          followersAmount,
+          followingAmount
+        }
       },
       posts
     };
