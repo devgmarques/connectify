@@ -3,9 +3,13 @@ import { CommentRepository } from "../comment";
 import { prisma } from "@/lib/prisma";
 
 export class CommentPrismaRepository implements CommentRepository {
-  async create(data: Prisma.CommentCreateManyInput) {
+  async create({ body, postId, userId }: Prisma.CommentCreateManyInput) {
     const comment = await prisma.comment.create({
-      data
+      data: {
+        body,
+        postId,
+        userId
+      }
     })
 
     return comment

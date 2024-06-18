@@ -19,6 +19,7 @@ export async function search(req: FastifyRequest, reply: FastifyReply) {
     const { users, meta } = await useCase.execute({
       page,
       query,
+      userId: req.user.sub
     });
 
     return reply.status(200).send({ users, meta });

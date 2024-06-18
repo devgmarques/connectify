@@ -68,11 +68,16 @@ export class PostPrismaRepository implements PostsRepository {
       orderBy: { createdAt: "desc" },
       include: {
         likes: true,
+        comments: {
+          include: {
+            user: { select: { nickname: true } }
+          }
+        },
         _count: {
-          select: { likes: true }
+          select: { likes: true, comments: true }
         }
       }
-    });
+    })
 
     return posts
   }
@@ -85,8 +90,13 @@ export class PostPrismaRepository implements PostsRepository {
       orderBy: { createdAt: "desc" },
       include: {
         likes: true,
+        comments: {
+          include: {
+            user: { select: { nickname: true } }
+          }
+        },
         _count: {
-          select: { likes: true }
+          select: { likes: true, comments: true }
         }
       }
     });
@@ -102,8 +112,13 @@ export class PostPrismaRepository implements PostsRepository {
       orderBy: { createdAt: "desc" },
       include: {
         likes: true,
+        comments: {
+          include: {
+            user: { select: { nickname: true } }
+          }
+        },
         _count: {
-          select: { likes: true }
+          select: { likes: true, comments: true }
         }
       }
     })

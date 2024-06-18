@@ -37,9 +37,9 @@ export class UserPrismaRepository implements UsersRepository {
     return user;
   }
 
-  async searchMany(page: number, query: string) {
+  async searchMany(page: number, query: string, userId: string) {
     const user = await prisma.user.findMany({
-      where: { nickname: { contains: query } },
+      where: { nickname: { contains: query }, NOT: { id: userId } },
       take: 10,
       skip: (page - 1) * 10,
     });

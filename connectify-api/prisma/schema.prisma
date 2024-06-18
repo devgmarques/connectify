@@ -25,9 +25,10 @@ model User {
   password String
   details  String?
 
-  posts   Post[]
-  likes   Like[]
-  follows Follow[]
+  posts    Post[]
+  likes    Like[]
+  follows  Follow[]
+  comments Comment[]
 
   createdAt DateTime @default(now()) @map("created_at")
 
@@ -67,12 +68,14 @@ model Like {
 }
 
 model Comment {
-  id    Int    @id @default(autoincrement())
-  title String
-  body  String
+  id   Int    @id @default(autoincrement())
+  body String
 
-  postId Int  @map("post_id")
-  post   Post @relation(fields: [postId], references: [id], onDelete: Cascade)
+  postId Int    @map("post_id")
+  userId String @map("user_id")
+
+  post Post @relation(fields: [postId], references: [id], onDelete: Cascade)
+  user User @relation(fields: [userId], references: [id])
 
   createdAt DateTime @default(now()) @map("created_at")
 

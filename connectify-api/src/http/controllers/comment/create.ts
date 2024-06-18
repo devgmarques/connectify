@@ -12,12 +12,11 @@ export async function create(req: FastifyRequest, reply: FastifyReply) {
   });
 
   const createBody = z.object({
-    title: z.string(),
     body: z.string()
   })
 
   const { postId } = createParams.parse(req.params);
-  const { body, title } = createBody.parse(req.body)
+  const { body } = createBody.parse(req.body)
 
   try {
     const commentsRepository = new CommentPrismaRepository()
@@ -25,7 +24,9 @@ export async function create(req: FastifyRequest, reply: FastifyReply) {
     const useCase = new CreateCommentInPostUseCase(commentsRepository, postsRepository);
 
     const { comment } = await useCase.execute({
-      body, postId, title
+      body, 
+      postId,
+      userId: req.user.sub
     });
 
     return reply.status(201).send({ comment });
