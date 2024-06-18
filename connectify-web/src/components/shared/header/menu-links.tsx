@@ -11,6 +11,7 @@ import { ActiveLink } from './active-link'
 import { LuHome, LuUser } from 'react-icons/lu'
 import { LogOut } from 'lucide-react'
 import { ButtonLogout } from '../button-logout'
+import { ToggleTheme } from '../toggle-theme'
 
 type LinkMenuProps = {
   nickname: string
@@ -27,6 +28,7 @@ export function LinkMenu({ nickname }: LinkMenuProps) {
           <PiListThin />
         </Button>
       </DropdownMenuTrigger>
+
       <DropdownMenuContent align="end" className="w-56">
         <DropdownMenuItem>
           <ActiveLink href="/feed">
@@ -34,12 +36,18 @@ export function LinkMenu({ nickname }: LinkMenuProps) {
             <span className="text-sm font-medium">Inicio</span>
           </ActiveLink>
         </DropdownMenuItem>
+
         <DropdownMenuItem>
           <ActiveLink href={`/${nickname}`}>
             <LuUser />
             <span className="text-sm font-medium">Perfil</span>
           </ActiveLink>
         </DropdownMenuItem>
+
+        <DropdownMenuItem className="px-5 py-2">
+          <ToggleTheme />
+        </DropdownMenuItem>
+
         <DropdownMenuItem className="px-5 py-2">
           <ButtonLogout className="text-rose-600 dark:text-rose-500 w-full">
             <LogOut className="mr-2 h-4 w-4" />

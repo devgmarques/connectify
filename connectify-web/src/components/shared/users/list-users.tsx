@@ -5,11 +5,11 @@ import { api } from '@/lib/axios'
 import { User } from '@/types/user'
 import Link from 'next/link'
 import { useCallback, useEffect, useState } from 'react'
-import { ButtonFollow } from './follow/button-follow'
+import { ButtonFollow } from '../follow/button-follow'
 import { Follow } from '@/types/follow'
 import { getTokenData } from '@/utils/get-token-data'
 
-export function Suggestions() {
+export function ListUsers() {
   const [users, setUsers] = useState<User[]>([])
   const [follows, setFollows] = useState<Follow>()
 

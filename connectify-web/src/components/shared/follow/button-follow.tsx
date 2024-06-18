@@ -1,3 +1,5 @@
+'use client'
+
 import { api } from '@/lib/axios'
 import { User } from '@/types/user'
 import { useState } from 'react'

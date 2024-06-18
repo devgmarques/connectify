@@ -1,7 +1,13 @@
+'use client'
+
 import { User } from '@/types/user'
 import { CardUser } from '../../shared/users/card-user'
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
+import { useCallback, useEffect, useState } from 'react'
+import { getTokenData } from '@/utils/get-token-data'
+import { api } from '@/lib/axios'
+import { Follow } from '@/types/follow'
 
 type UsersListProps = {
   users: User[]
@@ -9,20 +15,35 @@ type UsersListProps = {
 }
 
 export function UsersList({ users, query }: UsersListProps) {
+  const [follows, setFollows] = useState<Follow>()
+
+  const fetchData = useCallback(async () => {
+    const { payload } = getTokenData()
+    const meResponse = await api.get(`/users/${payload.nickname}/profile`)
+
+    setFollows(meResponse.data.follows)
+  }, [])
+
+  useEffect(() => {
+    fetchData()
+  }, [fetchData])
+
+  if (!follows) {
+    return null
+  }
+
   return (
     <>
       {users.length < 5 &&
-        users.map((item) => <CardUser data={item} key={item.id} />)}
+        users.map((item) => (
+          <CardUser follows={follows} data={item} key={item.id} />
+        ))}
 
       {users.length > 5 && (
         <div>
-          {users.map((item, i) => {
-            if (i >= 5) {
-              return null
-            }
-
-            return <CardUser data={item} key={item.id} />
-          })}
+          {users.slice(0, 5).map((item) => (
+            <CardUser follows={follows} data={item} key={item.id} />
+          ))}
 
           <Button asChild variant="outline">
             <Link

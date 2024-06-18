@@ -1,4 +1,3 @@
-import { Button } from '@/components/ui/button'
 import { Post } from '@/types/post'
 import { PiCaretRight } from 'react-icons/pi'
 
@@ -6,8 +5,7 @@ import { formatDistanceToNow } from 'date-fns'
 import { ptBR } from 'date-fns/locale'
 import { ButtonOpenOperations } from './button-open-operations'
 import Link from 'next/link'
-import { LuMessageCircle } from 'react-icons/lu'
-import { ButtonLike } from '../like/button-like'
+import { FooterCard } from './footer-card'
 
 type CardPostProps = {
   data: Post
@@ -45,28 +43,21 @@ export function CardPost({ data, isMe = false }: CardPostProps) {
         </span>
       </Link>
 
-      <p className="text-center m-auto text-foreground text-medium py-5 break-words overflow-auto">
+      <p className="m-auto text-foreground text-medium py-5 break-words overflow-auto">
         {data.body}
       </p>
 
-      <div className="flex flex-col pt-3 gap-2 border-t border-foreground/20">
+      <div className="flex flex-col pt-3 gap-2">
         <div className="flex items-center justify-between">
           <p className="text-xs text-foreground/80">
             {data._count.likes} curtidas
           </p>
-          <p className="text-xs text-foreground/80">0 compartilhamentos</p>
+          <p className="text-xs text-foreground/80">
+            {data._count.comments} comentários
+          </p>
         </div>
 
-        <div className="flex justify-between gap-3">
-          <ButtonLike data={data} />
-
-          <Button variant="ghost" size="sm" className="flex items-center gap-2">
-            <LuMessageCircle className="text-foreground" />
-            <span className="font-medium text-sm text-foreground">
-              Comentar
-            </span>
-          </Button>
-        </div>
+        <FooterCard data={data} />
       </div>
     </article>
   )

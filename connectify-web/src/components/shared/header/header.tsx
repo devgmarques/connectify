@@ -45,7 +45,9 @@ export function Header() {
       <div className="flex gap-5 items-center">
         <SearchInput />
 
-        <ToggleTheme />
+        <div className="hidden md:block">
+          <ToggleTheme />
+        </div>
 
         <div className="hidden md:block">
           <ButtonLogout>

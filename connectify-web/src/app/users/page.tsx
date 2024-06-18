@@ -32,8 +32,6 @@ export default async function Users({
     token,
   })
 
-  console.log(users)
-
   if (!users) {
     return <p>loading...</p>
   }

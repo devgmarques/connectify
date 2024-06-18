@@ -1,3 +1,4 @@
+import { Comment } from './comment'
 import { Like } from './like'
 
 export type Post = {
@@ -7,8 +8,10 @@ export type Post = {
   body: string
   createdAt: string
   userId: string
+  comments: Comment[]
   likes: Like[]
   _count: {
     likes: number
+    comments: number
   }
 }
