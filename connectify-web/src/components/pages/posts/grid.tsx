@@ -13,7 +13,7 @@ export function Grid({ meta, posts }: GridProps) {
   return (
     <section className="w-full px-4 py-3 flex flex-col bg-background rounded-md border border-foreground/20">
       <h2 className="font-base text-foreground/70 pb-4">
-        Cerca de {meta.countPosts} postagens
+        Cerca de {meta.countPosts} publicações
       </h2>
 
       <div className="space-y-3 mb-3">

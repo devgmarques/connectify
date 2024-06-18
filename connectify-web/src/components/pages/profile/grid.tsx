@@ -73,7 +73,7 @@ export function Grid({ data: { follows, posts, user } }: GridProps) {
               <span className="text-blue-500 dark:text-blue-400 text-xl">
                 {posts.length}
               </span>
-              <p className="text-sm">Postagens</p>
+              <p className="text-sm">Publicação</p>
             </div>
 
             <div className="flex flex-col gap-2 items-center">
@@ -95,7 +95,7 @@ export function Grid({ data: { follows, posts, user } }: GridProps) {
         <Separator />
 
         <div className="w-full flex justify-between gap-5">
-          <h2>Minhas postagens</h2>
+          <h2>Minhas publicações</h2>
 
           {isMyProfile && <CreatePostDialog />}
         </div>

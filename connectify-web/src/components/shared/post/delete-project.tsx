@@ -24,7 +24,7 @@ export function DeletePostDialog({ id }: DeletePostDialog) {
     try {
       await api.delete(`/me/posts/${id}`)
 
-      toast.success('A postagem foi deletada com sucesso.')
+      toast.success('A publicação foi deletada com sucesso.')
     } catch (err) {
       if (err instanceof AxiosError) {
         if (err.response) {
@@ -46,17 +46,17 @@ export function DeletePostDialog({ id }: DeletePostDialog) {
           className="flex gap-3 bg-transparent hover:bg-transparent p-0 m-0 text-red-500 dark:text-red-400"
         >
           <PiTrashBold className="text-red-500 dark:text-red-400 w-5 h-5" />
-          Deletar postagem
+          Deletar publicação
         </Button>
       </AlertDialogTrigger>
       <AlertDialogContent>
         <AlertDialogHeader>
           <AlertDialogTitle>
-            Você deseja deletar esta postagem?
+            Você deseja deletar esta publicação?
           </AlertDialogTitle>
           <AlertDialogDescription>
             Esta ação não pode ser desfeita. Isso excluirá permanentemente sua
-            postagem.
+            publicação.
           </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>

@@ -38,7 +38,7 @@ export function CreatePostDialog() {
     try {
       await api.post('/post', { body, title })
 
-      toast.success('A postagem foi criada com sucesso.')
+      toast.success('A publicação foi criada com sucesso.')
     } catch (err) {
       if (err instanceof AxiosError) {
         if (err.response) {
@@ -57,14 +57,14 @@ export function CreatePostDialog() {
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
       <DialogTrigger asChild>
-        <Button variant="outline">Criar uma postagem</Button>
+        <Button variant="outline">Criar uma publicação</Button>
       </DialogTrigger>
 
       <DialogContent className="w-72  sm:w-96">
         <DialogHeader>
-          <DialogTitle>Criar postagem</DialogTitle>
+          <DialogTitle>Criar publicação</DialogTitle>
           <DialogDescription>
-            Informe os campos necessários para criar sua postagem
+            Informe os campos necessários para criar sua publicação
           </DialogDescription>
         </DialogHeader>
 

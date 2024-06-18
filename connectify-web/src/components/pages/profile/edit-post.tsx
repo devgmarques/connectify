@@ -55,7 +55,7 @@ export function EditPostDialog({ data }: EditPostDialogProps) {
         userId: data.userId,
       })
 
-      toast.success('A postagem foi editada com sucesso.')
+      toast.success('A publicação foi editada com sucesso.')
     } catch (err) {
       if (err instanceof AxiosError) {
         if (err.response) {
@@ -79,15 +79,15 @@ export function EditPostDialog({ data }: EditPostDialogProps) {
           className="flex gap-3 bg-transparent hover:bg-transparent p-0 m-0"
         >
           <PiNotePencilBold className="w-5 h-5" />
-          Editar esta postagem
+          Editar esta publicação
         </Button>
       </DialogTrigger>
 
       <DialogContent className="w-72 sm:w-96">
         <DialogHeader>
-          <DialogTitle>Editar postagem</DialogTitle>
+          <DialogTitle>Editar publicação</DialogTitle>
           <DialogDescription>
-            Informe os campos necessários para editar sua postagem
+            Informe os campos necessários para editar sua publicação
           </DialogDescription>
         </DialogHeader>
 
