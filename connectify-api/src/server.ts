@@ -15,12 +15,15 @@ import { routesFollow } from "./http/controllers/follow/routes";
 import { routesComment } from "./http/controllers/comment/routes";
 import fastifySwagger from "@fastify/swagger";
 import fastifySwaggerUi from "@fastify/swagger-ui";
+import fastifyMultipart from '@fastify/multipart'
 
 export const app = fastify();
 
 app.register(fastifyJwt, {
   secret: env.JWT_SECRET,
 });
+
+app.register(fastifyMultipart)
 
 app.register(fastifyCors, { origin: "http://localhost:3000" })
 

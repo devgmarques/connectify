@@ -68,9 +68,22 @@ export class PostPrismaRepository implements PostsRepository {
       orderBy: { createdAt: "desc" },
       include: {
         likes: true,
+        user: {
+          select: {
+            url_avatar: true,
+            name: true,
+            nickname: true
+          }
+        },
         comments: {
           include: {
-            user: { select: { nickname: true } }
+            user: {
+              select: {
+                nickname: true, 
+                url_avatar: true,
+                name: true
+              }
+            }
           }
         },
         _count: {
@@ -90,9 +103,22 @@ export class PostPrismaRepository implements PostsRepository {
       orderBy: { createdAt: "desc" },
       include: {
         likes: true,
+        user: {
+          select: {
+            url_avatar: true,
+            name: true,
+            nickname: true
+          }
+        },
         comments: {
           include: {
-            user: { select: { nickname: true } }
+            user: {
+              select: {
+                nickname: true, 
+                url_avatar: true,
+                name: true
+              }
+            }
           }
         },
         _count: {
@@ -112,9 +138,21 @@ export class PostPrismaRepository implements PostsRepository {
       orderBy: { createdAt: "desc" },
       include: {
         likes: true,
+        user: {
+          select: {
+            url_avatar: true,
+            name: true,
+            nickname: true
+          }
+        },
         comments: {
           include: {
-            user: { select: { nickname: true } }
+            user: {
+              select: {
+                nickname: true, 
+                url_avatar: true
+              }
+            }
           }
         },
         _count: {

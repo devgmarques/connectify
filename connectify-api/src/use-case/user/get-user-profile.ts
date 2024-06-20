@@ -32,7 +32,8 @@ export class GetUserProfileUseCase {
         name: user.name,
         nickname: user.nickname,
         email: user.email,
-        details: user.details
+        details: user.details,
+        url_avatar: user.url_avatar
       },
       follows: {
         following,
