@@ -6,5 +6,6 @@ export type Comment = {
   createdAt: Date
   user: {
     nickname: string
+    url_avatar: string | null
   }
 }

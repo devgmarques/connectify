@@ -6,6 +6,7 @@ import { ptBR } from 'date-fns/locale'
 import { ButtonOpenOperations } from './button-open-operations'
 import Link from 'next/link'
 import { FooterCard } from './footer-card'
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 
 type CardPostProps = {
   data: Post
@@ -22,12 +23,19 @@ export function CardPost({ data, isMe = false }: CardPostProps) {
       )}
 
       <Link
-        href={`/${data.author}`}
+        href={`/${data.user.nickname}`}
         className="flex gap-5 items-center justify-between border-b border-foreground/20 pb-3 whitespace-nowrap overflow-auto"
       >
         <div className="flex gap-3 items-center">
+          <Avatar className="z-0 w-10 h-10">
+            <AvatarImage src={data.user.url_avatar ?? ''} alt="Avatar" />
+            <AvatarFallback>
+              {data.user.name.split(' ').map((item) => item[0])}
+            </AvatarFallback>
+          </Avatar>
+
           <h2 className="font-bold text-md text-foreground/80">
-            {data.author}
+            {data.user.nickname}
           </h2>
 
           <PiCaretRight className="text-foreground" />

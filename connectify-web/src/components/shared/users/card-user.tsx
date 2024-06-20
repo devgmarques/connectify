@@ -12,8 +12,6 @@ export function CardUser({ data, follows }: CardUserProps) {
     (following) => following.followedId === data.id,
   )
 
-  console.log(follows)
-
   if (alreadyFollowing) {
     return (
       <article className="w-full flex justify-between items-start py-3 border-t border-foreground/20">

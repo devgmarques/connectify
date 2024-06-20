@@ -9,6 +9,7 @@ import Link from 'next/link'
 import { formatDistanceToNow } from 'date-fns'
 import { ptBR } from 'date-fns/locale'
 import { PiChatTeardropSlash } from 'react-icons/pi'
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 
 type FooterCardProps = {
   data: Post
@@ -46,9 +47,21 @@ export function FooterCard({ data }: FooterCardProps) {
                     href={`/${item.user.nickname}`}
                     className="flex items-center justify-between pb-1 whitespace-nowrap overflow-auto"
                   >
-                    <h2 className="font-bold text-sm text-foreground/80">
-                      {item.user.nickname}
-                    </h2>
+                    <div className="flex items-center gap-2">
+                      <Avatar className="z-0 w-8 h-8">
+                        <AvatarImage
+                          src={data.user.url_avatar ?? ''}
+                          alt="Avatar"
+                        />
+                        <AvatarFallback>
+                          {data.user.name.split(' ').map((item) => item[0])}
+                        </AvatarFallback>
+                      </Avatar>
+
+                      <h2 className="font-bold text-sm text-foreground/80">
+                        {item.user.nickname}
+                      </h2>
+                    </div>
 
                     <span className="text-sm text-foreground/80 whitespace-nowrap hidden sm:block">
                       {formatDistanceToNow(item.createdAt, {
