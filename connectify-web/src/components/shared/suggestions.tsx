@@ -8,6 +8,7 @@ import { useCallback, useEffect, useState } from 'react'
 import { ButtonFollow } from './follow/button-follow'
 import { Follow } from '@/types/follow'
 import { getTokenData } from '@/utils/get-token-data'
+import { Skeleton } from '../ui/skeleton'
 
 export function Suggestions() {
   const [users, setUsers] = useState<User[]>([])
@@ -28,6 +29,20 @@ export function Suggestions() {
   useEffect(() => {
     fetchData()
   }, [fetchData])
+
+  if (!users || !follows) {
+    return (
+      <div className="rounded-md space-y-[4px] w-64 my-5 p-5 bg-background flex flex-col gap-3 justify-center items-center border border-foreground/20">
+        <Skeleton className="h-6 w-52" />
+
+        <div className="space-y-2">
+          <Skeleton className="h-4 w-52" />
+          <Skeleton className="h-4 w-52" />
+          <Skeleton className="h-4 w-52" />
+        </div>
+      </div>
+    )
+  }
 
   return (
     <aside className="rounded-md space-y-[2px] w-64 my-5 p-5 bg-background flex flex-col gap-3 justify-center items-center border border-foreground/20">

@@ -6,7 +6,7 @@ import { Grid } from '@/components/pages/posts/grid'
 import { searchPosts } from '@/actions/search-posts'
 
 export const metadata: Metadata = {
-  title: 'Usuários | connectify',
+  title: 'Postagens | connectify',
 }
 
 type PostsProps = {

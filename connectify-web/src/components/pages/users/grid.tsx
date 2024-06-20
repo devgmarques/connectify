@@ -7,6 +7,7 @@ import { useCallback, useEffect, useState } from 'react'
 import { Follow } from '@/types/follow'
 import { getTokenData } from '@/utils/get-token-data'
 import { api } from '@/lib/axios'
+import { Skeleton } from '@/components/ui/skeleton'
 
 type GridProps = {
   users: User[]
@@ -30,7 +31,28 @@ export function Grid({ meta, users }: GridProps) {
   }, [fetchData])
 
   if (!follows) {
-    return null
+    return (
+      <section className="w-full px-4 py-3 flex flex-col bg-background rounded-md border border-foreground/20">
+        <Skeleton className="h-4 w-20" />
+
+        <div className="space-y-3 pt-4">
+          <div className="py-3 flex justify-between items-center border-t border-foreground/20">
+            <Skeleton className="w-32 h-10 sm:w-52" />
+            <Skeleton className="w-16 h-10 sm:w-28" />
+          </div>
+
+          <div className="py-3 flex justify-between items-center border-t border-foreground/20">
+            <Skeleton className="w-32 h-10 sm:w-52" />
+            <Skeleton className="w-16 h-10 sm:w-28" />
+          </div>
+
+          <div className="py-3 flex justify-between items-center border-t border-foreground/20">
+            <Skeleton className="w-32 h-10 sm:w-52" />
+            <Skeleton className="w-16 h-10 sm:w-28" />
+          </div>
+        </div>
+      </section>
+    )
   }
 
   return (
