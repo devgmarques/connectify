@@ -1,7 +1,7 @@
 import { Follow, Prisma } from "@prisma/client";
-import { FollowRepository } from "../follow";
+import { FollowsRepository } from "../follow";
 
-export class FollowInMemoryRepository implements FollowRepository {
+export class FollowInMemoryRepository implements FollowsRepository {
   follows: Follow[] = [];
 
   async findManyFollowers(userId: string) {
@@ -10,7 +10,20 @@ export class FollowInMemoryRepository implements FollowRepository {
     return followers.length
   }
 
+
   async findManyFollowing(userId: string) {
+    const following = this.follows.filter(item => item.userId === userId)
+
+    return following
+  }
+
+  async countManyFollowersAmount(userId: string) {
+    const followers = this.follows.filter(item => item.followedId === userId)
+
+    return followers.length
+  }
+
+  async countManyFollowingAmount(userId: string) {
     const following = this.follows.filter(item => item.userId === userId)
 
     return following.length

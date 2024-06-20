@@ -17,6 +17,7 @@ describe("Search posts use case", () => {
     usersRepository.users.push({
       createdAt: new Date(),
       id: "user_01",
+      url_avatar: "",
       details: "",
       nickname: "",
       email: "gui@gmail",

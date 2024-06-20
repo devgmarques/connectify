@@ -4,11 +4,32 @@ import { UsersRepository } from "../user";
 export class UserInMemoryRepository implements UsersRepository {
   users: User[] = [];
 
-  async findMany(page: number){
+  async findMany(page: number) {
     const users = this.users
-    .slice((page - 1) * 20, page * 20)
+      .slice((page - 1) * 20, page * 20)
 
     return users
+  }
+
+  async countAllUsers(query: string) {
+    const count = this.users.reduce((acc, item) => {
+      if (item.nickname.includes(query)) {
+        return acc + 1
+      }
+
+      return acc
+    }, 0)
+
+    return count
+  }
+
+  async updateUrlAvatar(fullPath: string, userId: string): Promise<undefined> {
+    const index = this.users.findIndex(item => item.id === userId)
+
+
+    if (index > -1) {
+      this.users[index].url_avatar = fullPath
+    }
   }
 
   async create(data: Prisma.UserCreateInput) {
@@ -17,6 +38,7 @@ export class UserInMemoryRepository implements UsersRepository {
       name: data.name,
       email: data.email,
       password: data.password,
+      url_avatar: data.url_avatar ?? "",
       createdAt: new Date(),
       nickname: data.nickname,
       details: "Seja bem vindo",
@@ -30,6 +52,7 @@ export class UserInMemoryRepository implements UsersRepository {
       id: "user_01",
       name: data.name,
       email: data.email,
+      url_avatar: data.url_avatar ?? "",
       password: data.password,
       createdAt: new Date(),
       nickname: data.nickname,

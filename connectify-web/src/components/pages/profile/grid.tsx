@@ -70,7 +70,7 @@ export function Grid({ data: { follows, posts, user } }: GridProps) {
               </div>
 
               <p className="text-foreground/60 text-sm mt-1">
-                {user.details ?? 'Adicione sua descrição'}
+                {user.details ?? 'Sem descrição'}
               </p>
             </div>
           </div>

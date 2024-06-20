@@ -23,6 +23,7 @@ describe("Get user profile use case", () => {
       createdAt: new Date(),
       id: "user_01",
       email: "gui@gmail",
+      url_avatar: "",
       name: "Guilherme",
       password: "123456",
       details: "",

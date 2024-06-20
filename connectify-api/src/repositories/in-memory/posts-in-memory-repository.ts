@@ -1,5 +1,6 @@
 import { Post, Prisma } from "@prisma/client";
 import { PostsRepository } from "../post";
+import { AuthentificateUseCase } from "@/use-case/user/authentificate";
 
 export class PostsInMemoryRepository implements PostsRepository {
   posts: Post[] = [];
@@ -74,5 +75,17 @@ export class PostsInMemoryRepository implements PostsRepository {
     const posts = this.posts.slice((page - 1) * 20, page * 20);
 
     return posts;
+  }
+
+  async countAllPosts(query: string) {
+    const count = this.posts.reduce((acc, item) => {
+      if (item.title.includes(query)) {
+        return acc + 1
+      }
+
+      return acc
+    }, 0)
+
+    return count
   }
 }
