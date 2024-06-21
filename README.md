@@ -56,7 +56,7 @@ $ npm run dev
 ```
 
 ## 📚 Documentação da API
-A documentação completa da Connectify API está disponível em Documentação da API.
+A documentação completa da Connectify API está disponível em https://documenter.getpostman.com/view/33097794/2sA3XV8ent.
 
 ## 🤵 Autor
 Feito com ❤️ por Guilherme Henrique 🚀
