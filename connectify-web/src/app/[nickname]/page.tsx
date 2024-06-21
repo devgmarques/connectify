@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 
-import { redirect } from 'next/navigation'
+import { notFound, redirect } from 'next/navigation'
 import { cookies } from 'next/headers'
 import { Grid } from '@/components/pages/profile/grid'
 import { fetchProfile } from '@/actions/fetch-profile'
@@ -29,8 +29,8 @@ export default async function Profile({ params }: ProfileProps) {
 
   const fetch = await fetchProfile(params.nickname, token)
 
-  if (!fetch) {
-    return <p>loading...</p>
+  if (fetch === undefined) {
+    notFound()
   }
 
   return <Grid data={fetch} />
