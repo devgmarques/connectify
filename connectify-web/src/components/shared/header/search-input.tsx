@@ -4,10 +4,10 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Search } from 'lucide-react'
 import { useRouter, useSearchParams } from 'next/navigation'
-import { useEffect, useState } from 'react'
+import { useEffect, useState, Suspense } from 'react'
 import { useDebouncedCallback } from 'use-debounce'
 
-export function SearchInput() {
+export function SearchParams() {
   const [initialValue, setInitialValue] = useState<string>('')
 
   const searchParams = useSearchParams()
@@ -34,7 +34,7 @@ export function SearchInput() {
     const isValidatedQuery = searchParams.get('search')
 
     setInitialValue(isValidatedQuery ?? '')
-  }, [])
+  }, [searchParams])
 
   return (
     <div className="flex items-center space-x-2">
@@ -56,5 +56,13 @@ export function SearchInput() {
         }}
       />
     </div>
+  )
+}
+
+export function SearchInput() {
+  return (
+    <Suspense>
+      <SearchParams />
+    </Suspense>
   )
 }

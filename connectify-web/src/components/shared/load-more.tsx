@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { useInView } from 'react-intersection-observer'
 
 import nookies from 'nookies'
@@ -19,7 +19,7 @@ export function LoadMore() {
 
   const { ref, inView } = useInView()
 
-  const loadMoreCustomer = async () => {
+  const loadMoreCustomer = useCallback(async () => {
     const nextPage = page + 1
 
     const newProducts = (await fetchPosts(nextPage, token)) ?? []
@@ -29,13 +29,13 @@ export function LoadMore() {
     }
     setPosts((prevProducts: Post[]) => [...prevProducts, ...newProducts])
     setPage(nextPage)
-  }
+  }, [page, token])
 
   useEffect(() => {
     if (inView) {
       loadMoreCustomer()
     }
-  }, [inView])
+  }, [inView, loadMoreCustomer])
 
   return (
     <>

@@ -27,7 +27,7 @@ export function Pagination({ countAllItems }: PaginationProps) {
 
   useEffect(() => {
     setAssetNumber(Number(searchParams.get('page')) ?? 1)
-  }, [])
+  }, [searchParams])
 
   const handleClickPage = useDebouncedCallback((pageNumber: number) => {
     const params = new URLSearchParams(searchParams)

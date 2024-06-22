@@ -28,7 +28,7 @@ export function Grid({ data: { follows, posts, user } }: GridProps) {
     const { payload } = getTokenData()
 
     setIsMyProfile(user.nickname === payload.nickname)
-  })
+  }, [user.nickname])
 
   return (
     <section>

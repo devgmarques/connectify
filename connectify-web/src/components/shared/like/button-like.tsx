@@ -26,7 +26,7 @@ export function ButtonLike({ data }: ButtonLikeProps) {
     const userLikedPost = data.likes.find((item) => item.userId === payload.sub)
 
     setIsPostLiked(!!userLikedPost)
-  }, [])
+  }, [data.likes, payload.sub])
 
   return (
     <Toggle
