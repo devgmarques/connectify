@@ -7,5 +7,6 @@ export type Comment = {
   user: {
     nickname: string
     url_avatar: string | null
+    name: string
   }
 }

@@ -50,11 +50,11 @@ export function FooterCard({ data }: FooterCardProps) {
                     <div className="flex items-center gap-2">
                       <Avatar className="z-0 w-8 h-8">
                         <AvatarImage
-                          src={data.user.url_avatar ?? ''}
+                          src={item.user.url_avatar ?? ''}
                           alt="Avatar"
                         />
                         <AvatarFallback>
-                          {data.user.name.split(' ').map((item) => item[0])}
+                          {item.user.name.split(' ').map((item) => item[0])}
                         </AvatarFallback>
                       </Avatar>
 
