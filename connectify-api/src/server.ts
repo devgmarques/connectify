@@ -1,6 +1,3 @@
-import fs from "node:fs"
-import path from "node:path";
-
 import fastify from "fastify"
 import fastifyJwt from "@fastify/jwt";
 import fastifyCors from '@fastify/cors'
@@ -13,8 +10,6 @@ import { routesPost } from '@/http/controllers/post/routes';
 import { routesLike } from "./http/controllers/like/routes";
 import { routesFollow } from "./http/controllers/follow/routes";
 import { routesComment } from "./http/controllers/comment/routes";
-import fastifySwagger from "@fastify/swagger";
-import fastifySwaggerUi from "@fastify/swagger-ui";
 import fastifyMultipart from '@fastify/multipart'
 
 export const app = fastify();
@@ -27,18 +22,6 @@ app.register(fastifyMultipart)
 
 app.register(fastifyCors, { origin: "http://localhost:3000" })
 
-const swaggerDocument = JSON.parse(fs.readFileSync(path.join(__dirname, 'swagger.json'), 'utf8'));
-
-app.register(fastifySwagger, {
-  mode: 'static',
-  specification: {
-    document: swaggerDocument
-  }
-});
-
-app.register(fastifySwaggerUi, {
-  routePrefix: "/docs"
-});
 
 app.register(routesUser);
 app.register(routesPost);
