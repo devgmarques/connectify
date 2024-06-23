@@ -109,7 +109,7 @@ export function Grid({ data: { follows, posts, user } }: GridProps) {
       </header>
 
       {posts.length === 0 && (
-        <article className="m-5 p-4 w-full bg-background rounded-md border border-foreground/20">
+        <article className="m-5 p-4 bg-background rounded-md border border-foreground/20">
           <p className="flex items-center gap-2 text-lg">
             <PiChatTextBold />
             Ainda não ha nenhuma publicação
