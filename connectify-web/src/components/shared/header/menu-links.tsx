@@ -44,7 +44,7 @@ export function LinkMenu({ nickname }: LinkMenuProps) {
           </ActiveLink>
         </DropdownMenuItem>
 
-        <DropdownMenuItem className="px-5 py-2">
+        <DropdownMenuItem asChild>
           <ToggleTheme />
         </DropdownMenuItem>
 
