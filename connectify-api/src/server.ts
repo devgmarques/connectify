@@ -20,7 +20,7 @@ app.register(fastifyJwt, {
 
 app.register(fastifyMultipart)
 
-app.register(fastifyCors, { origin: "http://localhost:3000" })
+app.register(fastifyCors, { origin: "https://connectfy-web.vercel.app" })
 
 app.register(routesUser);
 app.register(routesPost);
