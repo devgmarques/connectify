@@ -30,7 +30,7 @@ export function CardPost({ data, isMe = false }: CardPostProps) {
           <Avatar className="z-0 w-10 h-10">
             <AvatarImage src={data.user.url_avatar ?? ''} alt="Avatar" />
             <AvatarFallback>
-              {data.user.name.split(' ').map((item) => item[0])}
+              {data.user.name.split(' ').map((item) => item[0].toUpperCase())}
             </AvatarFallback>
           </Avatar>
 

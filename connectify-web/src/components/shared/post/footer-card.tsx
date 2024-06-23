@@ -54,7 +54,9 @@ export function FooterCard({ data }: FooterCardProps) {
                           alt="Avatar"
                         />
                         <AvatarFallback>
-                          {item.user.name.split(' ').map((item) => item[0])}
+                          {item.user.name
+                            .split(' ')
+                            .map((item) => item[0].toUpperCase())}
                         </AvatarFallback>
                       </Avatar>
 

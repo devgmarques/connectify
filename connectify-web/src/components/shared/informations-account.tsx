@@ -51,7 +51,7 @@ export function InformationsAccount() {
       <Avatar className="z-0 w-20 h-20">
         <AvatarImage src={user.url_avatar} alt="Avatar" />
         <AvatarFallback>
-          {user.name.split(' ').map((item) => item[0])}
+          {user.name.split(' ').map((item) => item[0].toLowerCase())}
         </AvatarFallback>
       </Avatar>
 
