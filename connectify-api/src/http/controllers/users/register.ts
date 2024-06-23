@@ -23,7 +23,7 @@ export async function register(req: FastifyRequest, reply: FastifyReply) {
     await useCase.execute({
       email,
       name,
-      nickname,
+      nickname: nickname.toLowerCase(),
       password,
     });
 
