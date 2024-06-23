@@ -29,7 +29,7 @@ const schemaCreatePost = z.object({
 type CreatePost = z.infer<typeof schemaCreatePost>
 
 type CreatePostDialogProps = {
-  setPostsState: Dispatch<SetStateAction<Post[]>>
+  setPostsState?: Dispatch<SetStateAction<Post[]>>
 }
 
 export function CreatePostDialog({ setPostsState }: CreatePostDialogProps) {
@@ -45,9 +45,11 @@ export function CreatePostDialog({ setPostsState }: CreatePostDialogProps) {
 
       toast.success('A publicação foi criada com sucesso.')
 
-      setPostsState((state) => {
-        return [...state, post.data.post]
-      })
+      if (setPostsState) {
+        setPostsState((state) => {
+          return [...state, post.data.post]
+        })
+      }
     } catch (err) {
       if (err instanceof AxiosError) {
         if (err.response) {
