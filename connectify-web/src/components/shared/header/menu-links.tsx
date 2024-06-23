@@ -50,7 +50,7 @@ export function LinkMenu({ nickname }: LinkMenuProps) {
 
         <DropdownMenuItem className="px-5 py-2">
           <ButtonLogout className="text-rose-600 dark:text-rose-500 w-full">
-            <LogOut className="mr-2 h-4 w-4" />
+            <LogOut className="mr-2 h-[1.2rem] w-[1.2rem]" />
             <span className="text-sm font-medium">Sair da conta</span>
           </ButtonLogout>
         </DropdownMenuItem>

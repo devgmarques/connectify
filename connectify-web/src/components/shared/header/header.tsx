@@ -51,7 +51,7 @@ export function Header() {
 
         <div className="hidden md:block">
           <ButtonLogout>
-            <LogOut />
+            <LogOut className="h-[1.2rem] w-[1.2rem]" />
           </ButtonLogout>
         </div>
 
