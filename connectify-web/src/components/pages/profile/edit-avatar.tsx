@@ -38,8 +38,6 @@ export function EditAvatarDialog({ data }: EditAvatarDialogProps) {
 
   async function onSubmit(data: EditAvatar) {
     try {
-      console.log()
-
       if (data.file.length < 1) {
         toast.error('Envie o arquivo corretamente.')
         return

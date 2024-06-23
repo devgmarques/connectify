@@ -10,6 +10,6 @@ export async function fetchProfile(nickname: string, token: string) {
 
     return user.data
   } catch (error) {
-    console.log(error)
+    console.error(error)
   }
 }

@@ -3,8 +3,41 @@ import { PostsRepository } from "../post";
 import { prisma } from "@/lib/prisma";
 
 export class PostPrismaRepository implements PostsRepository {
-  async create(data: Prisma.PostCreateManyInput) {
-    const post = await prisma.post.create({ data });
+  async create({
+    author, body, title, userId
+  }: Prisma.PostCreateManyInput) {
+    const post = await prisma.post.create({
+      data: {
+        author,
+        body,
+        title,
+        userId
+      },
+      include: {
+        likes: true,
+        user: {
+          select: {
+            url_avatar: true,
+            name: true,
+            nickname: true
+          }
+        },
+        comments: {
+          include: {
+            user: {
+              select: {
+                nickname: true,
+                url_avatar: true,
+                name: true
+              }
+            }
+          }
+        },
+        _count: {
+          select: { likes: true, comments: true }
+        }
+      }
+    });
 
     return post;
   }
@@ -38,6 +71,30 @@ export class PostPrismaRepository implements PostsRepository {
         title,
         userId,
         createdAt,
+      },
+      include: {
+        likes: true,
+        user: {
+          select: {
+            url_avatar: true,
+            name: true,
+            nickname: true
+          }
+        },
+        comments: {
+          include: {
+            user: {
+              select: {
+                nickname: true,
+                url_avatar: true,
+                name: true
+              }
+            }
+          }
+        },
+        _count: {
+          select: { likes: true, comments: true }
+        }
       }
     })
 
@@ -79,7 +136,7 @@ export class PostPrismaRepository implements PostsRepository {
           include: {
             user: {
               select: {
-                nickname: true, 
+                nickname: true,
                 url_avatar: true,
                 name: true
               }
@@ -114,7 +171,7 @@ export class PostPrismaRepository implements PostsRepository {
           include: {
             user: {
               select: {
-                nickname: true, 
+                nickname: true,
                 url_avatar: true,
                 name: true
               }
@@ -149,7 +206,7 @@ export class PostPrismaRepository implements PostsRepository {
           include: {
             user: {
               select: {
-                nickname: true, 
+                nickname: true,
                 url_avatar: true
               }
             }

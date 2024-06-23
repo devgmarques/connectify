@@ -3,7 +3,7 @@
 import { Post } from '@/types/post'
 import { ButtonLike } from '../like/button-like'
 import { ButtonComment } from '../comment/button-comment'
-import { useState } from 'react'
+import { Dispatch, SetStateAction, useState } from 'react'
 import { FormComment } from '../comment/form-comment'
 import Link from 'next/link'
 import { formatDistanceToNow } from 'date-fns'
@@ -13,15 +13,16 @@ import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 
 type FooterCardProps = {
   data: Post
+  setData: Dispatch<SetStateAction<Post>>
 }
 
-export function FooterCard({ data }: FooterCardProps) {
+export function FooterCard({ data, setData }: FooterCardProps) {
   const [isOpenFormComment, setIsOpenFormComment] = useState<boolean>(false)
 
   return (
     <>
       <div className="flex justify-between gap-3">
-        <ButtonLike data={data} />
+        <ButtonLike data={data} setData={setData} />
 
         <ButtonComment
           isOpenFormComment={isOpenFormComment}
@@ -32,6 +33,7 @@ export function FooterCard({ data }: FooterCardProps) {
       {isOpenFormComment && (
         <>
           <FormComment
+            setData={setData}
             postId={data.id}
             setIsOpenFormComment={setIsOpenFormComment}
           />

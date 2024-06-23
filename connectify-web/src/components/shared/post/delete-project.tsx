@@ -11,20 +11,30 @@ import {
 } from '@/components/ui/alert-dialog'
 import { Button } from '@/components/ui/button'
 import { api } from '@/lib/axios'
+import { Post } from '@/types/post'
 import { AxiosError } from 'axios'
+import { Dispatch, SetStateAction } from 'react'
 import { PiTrashBold } from 'react-icons/pi'
 import { toast } from 'sonner'
 
 type DeletePostDialog = {
   id: number
+  setData: Dispatch<SetStateAction<Post>>
 }
 
-export function DeletePostDialog({ id }: DeletePostDialog) {
+export function DeletePostDialog({ id, setData }: DeletePostDialog) {
   async function deletePost() {
     try {
       await api.delete(`/me/posts/${id}`)
 
       toast.success('A publicação foi deletada com sucesso.')
+
+      setData((state) => {
+        return {
+          ...state,
+          id: -1,
+        }
+      })
     } catch (err) {
       if (err instanceof AxiosError) {
         if (err.response) {

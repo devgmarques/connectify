@@ -16,7 +16,7 @@ import { api } from '@/lib/axios'
 import { Post } from '@/types/post'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { AxiosError } from 'axios'
-import { useState } from 'react'
+import { Dispatch, SetStateAction, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { PiNotePencilBold } from 'react-icons/pi'
 import { toast } from 'sonner'
@@ -31,9 +31,10 @@ type CreatePost = z.infer<typeof schemaEditPost>
 
 type EditPostDialogProps = {
   data: Post
+  setData: Dispatch<SetStateAction<Post>>
 }
 
-export function EditPostDialog({ data }: EditPostDialogProps) {
+export function EditPostDialog({ data, setData }: EditPostDialogProps) {
   const [isOpen, setIsOpen] = useState<boolean>(false)
 
   const { register, handleSubmit, formState } = useForm<CreatePost>({
@@ -46,7 +47,7 @@ export function EditPostDialog({ data }: EditPostDialogProps) {
 
   async function onSubmit({ body, title }: CreatePost) {
     try {
-      await api.put(`/me/posts/${data.id}`, {
+      const post = await api.put(`/me/posts/${data.id}`, {
         body,
         title,
         id: data.id,
@@ -56,6 +57,8 @@ export function EditPostDialog({ data }: EditPostDialogProps) {
       })
 
       toast.success('A publicação foi editada com sucesso.')
+
+      setData(post.data.post)
     } catch (err) {
       if (err instanceof AxiosError) {
         if (err.response) {
@@ -118,7 +121,7 @@ export function EditPostDialog({ data }: EditPostDialogProps) {
             className="w-full"
             disabled={formState.isSubmitting ?? true}
           >
-            Criar
+            Editar
           </Button>
         </form>
       </DialogContent>

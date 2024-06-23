@@ -14,30 +14,28 @@ export async function edit(req: FastifyRequest, reply: FastifyReply) {
     body: z.string(),
     title: z.string(),
     author: z.string(),
-    userId: z.string().uuid(),
     createdAt: z.string().datetime(),
   });
 
-  const { body, title, author, createdAt, userId } = editBody.parse(req.body);
+  const { body, title, author, createdAt } = editBody.parse(req.body);
   const { postId } = editParams.parse(req.params);
 
   try {
     const postsRepository = new PostPrismaRepository();
     const useCase = new EditPostUseCase(postsRepository);
 
-    await useCase.execute({
+    const { post } = await useCase.execute({
       userId: req.user.sub,
       data: {
         id: postId,
         body,
         title,
         author,
-        userId,
         createdAt,
       },
     });
 
-    return reply.status(204).send();
+    return reply.status(200).send({ post });
   } catch (error) {
     if (error instanceof TitleAlreadyExistInUserError) {
       return reply.status(400).send({ message: error.message });

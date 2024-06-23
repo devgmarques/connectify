@@ -17,7 +17,7 @@ export async function create(req: FastifyRequest, reply: FastifyReply) {
     const postsRepository = new PostPrismaRepository();
     const useCase = new CreatePostUseCase(postsRepository);
 
-    await useCase.execute({
+    const { post } = await useCase.execute({
       userId: req.user.sub,
       data: {
         author: req.user.nickname,
@@ -26,7 +26,7 @@ export async function create(req: FastifyRequest, reply: FastifyReply) {
       },
     });
 
-    return reply.status(201).send();
+    return reply.status(201).send({ post });
   } catch (error) {
     if (error instanceof TitleAlreadyExistInUserError) {
       return reply.status(400).send({ message: error.message });

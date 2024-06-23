@@ -9,6 +9,15 @@ export class CommentPrismaRepository implements CommentRepository {
         body,
         postId,
         userId
+      },
+      include: {
+        user: {
+          select: {
+            nickname: true,
+            url_avatar: true,
+            name: true
+          }
+        }
       }
     })
 

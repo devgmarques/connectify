@@ -13,9 +13,10 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Textarea } from '@/components/ui/textarea'
 import { api } from '@/lib/axios'
+import { Post } from '@/types/post'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { AxiosError } from 'axios'
-import { useState } from 'react'
+import { Dispatch, SetStateAction, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { toast } from 'sonner'
 import { z } from 'zod'
@@ -27,7 +28,11 @@ const schemaCreatePost = z.object({
 
 type CreatePost = z.infer<typeof schemaCreatePost>
 
-export function CreatePostDialog() {
+type CreatePostDialogProps = {
+  setPostsState: Dispatch<SetStateAction<Post[]>>
+}
+
+export function CreatePostDialog({ setPostsState }: CreatePostDialogProps) {
   const [isOpen, setIsOpen] = useState<boolean>(false)
 
   const { register, handleSubmit, formState } = useForm<CreatePost>({
@@ -36,9 +41,13 @@ export function CreatePostDialog() {
 
   async function onSubmit({ body, title }: CreatePost) {
     try {
-      await api.post('/post', { body, title: title.toLowerCase() })
+      const post = await api.post('/post', { body, title: title.toLowerCase() })
 
       toast.success('A publicação foi criada com sucesso.')
+
+      setPostsState((state) => {
+        return [...state, post.data.post]
+      })
     } catch (err) {
       if (err instanceof AxiosError) {
         if (err.response) {

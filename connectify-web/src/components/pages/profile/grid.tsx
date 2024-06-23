@@ -23,6 +23,7 @@ type GridProps = {
 
 export function Grid({ data: { follows, posts, user } }: GridProps) {
   const [isMyProfile, setIsMyProfile] = useState<boolean>(false)
+  const [postsState, setPostsState] = useState<Post[]>(posts ?? [])
 
   useEffect(() => {
     const { payload } = getTokenData()
@@ -104,7 +105,7 @@ export function Grid({ data: { follows, posts, user } }: GridProps) {
         <div className="w-full flex justify-between gap-5">
           <h2>Minhas publicações</h2>
 
-          {isMyProfile && <CreatePostDialog />}
+          {isMyProfile && <CreatePostDialog setPostsState={setPostsState} />}
         </div>
       </header>
 
@@ -119,10 +120,10 @@ export function Grid({ data: { follows, posts, user } }: GridProps) {
 
       <section className="m-5 grid grid-cols-1 gap-5 lg:grid-cols-2 ">
         {isMyProfile &&
-          posts.map((item) => <CardPost isMe data={item} key={item.id} />)}
+          postsState.map((item) => <CardPost isMe data={item} key={item.id} />)}
 
         {!isMyProfile &&
-          posts.map((item) => <CardPost data={item} key={item.id} />)}
+          postsState.map((item) => <CardPost data={item} key={item.id} />)}
       </section>
     </section>
   )

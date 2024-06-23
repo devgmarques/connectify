@@ -20,6 +20,6 @@ export async function searchUsers({ page, query, token }: SearchUsersProps) {
 
     return users.data
   } catch (error) {
-    console.log(error)
+    console.error(error)
   }
 }

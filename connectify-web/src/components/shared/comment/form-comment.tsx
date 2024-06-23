@@ -1,8 +1,10 @@
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { api } from '@/lib/axios'
+import { Post } from '@/types/post'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { AxiosError } from 'axios'
+import { Dispatch, SetStateAction } from 'react'
 import { useForm } from 'react-hook-form'
 import { toast } from 'sonner'
 import { z } from 'zod'
@@ -18,11 +20,13 @@ type CommentForm = z.infer<typeof schemaCommentForm>
 
 type FormCommentProps = {
   postId: number
-  setIsOpenFormComment: React.Dispatch<React.SetStateAction<boolean>>
+  setData: Dispatch<SetStateAction<Post>>
+  setIsOpenFormComment: Dispatch<React.SetStateAction<boolean>>
 }
 
 export function FormComment({
   postId,
+  setData,
   setIsOpenFormComment,
 }: FormCommentProps) {
   const { register, handleSubmit, formState } = useForm<CommentForm>({
@@ -31,9 +35,20 @@ export function FormComment({
 
   async function onSubmit({ body }: CommentForm) {
     try {
-      await api.post(`/posts/${postId}/comments`, { body })
+      const comment = await api.post(`/posts/${postId}/comments`, { body })
 
       toast.success('Você realizou um comentário com sucesso.')
+
+      setData((state) => {
+        return {
+          ...state,
+          _count: {
+            ...state._count,
+            comments: state._count.comments + 1,
+          },
+          comments: [...state.comments, comment.data.comment],
+        }
+      })
     } catch (err) {
       if (err instanceof AxiosError) {
         if (err.response) {
@@ -44,7 +59,6 @@ export function FormComment({
       }
 
       toast.error('Ocorreu um erro inesperado. Tente novamente mais tarde.')
-    } finally {
       setIsOpenFormComment(false)
     }
   }

@@ -15,7 +15,6 @@ export function ButtonFollow({ data, isFollowing = false }: ButtonFollowProps) {
   async function handleFollow() {
     const follow = await api.post(`/users/${data.id}/follows`)
 
-    console.log(follow.data)
     setIsFollowed(follow.data.follow)
   }
 

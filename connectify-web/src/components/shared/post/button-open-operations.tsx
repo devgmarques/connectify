@@ -1,7 +1,5 @@
 'use client'
 
-import * as React from 'react'
-
 import { Button } from '@/components/ui/button'
 import {
   DropdownMenu,
@@ -15,13 +13,18 @@ import { PiDotsThreeVerticalBold } from 'react-icons/pi'
 import { Post } from '@/types/post'
 import { EditPostDialog } from './edit-post'
 import { DeletePostDialog } from './delete-project'
+import { Dispatch, SetStateAction, useState } from 'react'
 
 type ButtonOpenOperationsProps = {
   data: Post
+  setData: Dispatch<SetStateAction<Post>>
 }
 
-export function ButtonOpenOperations({ data }: ButtonOpenOperationsProps) {
-  const [dropdownOpen, setDropdownOpen] = React.useState(false)
+export function ButtonOpenOperations({
+  data,
+  setData,
+}: ButtonOpenOperationsProps) {
+  const [dropdownOpen, setDropdownOpen] = useState<boolean>(false)
 
   function handleToggleDropdown() {
     setDropdownOpen(!dropdownOpen)
@@ -47,13 +50,13 @@ export function ButtonOpenOperations({ data }: ButtonOpenOperationsProps) {
 
         <DropdownMenuCheckboxItem className="p-2">
           <div onClick={handleDialogClick}>
-            <EditPostDialog data={data} />
+            <EditPostDialog data={data} setData={setData} />
           </div>
         </DropdownMenuCheckboxItem>
 
         <DropdownMenuCheckboxItem className="p-2">
           <div onClick={handleDialogClick}>
-            <DeletePostDialog id={data.id} />
+            <DeletePostDialog id={data.id} setData={setData} />
           </div>
         </DropdownMenuCheckboxItem>
       </DropdownMenuContent>
