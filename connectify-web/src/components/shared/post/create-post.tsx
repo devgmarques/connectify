@@ -36,7 +36,7 @@ export function CreatePostDialog() {
 
   async function onSubmit({ body, title }: CreatePost) {
     try {
-      await api.post('/post', { body, title })
+      await api.post('/post', { body, title: title.toLowerCase() })
 
       toast.success('A publicação foi criada com sucesso.')
     } catch (err) {

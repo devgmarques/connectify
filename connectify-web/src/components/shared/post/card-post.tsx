@@ -40,7 +40,15 @@ export function CardPost({ data, isMe = false }: CardPostProps) {
 
           <PiCaretRight className="text-foreground" />
 
-          <h3 className="font-bold text-lg text-foreground">{data.title}</h3>
+          <h3 className="font-bold text-lg text-foreground">
+            {data.title
+              .split(' ')
+              .map(
+                (item) =>
+                  item.charAt(0).toUpperCase() + item.slice(1).toLowerCase(),
+              )
+              .join(' ')}
+          </h3>
         </div>
 
         <span className="text-sm text-foreground/80 whitespace-nowrap hidden sm:block">
