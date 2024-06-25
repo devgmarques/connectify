@@ -207,7 +207,8 @@ export class PostPrismaRepository implements PostsRepository {
             user: {
               select: {
                 nickname: true,
-                url_avatar: true
+                url_avatar: true,
+                name: true
               }
             }
           }

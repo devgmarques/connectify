@@ -65,10 +65,10 @@ export class UserPrismaRepository implements UsersRepository {
 
   async updateUrlAvatar(fullPath: string, userId: string): Promise<undefined> {
     await prisma.user.update({
-      where:{
+      where: {
         id: userId
       },
-      data:{
+      data: {
         url_avatar: `https://wedfxjeqwrigbygcwrlw.supabase.co/storage/v1/object/public/` + fullPath
       }
     })
