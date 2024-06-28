@@ -1,7 +1,7 @@
 export type PostsRepository = {
   create(data: Post.PostCreateInput): Promise<Post.Post>;
   update(data: Post.Post): Promise<Post.Post>
-  delete(postId: number): void
+  delete(postId: number): Promise<void>
   countAllPosts(query: string): Promise<number>
   findPostForUser(userId: string): Promise<Post.Post[]>
   searchMany(page: number, query: string): Promise<Post.Post[] | null>;

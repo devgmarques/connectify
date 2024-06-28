@@ -15,61 +15,71 @@ describe("Search posts use case", () => {
     sup = new SearchPostUseCase(postsRepository);
 
     usersRepository.users.push({
-      createdAt: new Date(),
-      id: "user_01",
-      url_avatar: "",
-      details: "",
-      nickname: "",
-      email: "gui@gmail",
+      id: "user_id",
+      url_avatar: "https://github/gmarques.png",
+      email: "gui@gmail.com",
       name: "Guilherme",
       password: "123456",
+      nickname: "developer",
+      createdAt: new Date(),
+      details: "Sou o desenvolvedor deste projeto.",
     });
   });
 
   it("should be able to search posts", async () => {
     postsRepository.posts.push({
-      id: 0,
-      body: "",
-      author: "",
-      title: "titulo 01",
-      userId: "user_01",
-      createdAt: new Date(),
-    });
+      id: 1,
+      userId: "user_id",
+      title: "Novo titulo",
+      author: "developer",
+      body: "Body editado",
+      createdAt: new Date()
+    })
 
     postsRepository.posts.push({
       id: 1,
-      body: "",
-      author: "",
-      title: "titulo 01",
-      userId: "user_01",
-      createdAt: new Date(),
-    });
+      userId: "user_id",
+      title: "Novo titulo",
+      author: "developer",
+      body: "Body editado",
+      createdAt: new Date()
+    })
 
     const { posts } = await sup.execute({
       page: 1,
-      query: "0",
+      query: "N",
     });
 
     expect(posts).toHaveLength(2);
+    expect(posts).toEqual([
+      expect.objectContaining({
+        title: "Novo titulo",
+      }),
+
+      expect.objectContaining({
+        title: "Novo titulo",
+      }),
+    ])
   });
 
   it("should be able to search posts with pagination", async () => {
     for (let i = 0; i < 23; i++) {
       postsRepository.posts.push({
-        id: 0,
-        body: "",
-        author: "",
-        title: "titulo 01",
-        userId: "user_01",
-        createdAt: new Date(),
-      });
+        id: 1,
+        userId: "user_id",
+        title: "Novo titulo",
+        author: "developer",
+        body: "Body editado",
+        createdAt: new Date()
+      })
     }
 
-    const { posts } = await sup.execute({
+    const { posts, meta } = await sup.execute({
       page: 2,
-      query: "0",
+      query: "N",
     });
 
     expect(posts).toHaveLength(3);
+    expect(meta.countPosts).toEqual(23)
   });
 });

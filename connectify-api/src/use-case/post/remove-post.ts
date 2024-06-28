@@ -15,7 +15,7 @@ export class RemovePostUseCase {
       throw new PostNotExistError()
     }
 
-    const post = await this.postsRepository.delete(postId);
+    await this.postsRepository.delete(postId);
 
     return {
       isPostDelete: true,
