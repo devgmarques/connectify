@@ -35,7 +35,7 @@ export function LoginForm() {
         password,
       })
 
-      toast.success('Você fez o login com sucesso.')
+      toast.success('Você fez o login com sucesso, aguarde.')
 
       setCookie(
         undefined,
@@ -47,7 +47,7 @@ export function LoginForm() {
         },
       )
 
-      router.push('/')
+      router.push('/feed')
     } catch (err) {
       if (err instanceof AxiosError) {
         if (err.response) {

@@ -11,6 +11,8 @@ import Link from 'next/link'
 import { api } from '@/lib/axios'
 import { toast } from 'sonner'
 import { AxiosError } from 'axios'
+import { setCookie } from 'nookies'
+import { useRouter } from 'next/navigation'
 
 const schemaRegisterForm = z.object({
   name: z.string().nonempty('O nome deve ser preenchido.'),
@@ -24,6 +26,8 @@ const schemaRegisterForm = z.object({
 type RegisterForm = z.infer<typeof schemaRegisterForm>
 
 export function RegisterForm() {
+  const router = useRouter()
+
   const {
     register,
     handleSubmit,
@@ -41,7 +45,24 @@ export function RegisterForm() {
         password,
       })
 
-      toast.success('Você foi cadastrado com sucesso.')
+      const token = await api.post('/session', {
+        email,
+        password,
+      })
+
+      setCookie(
+        undefined,
+        'connectify.token',
+        JSON.stringify(token.data.token),
+        {
+          maxAge: 30 * 24 * 60 * 60,
+          path: '/',
+        },
+      )
+
+      router.push('/feed')
+
+      toast.success('Você foi cadastrado com sucesso, aguarde.')
     } catch (err) {
       if (err instanceof AxiosError) {
         if (err.response) {
