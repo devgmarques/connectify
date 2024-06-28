@@ -1,5 +1,5 @@
 import { prisma } from "@/lib/prisma";
-import { FollowsRepository } from "../follow";
+import { FollowsRepository } from "../../entities/follow";
 
 export class FollowPrismaRepository implements FollowsRepository {
   async create({ followedId, userId }: { followedId: string; userId: string; }) {

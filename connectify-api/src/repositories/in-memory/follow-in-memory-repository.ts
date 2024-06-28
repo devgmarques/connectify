@@ -1,5 +1,5 @@
 import { Follow, Prisma } from "@prisma/client";
-import { FollowsRepository } from "../follow";
+import { FollowsRepository } from "../../entities/follow";
 
 export class FollowInMemoryRepository implements FollowsRepository {
   follows: Follow[] = [];

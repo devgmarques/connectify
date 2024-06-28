@@ -1,4 +1,4 @@
-import { LikesRepository } from "@/repositories/like";
+import { LikesRepository } from "@/entities/like";
 import { PostsRepository } from "@/repositories/post";
 
 type CreateLikeInPostUseCaseRequest = {

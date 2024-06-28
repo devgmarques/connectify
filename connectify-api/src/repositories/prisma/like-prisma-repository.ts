@@ -1,5 +1,5 @@
 import { prisma } from "@/lib/prisma";
-import { LikesRepository } from "../like";
+import { LikesRepository } from "../../entities/like";
 
 export class LikePrismaRepository implements LikesRepository {
   async create(data: { userId: string; postId: number; }) {

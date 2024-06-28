@@ -1,6 +1,6 @@
-import { FollowsRepository } from "@/repositories/follow";
+import { FollowsRepository } from "@/entities/follow";
 import { PostsRepository } from "@/repositories/post";
-import { UsersRepository } from "@/repositories/user";
+import { UsersRepository } from "@/entities/user";
 import { UserNotExistError } from "../errors/user-not-exist-error";
 
 type GetUserUseCaseRequest = {

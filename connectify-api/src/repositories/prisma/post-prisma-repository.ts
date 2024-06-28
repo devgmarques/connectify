@@ -1,5 +1,5 @@
 import { Prisma } from "@prisma/client";
-import { PostsRepository } from "../post";
+import { PostsRepository } from "../../entities/post";
 import { prisma } from "@/lib/prisma";
 
 export class PostPrismaRepository implements PostsRepository {

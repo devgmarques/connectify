@@ -1,5 +1,5 @@
 import { File } from "@/@types/file";
-import { UploadRepository } from "../upload";
+import { UploadRepository } from "../../entities/upload";
 import { supabase } from "@/lib/supabase";
 
 export class UploadSupabaseRepository implements UploadRepository {

@@ -1,4 +1,4 @@
-import { UsersRepository } from "@/repositories/user";
+import { UsersRepository } from "@/entities/user";
 import { UserNotExistError } from "../errors/user-not-exist-error";
 import { NicknameAlreadyExistError } from "../errors/nickname-already-exist-error";
 import { hash } from "bcryptjs";

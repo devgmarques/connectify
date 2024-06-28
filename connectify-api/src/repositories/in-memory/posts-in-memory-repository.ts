@@ -1,5 +1,5 @@
 import { Post, Prisma } from "@prisma/client";
-import { PostsRepository } from "../post";
+import { PostsRepository } from "../../entities/post";
 import { AuthentificateUseCase } from "@/use-case/user/authentificate";
 
 export class PostsInMemoryRepository implements PostsRepository {

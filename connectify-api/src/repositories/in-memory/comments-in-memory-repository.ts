@@ -1,5 +1,5 @@
 import { Comment, Prisma } from "@prisma/client";
-import { CommentRepository } from "../comment";
+import { CommentRepository } from "../../entities/comment";
 
 export class CommentInMemoryRepository implements CommentRepository {
   comments: Comment[] = [];

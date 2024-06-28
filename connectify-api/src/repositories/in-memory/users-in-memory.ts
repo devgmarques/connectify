@@ -1,5 +1,5 @@
 import { Prisma, User } from "@prisma/client";
-import { UsersRepository } from "../user";
+import { UsersRepository } from "../../entities/user";
 
 export class UserInMemoryRepository implements UsersRepository {
   users: User[] = [];

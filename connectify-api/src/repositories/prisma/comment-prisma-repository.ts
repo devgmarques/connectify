@@ -1,5 +1,5 @@
 import { Prisma } from "@prisma/client";
-import { CommentRepository } from "../comment";
+import { CommentRepository } from "../../entities/comment";
 import { prisma } from "@/lib/prisma";
 
 export class CommentPrismaRepository implements CommentRepository {

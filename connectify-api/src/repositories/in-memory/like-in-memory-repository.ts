@@ -1,5 +1,5 @@
 import { Like } from "@prisma/client";
-import { LikesRepository } from "../like";
+import { LikesRepository } from "../../entities/like";
 
 export class LikeInMemoryRepository implements LikesRepository {
   likes: Like[] = [];

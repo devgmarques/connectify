@@ -1,6 +1,6 @@
 import { File } from "@/@types/file";
-import { UploadRepository } from "@/repositories/upload";
-import { UsersRepository } from "@/repositories/user";
+import { UploadRepository } from "@/entities/upload";
+import { UsersRepository } from "@/entities/user";
 
 type UploadUserUseCaseRequest = {
   file: File
