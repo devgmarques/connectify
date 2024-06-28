@@ -3,7 +3,6 @@ import { beforeEach, describe, expect, it } from "vitest";
 import { UserInMemoryRepository } from "../../repositories/in-memory/users-in-memory";
 import { PostsInMemoryRepository } from "../../repositories/in-memory/posts-in-memory-repository";
 import { FetchPostUseCase } from "./fetch-post";
-import { title } from "process";
 
 let usersRepository: UserInMemoryRepository;
 let postsRepository: PostsInMemoryRepository;

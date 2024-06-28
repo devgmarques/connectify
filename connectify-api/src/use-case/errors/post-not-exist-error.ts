@@ -1,7 +1,7 @@
 export class PostNotExistError extends Error {
   constructor() {
     super(
-      "O post expecificado não existe."
+      "A postagem expecificado não existe."
     );
   }
 }

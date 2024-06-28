@@ -4,6 +4,7 @@ import { z } from "zod";
 import { CreateLikeInPostUseCase } from "@/use-case/like/create-like";
 import { LikePrismaRepository } from "@/repositories/prisma/like-prisma-repository";
 import { PostPrismaRepository } from "@/repositories/prisma/post-prisma-repository";
+import { PostNotExistError } from "@/use-case/errors/post-not-exist-error";
 
 export async function create(req: FastifyRequest, reply: FastifyReply) {
   const createBody = z.object({
@@ -24,6 +25,10 @@ export async function create(req: FastifyRequest, reply: FastifyReply) {
 
     return reply.status(201).send({ like });
   } catch (error) {
+    if (error instanceof PostNotExistError) {
+      return reply.status(400).send({ message: error.message });
+    }
+
     throw error;
   }
 }

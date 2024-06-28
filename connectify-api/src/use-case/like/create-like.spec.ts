@@ -4,6 +4,7 @@ import { UserInMemoryRepository } from "../../repositories/in-memory/users-in-me
 import { PostsInMemoryRepository } from "../../repositories/in-memory/posts-in-memory-repository";
 import { LikeInMemoryRepository } from "../../repositories/in-memory/like-in-memory-repository";
 import { CreateLikeInPostUseCase } from "./create-like";
+import { PostNotExistError } from "../errors/post-not-exist-error";
 
 let usersRepository: UserInMemoryRepository;
 let likesRepository: LikeInMemoryRepository;
@@ -18,19 +19,20 @@ describe("Create like in post use case", () => {
     sup = new CreateLikeInPostUseCase(likesRepository, postsRepository);
 
     usersRepository.users.push({
-      createdAt: new Date(),
-      id: "user_01",
-      details: "",
-      nickname: "",
-      email: "gui@gmail",
+      id: "user_id",
+      url_avatar: "https://github/gmarques.png",
+      email: "gui@gmail.com",
       name: "Guilherme",
       password: "123456",
+      nickname: "developer",
+      createdAt: new Date(),
+      details: "Sou o desenvolvedor deste projeto.",
     });
 
     postsRepository.posts.push({
       id: 0,
       userId: "user_01",
-      author: "",
+      author: "developer",
       body: "Globo",
       title: "Sobre RS",
       createdAt: new Date(),
@@ -59,4 +61,13 @@ describe("Create like in post use case", () => {
 
     expect(like).toEqual(false);
   });
+        
+  it("should be able to return error post not exist", async () => {
+    expect(() =>
+      sup.execute({
+        postId: 1,
+        userId: "user_01",
+      })
+    ).rejects.toBeInstanceOf(PostNotExistError)
+  })
 });

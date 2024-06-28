@@ -1,5 +1,6 @@
 import { LikesRepository } from "@/entities/like";
 import { PostsRepository } from "@/entities/post";
+import { PostNotExistError } from "../errors/post-not-exist-error";
 
 type CreateLikeInPostUseCaseRequest = {
   postId: number;
@@ -16,7 +17,7 @@ export class CreateLikeInPostUseCase {
     const postById = await this.postsRepository.findById(postId);
 
     if (!postById) {
-      throw new Error("Post not exists with this id.");
+      throw new PostNotExistError();
     }
 
     const checkIfTheUserHasAlreadyLikedThePost =
