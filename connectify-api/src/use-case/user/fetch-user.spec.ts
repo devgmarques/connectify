@@ -14,27 +14,30 @@ describe("Fetch users use case", () => {
 
   it("should be able to fetch users", async () => {
     usersRepository.users.push({
-      id: "01",
+      id: "user_id",
+      url_avatar: "https://github/gmarques.png",
       email: "gui@gmail.com",
       name: "Guilherme",
       password: "123456",
-      nickname: "Gui",
-      details: "oi",
+      nickname: "developer",
       createdAt: new Date(),
+      details: "Sou o desenvolvedor deste projeto.",
     });
 
     usersRepository.users.push({
-      id: "01",
+      id: "user_id",
+      url_avatar: "https://github/gmarques.png",
       email: "gui@gmail.com",
       name: "Guilherme",
       password: "123456",
-      nickname: "Gui",
-      details: "oi",
+      nickname: "developer",
       createdAt: new Date(),
+      details: "Sou o desenvolvedor deste projeto.",
     });
 
     const { users } = await sup.execute({
       page: 1,
+      userId: ""
     });
 
     expect(users).toHaveLength(2);

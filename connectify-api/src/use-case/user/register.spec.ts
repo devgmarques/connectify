@@ -2,6 +2,8 @@ import { beforeEach, describe, expect, it } from "vitest";
 
 import { RegisterUseCase } from "./register";
 import { UserInMemoryRepository } from "../../repositories/in-memory/users-in-memory";
+import { EmailAlreadyExistError } from "../errors/email-already-exist-error";
+import { NicknameAlreadyExistError } from "../errors/nickname-already-exist-error";
 
 let usersRepository: UserInMemoryRepository;
 let sup: RegisterUseCase;
@@ -24,38 +26,46 @@ describe("Register use case", () => {
   });
 
   it("should be able to return an error because the email was repeated", async () => {
-    await usersRepository.create({
+    usersRepository.users.push({
+      id: "user_id",
+      url_avatar: "https://github/gmarques.png",
       email: "gui@gmail.com",
       name: "Guilherme",
       password: "123456",
-      nickname: "gui",
+      nickname: "da",
+      createdAt: new Date(),
+      details: "Sou o desenvolvedor deste projeto.",
     });
 
-    expect(
-      await sup.execute({
+    expect(() =>
+      sup.execute({
         email: "gui@gmail.com",
         name: "Guilherme",
         password: "123456",
         nickname: "gui",
       })
-    ).toThrowError(Error);
+    ).rejects.toBeInstanceOf(EmailAlreadyExistError);
   });
 
   it("should be able to return an error because the nickname was repeated", async () => {
-    await usersRepository.create({
-      email: "gi@gmail.com",
+    usersRepository.users.push({
+      id: "user_id",
+      url_avatar: "https://github/gmarques.png",
+      email: "guia@gmail.com",
       name: "Guilherme",
       password: "123456",
       nickname: "gui",
+      createdAt: new Date(),
+      details: "Sou o desenvolvedor deste projeto.",
     });
 
-    expect(
-      await sup.execute({
+    expect(() =>
+      sup.execute({
         email: "gui@gmail.com",
         name: "Guilherme",
         password: "123456",
         nickname: "gui",
       })
-    ).toThrowError(Error);
+    ).rejects.toBeInstanceOf(NicknameAlreadyExistError);
   });
 });

@@ -15,7 +15,8 @@ export namespace User {
     name: string,
     nickname: string,
     email: string,
-    password: string
+    password: string,
+    details?: string
   }
 
   export type User = {

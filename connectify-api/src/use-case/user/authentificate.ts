@@ -1,8 +1,7 @@
-import { compare } from "bcryptjs";
-
 import { UsersRepository } from "@/entities/user";
 import { CredentialsInvalidateError } from "../errors/credential-invalid-error";
 import { UserNotExistError } from "../errors/user-not-exist-error";
+import { HashRepository } from "@/entities/hash";
 
 type AuthentificateUseCaseRequest = {
   email: string;
@@ -10,7 +9,10 @@ type AuthentificateUseCaseRequest = {
 };
 
 export class AuthentificateUseCase {
-  constructor(private usersRespository: UsersRepository) {}
+  constructor(
+    private usersRespository: UsersRepository,
+    private hashRepository: HashRepository
+  ) { }
 
   async execute({ email, password }: AuthentificateUseCaseRequest) {
     const user = await this.usersRespository.findByEmail(email);
@@ -19,9 +21,9 @@ export class AuthentificateUseCase {
       throw new UserNotExistError()
     }
 
-    const comparePasswordHash = await compare(password, user.password);
+    const comparePasswordHash = await this.hashRepository.compare(password, user.password);
 
-    if(!comparePasswordHash){
+    if (!comparePasswordHash) {
       throw new CredentialsInvalidateError()
     }
 

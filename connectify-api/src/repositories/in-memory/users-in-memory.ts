@@ -46,12 +46,12 @@ export class UserInMemoryRepository implements UsersRepository {
     return user;
   }
 
-  async updateUser(userId: string, data: User.User) {
+  async updateUser(userId: string, data: User.UserCreateInput) {
     const user = {
       id: "user_01",
       name: data.name,
       email: data.email,
-      url_avatar: data.url_avatar ?? "",
+      url_avatar: "https://github.com/devgmarques.png",
       password: data.password,
       createdAt: new Date(),
       nickname: data.nickname,
@@ -63,9 +63,9 @@ export class UserInMemoryRepository implements UsersRepository {
     return user;
   }
 
-  async searchMany(page: number, query: string) {
+  async searchMany(page: number, query: string, userId: string) {
     const users = this.users
-      .filter((item) => item.nickname.toLowerCase().includes(query.toLowerCase()))
+      .filter((item) => item.nickname.toLowerCase().includes(query.toLowerCase()) && item.id !== userId)
       .slice((page - 1) * 20, page * 20);
 
     if (!users) {

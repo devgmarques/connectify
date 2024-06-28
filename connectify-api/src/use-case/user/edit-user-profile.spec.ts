@@ -2,6 +2,8 @@ import { beforeEach, describe, expect, it } from "vitest";
 
 import { UserInMemoryRepository } from "../../repositories/in-memory/users-in-memory";
 import { EditUserProfileUseCase } from "./edit-user-profile";
+import { NicknameAlreadyExistError } from "../errors/nickname-already-exist-error";
+import { UserNotExistError } from "../errors/user-not-exist-error";
 
 let usersRepository: UserInMemoryRepository;
 let sup: EditUserProfileUseCase;
@@ -10,23 +12,25 @@ describe("Edit user profile use case", () => {
   beforeEach(() => {
     usersRepository = new UserInMemoryRepository();
     sup = new EditUserProfileUseCase(usersRepository);
-  });
 
-  it("should be able to edit on user", async () => {
+
     usersRepository.users.push({
-      id: "01",
+      id: "user_id",
+      url_avatar: "https://github/gmarques.png",
       email: "gui@gmail.com",
       name: "Guilherme",
       password: "123456",
-      nickname: "Gui",
-      details: "oi",
+      nickname: "developer",
       createdAt: new Date(),
+      details: "Sou o desenvolvedor deste projeto.",
     });
+  });
 
+  it("should be able to edit on user", async () => {
     const { user } = await sup.execute({
-      userId: "01",
+      userId: "user_id",
       data: {
-        details: "Detalhes",
+        details: "Editei meu detalhes.",
         email: "gui@gmail.com",
         name: "Guilherme",
         password: "123456",
@@ -34,42 +38,80 @@ describe("Edit user profile use case", () => {
       },
     });
 
-    expect(user.details).toEqual("Detalhes");
+    expect(user).toEqual(expect.objectContaining({
+      details: "Editei meu detalhes.",
+      email: "gui@gmail.com",
+      name: "Guilherme",
+      nickname: "Gui",
+    }));
   });
+
+  it("should be able to return an user not exists", async () => {
+    expect(() =>
+      sup.execute({
+        userId: "id-not-exists",
+        data: {
+          details: "Detalhes",
+          email: "gui@gmail.com",
+          name: "Guilherme",
+          password: "123456",
+          nickname: "gui",
+        },
+      })
+    ).rejects.toBeInstanceOf(UserNotExistError)
+  })
 
   it("should be able to return an already existing nickname error", async () => {
     usersRepository.users.push({
-      id: "01",
+      id: "user_1",
+      url_avatar: "https://github/gmarques.png",
       email: "gui@gmail.com",
       name: "Guilherme",
       password: "123456",
-      nickname: "Gui",
-      details: "oi",
+      nickname: "gui",
       createdAt: new Date(),
-    });
-
-    usersRepository.users.push({
-      id: "02",
-      email: "gui@gmail.com",
-      name: "Guilherme",
-      password: "123456",
-      nickname: "123",
-      details: "oi",
-      createdAt: new Date(),
+      details: "Sou o desenvolvedor deste projeto.",
     });
 
     expect(
-      async () =>
-        await sup.execute({
-          userId: "01",
+      () =>
+        sup.execute({
+          userId: "user_id",
           data: {
             details: "Detalhes",
             email: "gui@gmail.com",
             name: "Guilherme",
             password: "123456",
-            nickname: "123",
+            nickname: "gui",
           },
         })
-    ).rejects.toThrowError(Error);
+    ).rejects.toBeInstanceOf(NicknameAlreadyExistError);
+  });
+
+  it("should be able to return an already existing nickname error", async () => {
+    usersRepository.users.push({
+      id: "user_1",
+      url_avatar: "https://github/gmarques.png",
+      email: "gui@gmail.com",
+      name: "Guilherme",
+      password: "123456",
+      nickname: "gui",
+      createdAt: new Date(),
+      details: "Sou o desenvolvedor deste projeto.",
+    });
+
+    expect(
+      () =>
+        sup.execute({
+          userId: "user_id",
+          data: {
+            details: "Detalhes",
+            email: "gui@gmail.com",
+            name: "Guilherme",
+            password: "123456",
+            nickname: "gui",
+          },
+        })
+    ).rejects.toBeInstanceOf(NicknameAlreadyExistError);
   });
 });

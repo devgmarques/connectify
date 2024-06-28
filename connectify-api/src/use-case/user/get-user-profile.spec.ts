@@ -4,6 +4,7 @@ import { GetUserProfileUseCase } from "./get-user-profile";
 import { UserInMemoryRepository } from "../../repositories/in-memory/users-in-memory";
 import { PostsInMemoryRepository } from "../../repositories/in-memory/posts-in-memory-repository";
 import { FollowInMemoryRepository } from "../../repositories/in-memory/follow-in-memory-repository";
+import { UserNotExistError } from "../errors/user-not-exist-error";
 
 let followsRepository: FollowInMemoryRepository
 let usersRepository: UserInMemoryRepository;
@@ -20,24 +21,31 @@ describe("Get user profile use case", () => {
 
   it("should be able to get user", async () => {
     usersRepository.users.push({
-      createdAt: new Date(),
-      id: "user_01",
-      email: "gui@gmail",
-      url_avatar: "",
+      id: "user_id",
+      url_avatar: "https://github/gmarques.png",
+      email: "gui@gmail.com",
       name: "Guilherme",
       password: "123456",
-      details: "",
-      nickname: "oi",
+      nickname: "developer",
+      createdAt: new Date(),
+      details: "Sou o desenvolvedor deste projeto.",
     });
 
-    const { posts } = await sup.execute({ nickname: "oi" });
+    const { posts, user } = await sup.execute({ nickname: "developer" });
 
     expect(posts).toHaveLength(0);
+    expect(user).toEqual(expect.objectContaining({
+      details: "Sou o desenvolvedor deste projeto.",
+      email: "gui@gmail.com",
+      name: "Guilherme",
+      nickname: "developer",
+      url_avatar: "https://github/gmarques.png",
+    }))
   });
 
   it("should not be able to get user", () => {
     expect(
-      async () => await sup.execute({ nickname: "non-existing-id" })
-    ).rejects.toThrowError(Error);
+      () => sup.execute({ nickname: "non-existing-id" })
+    ).rejects.toBeInstanceOf(UserNotExistError);
   });
 });

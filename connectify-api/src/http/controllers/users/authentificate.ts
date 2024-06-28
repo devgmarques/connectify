@@ -4,6 +4,7 @@ import { UserPrismaRepository } from "@/repositories/prisma/user-prisma-reposito
 import { AuthentificateUseCase } from "@/use-case/user/authentificate";
 import { CredentialsInvalidateError } from "@/use-case/errors/credential-invalid-error";
 import { UserNotExistError } from "@/use-case/errors/user-not-exist-error";
+import { HashBcryptRepository } from "@/repositories/bcrypt/hash";
 
 export async function authentificate(req: FastifyRequest, reply: FastifyReply) {
   const authentificateBody = z.object({
@@ -15,7 +16,9 @@ export async function authentificate(req: FastifyRequest, reply: FastifyReply) {
 
   try {
     const usersRepository = new UserPrismaRepository();
-    const useCase = new AuthentificateUseCase(usersRepository);
+    const hashRepository = new HashBcryptRepository()
+
+    const useCase = new AuthentificateUseCase(usersRepository, hashRepository);
 
     const { user } = await useCase.execute({
       email,
