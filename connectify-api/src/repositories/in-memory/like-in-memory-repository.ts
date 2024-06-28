@@ -1,15 +1,14 @@
-import { Like } from "@prisma/client";
-import { LikesRepository } from "../../entities/like";
+import { Like, LikesRepository } from "../../entities/like";
 
 export class LikeInMemoryRepository implements LikesRepository {
-  likes: Like[] = [];
+  likes: Like.Like[] = [];
 
-  async create(data: { userId: string; postId: number }) {
+  async create({ postId, userId }: Like.LikeCreateInput) {
     const like = {
       id: 0,
       likeCount: 0,
-      userId: data.userId,
-      postId: data.postId,
+      userId,
+      postId,
       createdAt: new Date(),
     };
 

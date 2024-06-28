@@ -1,8 +1,11 @@
-import { File } from "@/@types/file";
+import { FastifyReply, FastifyRequest } from "fastify";
+
+import { UploadUserUseCase } from "@/use-case/user/upload-user";
+
 import { UserPrismaRepository } from "@/repositories/prisma/user-prisma-repository";
 import { UploadSupabaseRepository } from "@/repositories/supabase/upload";
-import { UploadUserUseCase } from "@/use-case/user/upload-user";
-import { FastifyReply, FastifyRequest } from "fastify";
+
+import { Upload } from "@/entities/upload";
 
 export async function upload(req: FastifyRequest, reply: FastifyReply) {
   const file = await req.file()
@@ -13,8 +16,8 @@ export async function upload(req: FastifyRequest, reply: FastifyReply) {
 
     const useCase = new UploadUserUseCase(usersRepository, uploadRepository)
 
-    await useCase.execute({ 
-      file: file as File, userId: req.user.sub 
+    await useCase.execute({
+      file: file as Upload.File, userId: req.user.sub
     })
 
     return reply.status(201).send();

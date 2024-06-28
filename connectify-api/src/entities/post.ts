@@ -18,7 +18,7 @@ export namespace Post {
     userId: string;
   }
 
-  export type Post   ={
+  export type Post = {
     id: number;
     title: string;
     body: string;

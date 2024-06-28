@@ -1,8 +1,7 @@
-import { Prisma, User } from "@prisma/client";
-import { UsersRepository } from "../../entities/user";
+import { User, UsersRepository } from "../../entities/user";
 
 export class UserInMemoryRepository implements UsersRepository {
-  users: User[] = [];
+  users: User.User[] = [];
 
   async findMany(page: number) {
     const users = this.users
@@ -23,7 +22,7 @@ export class UserInMemoryRepository implements UsersRepository {
     return count
   }
 
-  async updateUrlAvatar(fullPath: string, userId: string): Promise<undefined> {
+  async updateUrlAvatar(fullPath: string, userId: string) {
     const index = this.users.findIndex(item => item.id === userId)
 
 
@@ -32,13 +31,13 @@ export class UserInMemoryRepository implements UsersRepository {
     }
   }
 
-  async create(data: Prisma.UserCreateInput) {
+  async create(data: User.UserCreateInput) {
     const user = {
       id: "user_01",
       name: data.name,
       email: data.email,
       password: data.password,
-      url_avatar: data.url_avatar ?? "",
+      url_avatar: "",
       createdAt: new Date(),
       nickname: data.nickname,
       details: "Seja bem vindo",
@@ -47,7 +46,7 @@ export class UserInMemoryRepository implements UsersRepository {
     return user;
   }
 
-  async updateUser(userId: string, data: Prisma.UserCreateInput) {
+  async updateUser(userId: string, data: User.User) {
     const user = {
       id: "user_01",
       name: data.name,

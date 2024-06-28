@@ -1,5 +1,5 @@
 export type CommentRepository = {
-  create(data: Comment.CommentCreateInput): Promise<Comment>;
+  create(data: Comment.CommentCreateInput): Promise<Comment.Comment>;
 };
 
 export namespace Comment {

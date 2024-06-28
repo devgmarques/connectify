@@ -1,11 +1,11 @@
-import { PostsRepository } from "@/repositories/post";
+import { PostsRepository } from "@/entities/post";
 
 type FetchPostsUseCaseRequest = {
   page: number;
 };
 
 export class FetchPostUseCase {
-  constructor(private postsRepository: PostsRepository) {}
+  constructor(private postsRepository: PostsRepository) { }
 
   async execute({ page }: FetchPostsUseCaseRequest) {
     const posts = await this.postsRepository.findMany(page);

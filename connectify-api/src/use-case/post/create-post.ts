@@ -1,4 +1,4 @@
-import { PostsRepository } from "@/repositories/post";
+import { PostsRepository } from "@/entities/post";
 import { TitleAlreadyExistInUserError } from "../errors/title-already-exist-in-user-error";
 
 type CreatePostUseCaseRequest = {
@@ -11,7 +11,7 @@ type CreatePostUseCaseRequest = {
 };
 
 export class CreatePostUseCase {
-  constructor(private postsRepository: PostsRepository) {}
+  constructor(private postsRepository: PostsRepository) { }
 
   async execute({ userId, data: { body, title, author } }: CreatePostUseCaseRequest) {
     const postWithThisTitleAlreadyExistsInTheUser =

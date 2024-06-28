@@ -1,17 +1,21 @@
-import { Prisma } from "@prisma/client";
-import { UsersRepository } from "../../entities/user";
+import { User, UsersRepository } from "../../entities/user";
 import { prisma } from "@/lib/prisma";
 
 export class UserPrismaRepository implements UsersRepository {
-  async create(data: Prisma.UserCreateInput) {
+  async create({ email, name, nickname, password }: User.UserCreateInput) {
     const user = await prisma.user.create({
-      data,
+      data: {
+        email,
+        name,
+        nickname,
+        password
+      },
     });
 
     return user;
   }
 
-  async countAllUsers(query: string): Promise<number> {
+  async countAllUsers(query: string) {
     const userCount = await prisma.user.count(
       { where: { nickname: { contains: query } } }
     )
@@ -47,7 +51,7 @@ export class UserPrismaRepository implements UsersRepository {
     return user;
   }
 
-  async updateUser(userId: string, data: Prisma.UserCreateInput) {
+  async updateUser(userId: string, data: User.UserCreateInput) {
     const user = await prisma.user.update({ where: { id: userId }, data });
 
     return user;
@@ -63,7 +67,7 @@ export class UserPrismaRepository implements UsersRepository {
     return user;
   }
 
-  async updateUrlAvatar(fullPath: string, userId: string): Promise<undefined> {
+  async updateUrlAvatar(fullPath: string, userId: string) {
     await prisma.user.update({
       where: {
         id: userId

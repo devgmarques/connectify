@@ -1,10 +1,5 @@
-import { Follow, Prisma } from "@prisma/client";
-
-
-
-
 export type FollowsRepository = {
-  create(data: Follow.FollowCreateInput): Promise<Follow>;
+  create(data: Follow.FollowCreateInput): Promise<Follow.Follow>;
   findManyFollowing(userId: string): Promise<Follow.FollowFollowed[]>
   countManyFollowersAmount(userId: string): Promise<number>;
   countManyFollowingAmount(userId: string): Promise<number>;

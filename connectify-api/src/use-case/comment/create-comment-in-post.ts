@@ -1,6 +1,6 @@
-import { CommentRepository } from "@/repositories/comment";
-import { PostsRepository } from "@/repositories/post";
+import { CommentRepository } from "@/entities/comment";
 import { PostNotExistError } from "../errors/post-not-exist-error";
+import { PostsRepository } from "@/entities/post";
 
 type CreateCommentInPostUseCaseRequest = {
   body: string;

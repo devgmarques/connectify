@@ -1,6 +1,6 @@
 export type UsersRepository = {
   create(data: User.UserCreateInput): Promise<User.User>;
-  updateUrlAvatar(fullPath: string, userId: string): void
+  updateUrlAvatar(fullPath: string, userId: string): Promise<void>
   updateUser(userId: string, data: User.UserCreateInput): Promise<User.User>;
   countAllUsers(query: string): Promise<number>;
   searchMany(page: number, query: string, userId: string): Promise<User.User[] | null>;

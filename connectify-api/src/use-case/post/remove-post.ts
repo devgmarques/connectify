@@ -1,4 +1,4 @@
-import { PostsRepository } from "@/repositories/post";
+import { PostsRepository } from "@/entities/post";
 import { PostNotExistError } from "../errors/post-not-exist-error";
 
 type RemovePostUseCaseRequest = {
@@ -6,12 +6,12 @@ type RemovePostUseCaseRequest = {
 };
 
 export class RemovePostUseCase {
-  constructor(private postsRepository: PostsRepository) {}
+  constructor(private postsRepository: PostsRepository) { }
 
   async execute({ postId }: RemovePostUseCaseRequest) {
     const findPost = await this.postsRepository.findById(postId)
 
-    if(!findPost){
+    if (!findPost) {
       throw new PostNotExistError()
     }
 

@@ -1,8 +1,8 @@
 import { prisma } from "@/lib/prisma";
-import { FollowsRepository } from "../../entities/follow";
+import { Follow, FollowsRepository } from "../../entities/follow";
 
 export class FollowPrismaRepository implements FollowsRepository {
-  async create({ followedId, userId }: { followedId: string; userId: string; }) {
+  async create({ followedId, userId }: Follow.FollowCreateInput) {
 
     const follow = await prisma.follow.create({
       data: {
@@ -47,7 +47,7 @@ export class FollowPrismaRepository implements FollowsRepository {
     return followers
   }
 
-  async findByFollowedIdAndUserId({ followedId, userId }: { followedId: string; userId: string; }) {
+  async findByFollowedIdAndUserId({ followedId, userId }: Follow.FollowCreateInput) {
     const follow = await prisma.follow.findUnique({
       where: {
         userId_followedId: {
@@ -59,7 +59,7 @@ export class FollowPrismaRepository implements FollowsRepository {
     return follow
   }
 
-  async removeFollow({ followedId, userId }: { followedId: string; userId: string; }) {
+  async removeFollow({ followedId, userId }: Follow.FollowCreateInput) {
     const follow = await prisma.follow.delete({
       where: {
         userId_followedId: {

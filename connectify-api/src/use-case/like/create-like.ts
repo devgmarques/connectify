@@ -1,5 +1,5 @@
 import { LikesRepository } from "@/entities/like";
-import { PostsRepository } from "@/repositories/post";
+import { PostsRepository } from "@/entities/post";
 
 type CreateLikeInPostUseCaseRequest = {
   postId: number;

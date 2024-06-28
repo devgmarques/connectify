@@ -1,6 +1,3 @@
-
-
-
 export type LikesRepository = {
   create(data: Like.LikeCreateInput): Promise<Like.Like>;
   removeLike(id: number): Promise<boolean>;
@@ -13,10 +10,10 @@ export namespace Like {
     postId: number;
   };
 
- export type Like = {
+  export type Like = {
     id: number;
     userId: string;
     postId: number;
     createdAt: Date;
-}
+  }
 }

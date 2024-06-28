@@ -1,19 +1,19 @@
 import { prisma } from "@/lib/prisma";
-import { LikesRepository } from "../../entities/like";
+import { Like, LikesRepository } from "../../entities/like";
 
 export class LikePrismaRepository implements LikesRepository {
-  async create(data: { userId: string; postId: number; }) {
+  async create({ postId, userId }: Like.LikeCreateInput) {
     const like = await prisma.like.create({
       data: {
-        postId: data.postId,
-        userId: data.userId,
+        postId,
+        userId,
       },
     })
 
     return like
   }
 
-  async findByUserIdAndPostId({ postId, userId }: { userId: string; postId: number; }) {
+  async findByUserIdAndPostId({ postId, userId }: Like.LikeCreateInput) {
     const like = await prisma.like.findUnique({
       where: {
         userId_postId: {

@@ -1,11 +1,10 @@
-import { Prisma } from "@prisma/client";
-import { PostsRepository } from "../../entities/post";
+import { Post, PostsRepository } from "../../entities/post";
 import { prisma } from "@/lib/prisma";
 
 export class PostPrismaRepository implements PostsRepository {
   async create({
     author, body, title, userId
-  }: Prisma.PostCreateManyInput) {
+  }: Post.PostCreateInput) {
     const post = await prisma.post.create({
       data: {
         author,
@@ -58,7 +57,7 @@ export class PostPrismaRepository implements PostsRepository {
     })
   }
 
-  async update({ author, body, title, userId, createdAt, id }: Prisma.PostCreateManyInput) {
+  async update({ author, body, title, userId, createdAt, id }: Post.Post) {
     const post = await prisma.post.update({
       where: {
         userId,

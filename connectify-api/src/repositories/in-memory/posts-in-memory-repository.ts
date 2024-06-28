@@ -1,9 +1,7 @@
-import { Post, Prisma } from "@prisma/client";
-import { PostsRepository } from "../../entities/post";
-import { AuthentificateUseCase } from "@/use-case/user/authentificate";
+import { Post, PostsRepository } from "../../entities/post";
 
 export class PostsInMemoryRepository implements PostsRepository {
-  posts: Post[] = [];
+  posts: Post.Post[] = [];
 
   async delete(postId: number) {
     const posts = this.posts.filter(item => item.id !== postId)
@@ -11,7 +9,7 @@ export class PostsInMemoryRepository implements PostsRepository {
     this.posts = posts
   }
 
-  async update(data: Post) {
+  async update(data: Post.Post) {
     const posts = this.posts.map(item => item.id === data.id ? data : item)
 
     this.posts = posts
@@ -19,7 +17,7 @@ export class PostsInMemoryRepository implements PostsRepository {
     return data
   }
 
-  async create(data: Prisma.PostCreateManyInput) {
+  async create(data: Post.PostCreateInput) {
     const post = {
       id: 1,
       title: data.title,

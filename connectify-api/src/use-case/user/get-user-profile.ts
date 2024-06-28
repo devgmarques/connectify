@@ -1,5 +1,5 @@
 import { FollowsRepository } from "@/entities/follow";
-import { PostsRepository } from "@/repositories/post";
+import { PostsRepository } from "@/entities/post";
 import { UsersRepository } from "@/entities/user";
 import { UserNotExistError } from "../errors/user-not-exist-error";
 

@@ -1,15 +1,14 @@
-import { Comment, Prisma } from "@prisma/client";
-import { CommentRepository } from "../../entities/comment";
+import { Comment, CommentRepository } from "../../entities/comment";
 
 export class CommentInMemoryRepository implements CommentRepository {
-  comments: Comment[] = [];
+  comments: Comment.Comment[] = [];
 
-  async create(data: Prisma.CommentCreateManyInput) {
+  async create({ body, postId, userId }: Comment.CommentCreateInput) {
     const comment = {
       id: 0,
-      title: data.title,
-      body: data.body,
-      postId: data.postId,
+      body,
+      postId,
+      userId,
       createdAt: new Date(),
     };
 
