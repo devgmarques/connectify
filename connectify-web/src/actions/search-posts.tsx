@@ -11,7 +11,7 @@ export async function searchPosts({ page, query, token }: SearchPostsProps) {
     const posts = await api.get('/posts/search', {
       params: {
         page: page ?? 1,
-        query: query.toLowerCase() ?? '',
+        query: query.toLowerCase(),
       },
       headers: {
         Authorization: `Bearer ${token.replace(/["]/g, '')}`,
