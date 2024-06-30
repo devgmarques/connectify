@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 
-import { Grid } from '@/components/pages/posts/grid'
+import { Grid } from '@/components/pages/search/posts/grid'
 import { searchPosts } from '@/actions/search-posts'
 
 export const metadata: Metadata = {

@@ -4,18 +4,18 @@ import Image from 'next/image'
 
 import { searchPosts } from '@/actions/search-posts'
 import { searchUsers } from '@/actions/search-users'
-import { Grid } from '@/components/pages/all/grid'
+import { Grid } from '@/components/pages/search/grid'
 import searchEngines from '@/public/images/search-engines.svg'
 
 export const metadata: Metadata = {
   title: 'Pesquisar | connectify',
 }
 
-type AllProps = {
+type SearchProps = {
   searchParams: { q: string }
 }
 
-export default async function All({ searchParams: { q } }: AllProps) {
+export default async function Search({ searchParams: { q } }: SearchProps) {
   const [users, posts] = await Promise.all([
     searchUsers({ query: q }),
     searchPosts({ query: q }),
