@@ -9,16 +9,14 @@ export const metadata: Metadata = {
 
 type PostsProps = {
   searchParams: {
-    search: string
+    q: string
     page?: number
   }
 }
 
-export default async function Posts({
-  searchParams: { search, page },
-}: PostsProps) {
+export default async function Posts({ searchParams: { q, page } }: PostsProps) {
   const posts = await searchPosts({
-    query: search,
+    query: q,
     page,
   })
 

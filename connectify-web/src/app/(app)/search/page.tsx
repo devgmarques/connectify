@@ -12,16 +12,16 @@ export const metadata: Metadata = {
 }
 
 type AllProps = {
-  searchParams: { search: string }
+  searchParams: { q: string }
 }
 
-export default async function All({ searchParams: { search } }: AllProps) {
+export default async function All({ searchParams: { q } }: AllProps) {
   const [users, posts] = await Promise.all([
-    searchUsers({ query: search }),
-    searchPosts({ query: search }),
+    searchUsers({ query: q }),
+    searchPosts({ query: q }),
   ])
 
-  if (!posts || !users) {
+  if (!posts && !users) {
     return (
       <section className="flex m-auto max-w-[750px] flex-col items-center py-5 px-5 sm:px-10">
         <div className="w-full overflow-hidden px-7 py-5 flex flex-col bg-background rounded-md border border-foreground/20">
@@ -45,7 +45,7 @@ export default async function All({ searchParams: { search } }: AllProps) {
 
   return (
     <section className="flex m-auto max-w-[750px] flex-col items-center py-5 px-5 sm:px-10">
-      <Grid posts={posts.posts} users={users.users} query={search} />
+      <Grid posts={posts.posts} users={users.users} query={q} />
     </section>
   )
 }

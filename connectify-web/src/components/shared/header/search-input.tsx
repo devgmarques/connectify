@@ -20,18 +20,18 @@ export function SearchParams() {
       const searchString = e.target.value
 
       if (searchString) {
-        params.set('search', searchString)
+        params.set('q', searchString)
       } else {
-        params.delete('search')
+        params.delete('q')
       }
 
-      replace(`/all?${params.toString()}`)
+      replace(`/search?${params.toString()}`)
     },
     300,
   )
 
   useEffect(() => {
-    const isValidatedQuery = searchParams.get('search')
+    const isValidatedQuery = searchParams.get('q')
 
     setInitialValue(isValidatedQuery ?? '')
   }, [searchParams])

@@ -3,11 +3,11 @@ import { Header } from '@/components/shared/header/header'
 import { InformationsAccount } from '@/components/shared/informations-account'
 import { Suggestions } from '@/components/shared/suggestions'
 
-type UsersLayoutProps = {
+type SearchLayoutProps = {
   children: ReactNode
 }
 
-export default async function UsersLayout({ children }: UsersLayoutProps) {
+export default async function SearchLayout({ children }: SearchLayoutProps) {
   return (
     <div className="min-h-screen w-full flex flex-col">
       <Header />
