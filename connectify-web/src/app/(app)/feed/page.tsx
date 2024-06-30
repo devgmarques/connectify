@@ -1,7 +1,5 @@
 import type { Metadata } from 'next'
 
-import { redirect } from 'next/navigation'
-import { cookies } from 'next/headers'
 import { Grid } from '@/components/pages/feed/grid'
 import { fetchPosts } from '@/actions/fetch-posts'
 import { LoadMore } from '@/components/shared/load-more'
@@ -12,14 +10,7 @@ export const metadata: Metadata = {
 }
 
 export default async function Feed() {
-  const cookieStore = cookies()
-  const token = cookieStore.get('connectify.token')?.value
-
-  if (!token) {
-    redirect('/accounts/login')
-  }
-
-  const posts = await fetchPosts(1, token)
+  const posts = await fetchPosts(1)
 
   if (!posts) {
     return <p>Aguarde</p>

@@ -3,7 +3,6 @@
 import { useCallback, useEffect, useState } from 'react'
 import { useInView } from 'react-intersection-observer'
 
-import nookies from 'nookies'
 import { fetchPosts } from '@/actions/fetch-posts'
 import { Post } from '@/types/post'
 import { Grid } from '@/components/pages/feed/grid'
@@ -14,22 +13,19 @@ export function LoadMore() {
   const [page, setPage] = useState(1)
   const [loading, setLoading] = useState(true)
 
-  const cookies = nookies.get(null)
-  const token = cookies['connectify.token']
-
   const { ref, inView } = useInView()
 
   const loadMoreCustomer = useCallback(async () => {
     const nextPage = page + 1
 
-    const newProducts = (await fetchPosts(nextPage, token)) ?? []
+    const newProducts = (await fetchPosts(nextPage)) ?? []
 
     if (newProducts.length < 1) {
       setLoading(false)
     }
     setPosts((prevProducts: Post[]) => [...prevProducts, ...newProducts])
     setPage(nextPage)
-  }, [page, token])
+  }, [page])
 
   useEffect(() => {
     if (inView) {

@@ -1,7 +1,5 @@
 import type { Metadata } from 'next'
 
-import { redirect } from 'next/navigation'
-import { cookies } from 'next/headers'
 import { searchUsers } from '@/actions/search-users'
 import { Grid } from '@/components/pages/users/grid'
 
@@ -19,17 +17,9 @@ type UsersProps = {
 export default async function Users({
   searchParams: { search, page },
 }: UsersProps) {
-  const cookieStore = cookies()
-  const token = cookieStore.get('connectify.token')?.value
-
-  if (!token) {
-    redirect('/accounts/login')
-  }
-
   const users = await searchUsers({
     query: search,
     page,
-    token,
   })
 
   if (!users) {

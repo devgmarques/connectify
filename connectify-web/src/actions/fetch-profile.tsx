@@ -1,15 +1,9 @@
 import { api } from '@/lib/axios'
 
-export async function fetchProfile(nickname: string, token: string) {
+export async function fetchProfile(nickname: string) {
   try {
-    const user = await api.get(`/users/${nickname.toLowerCase()}/profile`, {
-      headers: {
-        Authorization: `Bearer ${token.replace(/["]/g, '')}`,
-      },
-    })
+    const user = await api.get(`/users/${nickname.toLowerCase()}/profile`)
 
     return user.data
-  } catch (error) {
-    console.error(error)
-  }
+  } catch (error) {}
 }

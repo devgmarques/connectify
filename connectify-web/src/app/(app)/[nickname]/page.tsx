@@ -1,7 +1,6 @@
 import type { Metadata } from 'next'
 
-import { notFound, redirect } from 'next/navigation'
-import { cookies } from 'next/headers'
+import { notFound } from 'next/navigation'
 import { Grid } from '@/components/pages/profile/grid'
 import { fetchProfile } from '@/actions/fetch-profile'
 
@@ -20,14 +19,7 @@ export async function generateMetadata({
 }
 
 export default async function Profile({ params }: ProfileProps) {
-  const cookieStore = cookies()
-  const token = cookieStore.get('connectify.token')?.value
-
-  if (!token) {
-    redirect('/accounts/login')
-  }
-
-  const fetch = await fetchProfile(params.nickname, token)
+  const fetch = await fetchProfile(params.nickname)
 
   if (fetch === undefined) {
     notFound()

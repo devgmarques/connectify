@@ -1,7 +1,5 @@
 import type { Metadata } from 'next'
 
-import { redirect } from 'next/navigation'
-import { cookies } from 'next/headers'
 import { Grid } from '@/components/pages/posts/grid'
 import { searchPosts } from '@/actions/search-posts'
 
@@ -19,17 +17,9 @@ type PostsProps = {
 export default async function Posts({
   searchParams: { search, page },
 }: PostsProps) {
-  const cookieStore = cookies()
-  const token = cookieStore.get('connectify.token')?.value
-
-  if (!token) {
-    redirect('/accounts/login')
-  }
-
   const posts = await searchPosts({
     query: search,
     page,
-    token,
   })
 
   if (!posts) {

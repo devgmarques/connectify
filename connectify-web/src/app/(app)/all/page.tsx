@@ -1,7 +1,5 @@
 import type { Metadata } from 'next'
 
-import { redirect } from 'next/navigation'
-import { cookies } from 'next/headers'
 import Image from 'next/image'
 
 import { searchPosts } from '@/actions/search-posts'
@@ -18,16 +16,9 @@ type AllProps = {
 }
 
 export default async function All({ searchParams: { search } }: AllProps) {
-  const cookieStore = cookies()
-  const token = cookieStore.get('connectify.token')?.value
-
-  if (!token) {
-    redirect('/accounts/login')
-  }
-
   const [users, posts] = await Promise.all([
-    searchUsers({ query: search, token }),
-    searchPosts({ query: search, token }),
+    searchUsers({ query: search }),
+    searchPosts({ query: search }),
   ])
 
   if (!posts || !users) {

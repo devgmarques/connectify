@@ -1,5 +1,3 @@
-import { cookies } from 'next/headers'
-import { redirect } from 'next/navigation'
 import React from 'react'
 
 import { PiHandshake } from 'react-icons/pi'
@@ -9,13 +7,6 @@ export default function AccountsLayout({
 }: {
   children: React.ReactNode
 }) {
-  const cookieStore = cookies()
-  const token = cookieStore.get('connectify.token')?.value
-
-  if (token) {
-    redirect('/feed')
-  }
-
   return (
     <div className="grid min-h-screen grid-cols-1 md:grid-cols-2">
       <div className="flex h-24 md:h-full flex-col justify-between md:border-r md:border-foreground/5 bg-primary p-10 text-foreground antialiased">

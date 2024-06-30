@@ -1,16 +1,10 @@
 import { api } from '@/lib/axios'
 import { Post } from '@/types/post'
 
-export async function fetchPosts(page: number, token: string) {
+export async function fetchPosts(page: number) {
   try {
-    const feedPosts = await api.get(`/posts/fetch?page=${page}`, {
-      headers: {
-        Authorization: `Bearer ${token.replace(/["]/g, '')}`,
-      },
-    })
+    const feedPosts = await api.get(`/posts/fetch?page=${page}`)
 
     return feedPosts.data.posts as Post[]
-  } catch (error) {
-    console.error(error)
-  }
+  } catch (error) {}
 }

@@ -1,13 +1,13 @@
 import { ReactNode } from 'react'
-import { Header } from '../../components/shared/header/header'
-import { InformationsAccount } from '../../components/shared/informations-account'
-import { Suggestions } from '../../components/shared/suggestions'
+import { Header } from '../../../components/shared/header/header'
+import { InformationsAccount } from '../../../components/shared/informations-account'
+import { Suggestions } from '../../../components/shared/suggestions'
 
-type AllLayoutProps = {
+type UsersLayoutProps = {
   children: ReactNode
 }
 
-export default async function AllLayout({ children }: AllLayoutProps) {
+export default async function UsersLayout({ children }: UsersLayoutProps) {
   return (
     <div className="min-h-screen w-full flex flex-col">
       <Header />
