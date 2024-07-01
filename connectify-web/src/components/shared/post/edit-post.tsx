@@ -1,6 +1,19 @@
 'use client'
 
-import { Button } from '@/components/ui/button'
+import { Dispatch, SetStateAction, useState } from 'react'
+
+import { z } from 'zod'
+import { toast } from 'sonner'
+import { PiNotePencilBold } from 'react-icons/pi'
+import { useForm } from 'react-hook-form'
+import { AxiosError } from 'axios'
+import { zodResolver } from '@hookform/resolvers/zod'
+
+import { Post } from '@/types/post'
+import { editPost } from '@/http/edit-post'
+import { Textarea } from '@/components/ui/textarea'
+import { Label } from '@/components/ui/label'
+import { Input } from '@/components/ui/input'
 import {
   Dialog,
   DialogContent,
@@ -9,18 +22,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from '@/components/ui/dialog'
-import { Input } from '@/components/ui/input'
-import { Label } from '@/components/ui/label'
-import { Textarea } from '@/components/ui/textarea'
-import { api } from '@/lib/axios'
-import { Post } from '@/types/post'
-import { zodResolver } from '@hookform/resolvers/zod'
-import { AxiosError } from 'axios'
-import { Dispatch, SetStateAction, useState } from 'react'
-import { useForm } from 'react-hook-form'
-import { PiNotePencilBold } from 'react-icons/pi'
-import { toast } from 'sonner'
-import { z } from 'zod'
+import { Button } from '@/components/ui/button'
 
 const schemaEditPost = z.object({
   title: z.string().nonempty({ message: 'O titulo não pode ser vazio.' }),
@@ -47,18 +49,18 @@ export function EditPostDialog({ data, setData }: EditPostDialogProps) {
 
   async function onSubmit({ body, title }: CreatePost) {
     try {
-      const post = await api.put(`/me/posts/${data.id}`, {
+      const { post } = await editPost({
+        id: data.id,
         body,
         title,
-        id: data.id,
+        userId: data.userId,
         author: data.author,
         createdAt: data.createdAt,
-        userId: data.userId,
       })
 
       toast.success('A publicação foi editada com sucesso.')
 
-      setData(post.data.post)
+      setData(post)
     } catch (err) {
       if (err instanceof AxiosError) {
         if (err.response) {

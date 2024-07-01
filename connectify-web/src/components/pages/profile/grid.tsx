@@ -1,17 +1,21 @@
 'use client'
 
-import { CardPost } from '@/components/shared/post/card-post'
-import { Separator } from '@/components/ui/separator'
-import { Post } from '@/types/post'
-import { User } from '@/types/user'
-import { CreatePostDialog } from '../../shared/post/create-post'
-import { Follow } from '@/types/follow'
-import { EditProfile } from './edit-profile'
 import { useEffect, useState } from 'react'
-import { getTokenData } from '@/utils/get-token-data'
-import { EditAvatarDialog } from './edit-avatar'
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
+
 import { PiChatTextBold } from 'react-icons/pi'
+
+import { getTokenData } from '@/utils/get-token-data'
+import { User } from '@/types/user'
+import { Post } from '@/types/post'
+import { Follow } from '@/types/follow'
+import { Separator } from '@/components/ui/separator'
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
+import { CardPost } from '@/components/shared/post/card-post'
+
+import { EditProfile } from './edit-profile'
+import { EditAvatarDialog } from './edit-avatar'
+
+import { CreatePostDialog } from '../../shared/post/create-post'
 
 type GridProps = {
   data: {
@@ -26,9 +30,9 @@ export function Grid({ data: { follows, posts, user } }: GridProps) {
   const [postsState, setPostsState] = useState<Post[]>(posts ?? [])
 
   useEffect(() => {
-    const { payload } = getTokenData()
+    const { nickname } = getTokenData()
 
-    setIsMyProfile(user.nickname === payload.nickname)
+    setIsMyProfile(user.nickname === nickname)
   }, [user.nickname])
 
   return (

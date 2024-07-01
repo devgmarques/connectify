@@ -1,7 +1,16 @@
 'use client'
 
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
-import { Button } from '@/components/ui/button'
+import { useState } from 'react'
+
+import { z } from 'zod'
+import { toast } from 'sonner'
+import { useForm } from 'react-hook-form'
+import { AxiosError } from 'axios'
+import { zodResolver } from '@hookform/resolvers/zod'
+
+import { User } from '@/types/user'
+import { uploadAvatar } from '@/http/upload-avatar'
+import { Input } from '@/components/ui/input'
 import {
   Dialog,
   DialogContent,
@@ -9,15 +18,8 @@ import {
   DialogTitle,
   DialogTrigger,
 } from '@/components/ui/dialog'
-import { Input } from '@/components/ui/input'
-import { api } from '@/lib/axios'
-import { User } from '@/types/user'
-import { zodResolver } from '@hookform/resolvers/zod'
-import { AxiosError } from 'axios'
-import { useState } from 'react'
-import { useForm } from 'react-hook-form'
-import { toast } from 'sonner'
-import { z } from 'zod'
+import { Button } from '@/components/ui/button'
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 
 const schemaEditAvatar = z.object({
   file: z.any(),
@@ -43,9 +45,7 @@ export function EditAvatarDialog({ data }: EditAvatarDialogProps) {
         return
       }
 
-      await api.postForm('/user/upload/avatar', {
-        file: data.file,
-      })
+      await uploadAvatar({ file: data.file })
 
       toast.success('A troca da imagem foi feita com sucesso.')
     } catch (err) {

@@ -1,18 +1,18 @@
 'use client'
 
-import { Input } from '@/components/ui/input'
-import { Label } from '@/components/ui/label'
-
-import { setCookie } from 'nookies'
 import { z } from 'zod'
-import { useForm } from 'react-hook-form'
-import { zodResolver } from '@hookform/resolvers/zod'
-import { Button } from '@/components/ui/button'
-import Link from 'next/link'
-import { api } from '@/lib/axios'
 import { toast } from 'sonner'
-import { AxiosError } from 'axios'
+import { useForm } from 'react-hook-form'
+import { setCookie } from 'nookies'
 import { useRouter } from 'next/navigation'
+import Link from 'next/link'
+import { AxiosError } from 'axios'
+import { zodResolver } from '@hookform/resolvers/zod'
+
+import { authenficate } from '@/http/authentificate'
+import { Label } from '@/components/ui/label'
+import { Input } from '@/components/ui/input'
+import { Button } from '@/components/ui/button'
 
 const schemaLoginForm = z.object({
   email: z.string().email({ message: 'Email invalido' }),
@@ -30,22 +30,14 @@ export function LoginForm() {
 
   async function onSubmit({ email, password }: LoginForm) {
     try {
-      const token = await api.post('/session', {
-        email,
-        password,
-      })
+      const { token } = await authenficate({ email, password })
 
       toast.success('Você fez o login com sucesso, aguarde.')
 
-      setCookie(
-        undefined,
-        'connectify.token',
-        JSON.stringify(token.data.token),
-        {
-          maxAge: 30 * 24 * 60 * 60,
-          path: '/',
-        },
-      )
+      setCookie(undefined, 'connectify.token', JSON.stringify(token), {
+        maxAge: 30 * 24 * 60 * 60,
+        path: '/',
+      })
 
       router.push('/feed')
     } catch (err) {

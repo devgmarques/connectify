@@ -1,6 +1,6 @@
-import { Pagination } from '@/components/shared/pagination'
-import { CardPost } from '@/components/shared/post/card-post'
 import { Post } from '@/types/post'
+import { CardPost } from '@/components/shared/post/card-post'
+import { Pagination } from '@/components/shared/pagination'
 
 type GridProps = {
   posts: Post[]

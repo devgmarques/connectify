@@ -1,15 +1,17 @@
 'use client'
 
-import { Post } from '@/types/post'
-import { PiCaretRight } from 'react-icons/pi'
-
-import { formatDistanceToNow } from 'date-fns'
-import { ptBR } from 'date-fns/locale'
-import { ButtonOpenOperations } from './button-open-operations'
-import Link from 'next/link'
-import { FooterCard } from './footer-card'
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { useState } from 'react'
+
+import { PiCaretRight } from 'react-icons/pi'
+import Link from 'next/link'
+import { ptBR } from 'date-fns/locale'
+import { formatDistanceToNow } from 'date-fns'
+
+import { Post } from '@/types/post'
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
+
+import { FooterCard } from './footer-card'
+import { ButtonOpenOperations } from './button-open-operations'
 
 type CardPostProps = {
   data: Post

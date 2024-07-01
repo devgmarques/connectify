@@ -1,13 +1,16 @@
 'use client'
 
-import { User } from '@/types/user'
-import { CardUser } from '../../shared/users/card-user'
-import Link from 'next/link'
-import { Button } from '@/components/ui/button'
 import { useCallback, useEffect, useState } from 'react'
+
+import Link from 'next/link'
+
 import { getTokenData } from '@/utils/get-token-data'
-import { api } from '@/lib/axios'
+import { User } from '@/types/user'
 import { Follow } from '@/types/follow'
+import { getProfile } from '@/http/get-profile'
+import { Button } from '@/components/ui/button'
+
+import { CardUser } from '../../shared/users/card-user'
 
 type UsersListProps = {
   users: User[]
@@ -18,10 +21,12 @@ export function UsersList({ users, query }: UsersListProps) {
   const [follows, setFollows] = useState<Follow>()
 
   const fetchData = useCallback(async () => {
-    const { payload } = getTokenData()
-    const meResponse = await api.get(`/users/${payload.nickname}/profile`)
+    const { nickname } = getTokenData()
+    const { follows } = await getProfile({
+      nickname,
+    })
 
-    setFollows(meResponse.data.follows)
+    setFollows(follows)
   }, [])
 
   useEffect(() => {

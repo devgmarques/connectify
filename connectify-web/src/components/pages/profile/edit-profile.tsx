@@ -1,6 +1,20 @@
 'use client'
 
-import { Button } from '@/components/ui/button'
+import { useState } from 'react'
+
+import { z } from 'zod'
+import { toast } from 'sonner'
+import { PiNotePencilBold } from 'react-icons/pi'
+import { useForm } from 'react-hook-form'
+import { setCookie } from 'nookies'
+import { useRouter } from 'next/navigation'
+import { AxiosError } from 'axios'
+import { zodResolver } from '@hookform/resolvers/zod'
+
+import { editProfile } from '@/http/edit-profile'
+import { authenficate } from '@/http/authentificate'
+import { Label } from '@/components/ui/label'
+import { Input } from '@/components/ui/input'
 import {
   Dialog,
   DialogContent,
@@ -9,18 +23,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from '@/components/ui/dialog'
-import { Input } from '@/components/ui/input'
-import { Label } from '@/components/ui/label'
-import { zodResolver } from '@hookform/resolvers/zod'
-import { useState } from 'react'
-import { useForm } from 'react-hook-form'
-import { z } from 'zod'
-import { PiNotePencilBold } from 'react-icons/pi'
-import { api } from '@/lib/axios'
-import { toast } from 'sonner'
-import { AxiosError } from 'axios'
-import { setCookie } from 'nookies'
-import { useRouter } from 'next/navigation'
+import { Button } from '@/components/ui/button'
 
 const schemaEditProfile = z.object({
   name: z.string().nonempty('O nome deve ser preenchido.'),
@@ -62,19 +65,14 @@ export function EditProfile({
 
   async function onSubmit({ details, name, nickname, password }: EditProfile) {
     try {
-      await api.put('/user', { details, name, nickname, password, email })
+      await editProfile({ details, email, name, nickname, password })
 
-      const token = await api.post('/session', { email, password })
+      const { token } = await authenficate({ email, password })
 
-      setCookie(
-        undefined,
-        'connectify.token',
-        JSON.stringify(token.data.token),
-        {
-          maxAge: 30 * 24 * 60 * 60,
-          path: '/',
-        },
-      )
+      setCookie(undefined, 'connectify.token', JSON.stringify(token), {
+        maxAge: 30 * 24 * 60 * 60,
+        path: '/',
+      })
 
       router.push('/')
 

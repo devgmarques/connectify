@@ -1,5 +1,6 @@
-import { Button } from '@/components/ui/button'
 import { LuMessageCircle } from 'react-icons/lu'
+
+import { Button } from '@/components/ui/button'
 
 type ButtonCommentProps = {
   isOpenFormComment: boolean

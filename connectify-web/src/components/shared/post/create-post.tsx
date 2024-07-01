@@ -1,6 +1,18 @@
 'use client'
 
-import { Button } from '@/components/ui/button'
+import { Dispatch, SetStateAction, useState } from 'react'
+
+import { z } from 'zod'
+import { toast } from 'sonner'
+import { useForm } from 'react-hook-form'
+import { AxiosError } from 'axios'
+import { zodResolver } from '@hookform/resolvers/zod'
+
+import { Post } from '@/types/post'
+import { createPost } from '@/http/create-post'
+import { Textarea } from '@/components/ui/textarea'
+import { Label } from '@/components/ui/label'
+import { Input } from '@/components/ui/input'
 import {
   Dialog,
   DialogContent,
@@ -9,17 +21,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from '@/components/ui/dialog'
-import { Input } from '@/components/ui/input'
-import { Label } from '@/components/ui/label'
-import { Textarea } from '@/components/ui/textarea'
-import { api } from '@/lib/axios'
-import { Post } from '@/types/post'
-import { zodResolver } from '@hookform/resolvers/zod'
-import { AxiosError } from 'axios'
-import { Dispatch, SetStateAction, useState } from 'react'
-import { useForm } from 'react-hook-form'
-import { toast } from 'sonner'
-import { z } from 'zod'
+import { Button } from '@/components/ui/button'
 
 const schemaCreatePost = z.object({
   title: z.string().nonempty({ message: 'O titulo não pode ser vazio.' }),
@@ -41,13 +43,13 @@ export function CreatePostDialog({ setPostsState }: CreatePostDialogProps) {
 
   async function onSubmit({ body, title }: CreatePost) {
     try {
-      const post = await api.post('/post', { body, title: title.toLowerCase() })
+      const { post } = await createPost({ body, title })
 
       toast.success('A publicação foi criada com sucesso.')
 
       if (setPostsState) {
         setPostsState((state) => {
-          return [...state, post.data.post]
+          return [...state, post]
         })
       }
     } catch (err) {

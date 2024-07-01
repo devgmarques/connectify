@@ -1,8 +1,9 @@
 import Image from 'next/image'
-import searchEngines from '@/public/images/search-engines.svg'
 
 import { User } from '@/types/user'
 import { Post } from '@/types/post'
+import searchEngines from '@/public/images/search-engines.svg'
+
 import { UsersList } from './users-list'
 import { PostsList } from './posts-list'
 import { NoResults } from './no-results'

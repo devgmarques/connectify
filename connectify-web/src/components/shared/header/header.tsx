@@ -1,24 +1,27 @@
 'use client'
 
+import { useEffect, useState } from 'react'
+
 import { PiHandshake } from 'react-icons/pi'
-import { ToggleTheme } from '../toggle-theme'
-import { ButtonLogout } from '../button-logout'
+import { LuHome, LuUser } from 'react-icons/lu'
+import { LogOut } from 'lucide-react'
+
+import { getTokenData } from '@/utils/get-token-data'
+
+import { SearchInput } from './search-input'
+import { LinkMenu } from './menu-links'
 import { ActiveLink } from './active-link'
 
-import { LuHome, LuUser } from 'react-icons/lu'
+import { ToggleTheme } from '../toggle-theme'
+import { ButtonLogout } from '../button-logout'
 import { Separator } from '../../ui/separator'
-import { LinkMenu } from './menu-links'
-import { LogOut } from 'lucide-react'
-import { getTokenData } from '@/utils/get-token-data'
-import { useEffect, useState } from 'react'
-import { SearchInput } from './search-input'
 
 export function Header() {
   const [nickname, setNickname] = useState<string>()
 
   useEffect(() => {
-    const { payload } = getTokenData()
-    setNickname(payload.nickname as string)
+    const { nickname } = getTokenData()
+    setNickname(nickname as string)
   }, [])
 
   return (

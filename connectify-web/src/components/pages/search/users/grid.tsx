@@ -1,13 +1,14 @@
 'use client'
 
-import { User } from '@/types/user'
-import { Pagination } from '@/components/shared/pagination'
-import { CardUser } from '@/components/shared/users/card-user'
 import { useCallback, useEffect, useState } from 'react'
-import { Follow } from '@/types/follow'
+
 import { getTokenData } from '@/utils/get-token-data'
-import { api } from '@/lib/axios'
+import { User } from '@/types/user'
+import { Follow } from '@/types/follow'
+import { getProfile } from '@/http/get-profile'
 import { Skeleton } from '@/components/ui/skeleton'
+import { CardUser } from '@/components/shared/users/card-user'
+import { Pagination } from '@/components/shared/pagination'
 
 type GridProps = {
   users: User[]
@@ -20,10 +21,12 @@ export function Grid({ meta, users }: GridProps) {
   const [follows, setFollows] = useState<Follow>()
 
   const fetchData = useCallback(async () => {
-    const { payload } = getTokenData()
-    const meResponse = await api.get(`/users/${payload.nickname}/profile`)
+    const { nickname } = getTokenData()
+    const { follows } = await getProfile({
+      nickname,
+    })
 
-    setFollows(meResponse.data.follows)
+    setFollows(follows)
   }, [])
 
   useEffect(() => {

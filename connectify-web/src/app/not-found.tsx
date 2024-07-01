@@ -1,5 +1,5 @@
-import { cookies } from 'next/headers'
 import { redirect } from 'next/navigation'
+import { cookies } from 'next/headers'
 
 export default async function NotFound() {
   const cookieStore = cookies()

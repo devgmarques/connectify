@@ -1,13 +1,18 @@
 'use client'
 
-import { Separator } from '@/components/ui/separator'
-import { api } from '@/lib/axios'
-import { User } from '@/types/user'
-import Link from 'next/link'
 import { useCallback, useEffect, useState } from 'react'
-import { ButtonFollow } from './follow/button-follow'
-import { Follow } from '@/types/follow'
+
+import Link from 'next/link'
+
 import { getTokenData } from '@/utils/get-token-data'
+import { User } from '@/types/user'
+import { Follow } from '@/types/follow'
+import { getProfile } from '@/http/get-profile'
+import { fetchUsers } from '@/http/fetch-users'
+import { Separator } from '@/components/ui/separator'
+
+import { ButtonFollow } from './follow/button-follow'
+
 import { Skeleton } from '../ui/skeleton'
 
 export function Suggestions() {
@@ -15,15 +20,15 @@ export function Suggestions() {
   const [follows, setFollows] = useState<Follow>()
 
   const fetchData = useCallback(async () => {
-    const { payload } = getTokenData()
+    const { nickname } = getTokenData()
 
     const [usersResponse, meResponse] = await Promise.all([
-      api.get('/users/fetch'),
-      api.get(`/users/${payload.nickname}/profile`),
+      fetchUsers(),
+      getProfile({ nickname }),
     ])
 
-    setFollows(meResponse.data.follows)
-    setUsers(usersResponse.data.users)
+    setFollows(meResponse.follows)
+    setUsers(usersResponse.users)
   }, [])
 
   useEffect(() => {

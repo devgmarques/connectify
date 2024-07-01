@@ -1,11 +1,13 @@
 'use client'
 
-import { Toggle } from '@/components/ui/toggle'
-import { api } from '@/lib/axios'
-import { Post } from '@/types/post'
-import { getTokenData } from '@/utils/get-token-data'
 import { Dispatch, SetStateAction, useEffect, useState } from 'react'
+
 import { PiHeartBold } from 'react-icons/pi'
+
+import { getTokenData } from '@/utils/get-token-data'
+import { Post } from '@/types/post'
+import { createLike } from '@/http/create-like'
+import { Toggle } from '@/components/ui/toggle'
 
 type ButtonLikeProps = {
   data: Post
@@ -15,31 +17,29 @@ type ButtonLikeProps = {
 export function ButtonLike({ data, setData }: ButtonLikeProps) {
   const [isPostLiked, setIsPostLiked] = useState<boolean>(false)
 
-  const { payload } = getTokenData()
+  const { sub } = getTokenData()
 
   async function handleClick() {
-    const response = await api.post(`/posts/${data.id}/likes`)
+    const { like: isLiked } = await createLike({ postId: data.id })
 
     setData((state) => {
       return {
         ...state,
         _count: {
           ...state._count,
-          likes: response.data.like
-            ? state._count.likes + 1
-            : state._count.likes - 1,
+          likes: isLiked ? state._count.likes + 1 : state._count.likes - 1,
         },
       }
     })
 
-    setIsPostLiked(response.data.like)
+    setIsPostLiked(isLiked)
   }
 
   useEffect(() => {
-    const userLikedPost = data.likes.find((item) => item.userId === payload.sub)
+    const userLikedPost = data.likes.find((item) => item.userId === sub)
 
     setIsPostLiked(!!userLikedPost)
-  }, [data.likes, payload.sub])
+  }, [data.likes, sub])
 
   return (
     <Toggle

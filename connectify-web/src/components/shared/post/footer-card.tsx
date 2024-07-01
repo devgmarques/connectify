@@ -1,15 +1,18 @@
 'use client'
 
-import { Post } from '@/types/post'
-import { ButtonLike } from '../like/button-like'
-import { ButtonComment } from '../comment/button-comment'
 import { Dispatch, SetStateAction, useState } from 'react'
-import { FormComment } from '../comment/form-comment'
-import Link from 'next/link'
-import { formatDistanceToNow } from 'date-fns'
-import { ptBR } from 'date-fns/locale'
+
 import { PiChatTeardropSlash } from 'react-icons/pi'
+import Link from 'next/link'
+import { ptBR } from 'date-fns/locale'
+import { formatDistanceToNow } from 'date-fns'
+
+import { Post } from '@/types/post'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
+
+import { ButtonLike } from '../like/button-like'
+import { FormComment } from '../comment/form-comment'
+import { ButtonComment } from '../comment/button-comment'
 
 type FooterCardProps = {
   data: Post

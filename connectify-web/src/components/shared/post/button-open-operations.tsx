@@ -1,6 +1,10 @@
 'use client'
 
-import { Button } from '@/components/ui/button'
+import { Dispatch, SetStateAction, useState } from 'react'
+
+import { PiDotsThreeVerticalBold } from 'react-icons/pi'
+
+import { Post } from '@/types/post'
 import {
   DropdownMenu,
   DropdownMenuCheckboxItem,
@@ -9,11 +13,10 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
-import { PiDotsThreeVerticalBold } from 'react-icons/pi'
-import { Post } from '@/types/post'
+import { Button } from '@/components/ui/button'
+
 import { EditPostDialog } from './edit-post'
-import { DeletePostDialog } from './delete-project'
-import { Dispatch, SetStateAction, useState } from 'react'
+import { DeletePostDialog } from './delete-post'
 
 type ButtonOpenOperationsProps = {
   data: Post

@@ -1,6 +1,7 @@
 import { ReactNode } from 'react'
-import { Header } from '@/components/shared/header/header'
+
 import { Suggestions } from '@/components/shared/suggestions'
+import { Header } from '@/components/shared/header/header'
 
 type ProfileLayoutProps = {
   children: ReactNode

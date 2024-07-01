@@ -1,13 +1,15 @@
-import { Button } from '@/components/ui/button'
-import { Input } from '@/components/ui/input'
-import { api } from '@/lib/axios'
-import { Post } from '@/types/post'
-import { zodResolver } from '@hookform/resolvers/zod'
-import { AxiosError } from 'axios'
 import { Dispatch, SetStateAction } from 'react'
-import { useForm } from 'react-hook-form'
-import { toast } from 'sonner'
+
 import { z } from 'zod'
+import { toast } from 'sonner'
+import { useForm } from 'react-hook-form'
+import { AxiosError } from 'axios'
+import { zodResolver } from '@hookform/resolvers/zod'
+
+import { Post } from '@/types/post'
+import { createComment } from '@/http/create-comment'
+import { Input } from '@/components/ui/input'
+import { Button } from '@/components/ui/button'
 
 const schemaCommentForm = z.object({
   body: z
@@ -35,7 +37,7 @@ export function FormComment({
 
   async function onSubmit({ body }: CommentForm) {
     try {
-      const comment = await api.post(`/posts/${postId}/comments`, { body })
+      const { comment } = await createComment({ body, postId })
 
       toast.success('Você realizou um comentário com sucesso.')
 
@@ -46,7 +48,7 @@ export function FormComment({
             ...state._count,
             comments: state._count.comments + 1,
           },
-          comments: [...state.comments, comment.data.comment],
+          comments: [...state.comments, comment],
         }
       })
     } catch (err) {

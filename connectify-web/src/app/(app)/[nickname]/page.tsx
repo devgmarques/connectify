@@ -1,8 +1,8 @@
+import { notFound } from 'next/navigation'
 import type { Metadata } from 'next'
 
-import { notFound } from 'next/navigation'
+import { getProfile } from '@/http/get-profile'
 import { Grid } from '@/components/pages/profile/grid'
-import { fetchProfile } from '@/actions/fetch-profile'
 
 type ProfileProps = {
   params: { nickname: string }
@@ -19,9 +19,9 @@ export async function generateMetadata({
 }
 
 export default async function Profile({ params }: ProfileProps) {
-  const fetch = await fetchProfile(params.nickname)
+  const fetch = await getProfile({ nickname: params.nickname })
 
-  if (fetch === undefined) {
+  if (!fetch) {
     notFound()
   }
 

@@ -1,11 +1,10 @@
+import Image from 'next/image'
 import type { Metadata } from 'next'
 
-import Image from 'next/image'
-
-import { searchPosts } from '@/actions/search-posts'
-import { searchUsers } from '@/actions/search-users'
-import { Grid } from '@/components/pages/search/grid'
 import searchEngines from '@/public/images/search-engines.svg'
+import { searchUsers } from '@/http/search-users'
+import { searchPosts } from '@/http/search-posts'
+import { Grid } from '@/components/pages/search/grid'
 
 export const metadata: Metadata = {
   title: 'Pesquisar | connectify',

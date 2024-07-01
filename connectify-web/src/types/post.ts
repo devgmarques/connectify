@@ -1,5 +1,5 @@
-import { Comment } from './comment'
 import { Like } from './like'
+import { Comment } from './comment'
 
 export type Post = {
   id: number

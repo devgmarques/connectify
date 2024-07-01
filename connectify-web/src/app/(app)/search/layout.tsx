@@ -1,7 +1,8 @@
 import { ReactNode } from 'react'
-import { Header } from '@/components/shared/header/header'
-import { InformationsAccount } from '@/components/shared/informations-account'
+
 import { Suggestions } from '@/components/shared/suggestions'
+import { InformationsAccount } from '@/components/shared/informations-account'
+import { Header } from '@/components/shared/header/header'
 
 type SearchLayoutProps = {
   children: ReactNode

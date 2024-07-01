@@ -1,17 +1,17 @@
 import type { Metadata } from 'next'
 
-import { Grid } from '@/components/pages/feed/grid'
-import { fetchPosts } from '@/actions/fetch-posts'
-import { LoadMore } from '@/components/shared/load-more'
-import { CreatePostDialog } from '@/components/shared/post/create-post'
+import { fetchPosts } from '@/http/fetch-posts'
 import { Skeleton } from '@/components/ui/skeleton'
+import { CreatePostDialog } from '@/components/shared/post/create-post'
+import { LoadMore } from '@/components/shared/load-more'
+import { Grid } from '@/components/pages/feed/grid'
 
 export const metadata: Metadata = {
   title: 'Feed | connectify',
 }
 
 export default async function Feed() {
-  const posts = await fetchPosts(1)
+  const { posts } = await fetchPosts({ page: 1 })
 
   if (!posts) {
     return (

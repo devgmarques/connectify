@@ -2,14 +2,14 @@
 
 import { useCallback, useEffect, useState } from 'react'
 
+import { getTokenData } from '@/utils/get-token-data'
 import { User } from '@/types/user'
 import { Post } from '@/types/post'
-
-import { api } from '@/lib/axios'
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
-import { Separator } from '@/components/ui/separator'
 import { Follow } from '@/types/follow'
-import { getTokenData } from '@/utils/get-token-data'
+import { getProfile } from '@/http/get-profile'
+import { Separator } from '@/components/ui/separator'
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
+
 import { Skeleton } from '../ui/skeleton'
 
 export function InformationsAccount() {
@@ -18,13 +18,13 @@ export function InformationsAccount() {
   const [follows, setFollows] = useState<Follow>()
 
   const fetchData = useCallback(async () => {
-    const { payload } = getTokenData()
+    const { nickname } = getTokenData()
 
-    const feedPosts = await api.get(`/users/${payload.nickname}/profile`)
+    const { follows, posts, user } = await getProfile({ nickname })
 
-    setUser(feedPosts.data.user)
-    setPosts(feedPosts.data.posts)
-    setFollows(feedPosts.data.follows)
+    setUser(user)
+    setPosts(posts)
+    setFollows(follows)
   }, [])
 
   useEffect(() => {

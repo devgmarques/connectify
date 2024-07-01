@@ -1,3 +1,12 @@
+import { Dispatch, SetStateAction } from 'react'
+
+import { toast } from 'sonner'
+import { PiTrashBold } from 'react-icons/pi'
+import { AxiosError } from 'axios'
+
+import { Post } from '@/types/post'
+import { deletePost } from '@/http/delete-post'
+import { Button } from '@/components/ui/button'
 import {
   AlertDialog,
   AlertDialogAction,
@@ -9,13 +18,6 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from '@/components/ui/alert-dialog'
-import { Button } from '@/components/ui/button'
-import { api } from '@/lib/axios'
-import { Post } from '@/types/post'
-import { AxiosError } from 'axios'
-import { Dispatch, SetStateAction } from 'react'
-import { PiTrashBold } from 'react-icons/pi'
-import { toast } from 'sonner'
 
 type DeletePostDialog = {
   id: number
@@ -23,9 +25,9 @@ type DeletePostDialog = {
 }
 
 export function DeletePostDialog({ id, setData }: DeletePostDialog) {
-  async function deletePost() {
+  async function handleDeletePost() {
     try {
-      await api.delete(`/me/posts/${id}`)
+      await deletePost({ postId: id })
 
       toast.success('A publicação foi deletada com sucesso.')
 
@@ -72,7 +74,9 @@ export function DeletePostDialog({ id, setData }: DeletePostDialog) {
         <AlertDialogFooter>
           <AlertDialogCancel>Sair</AlertDialogCancel>
 
-          <AlertDialogAction onClick={deletePost}>Deletar</AlertDialogAction>
+          <AlertDialogAction onClick={handleDeletePost}>
+            Deletar
+          </AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>
     </AlertDialog>

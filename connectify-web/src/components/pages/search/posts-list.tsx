@@ -1,7 +1,8 @@
-import { CardPost } from '@/components/shared/post/card-post'
-import { Button } from '@/components/ui/button'
-import { Post } from '@/types/post'
 import Link from 'next/link'
+
+import { Post } from '@/types/post'
+import { Button } from '@/components/ui/button'
+import { CardPost } from '@/components/shared/post/card-post'
 
 type PostsList = {
   posts: Post[]

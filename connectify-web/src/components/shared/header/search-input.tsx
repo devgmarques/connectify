@@ -1,11 +1,13 @@
 'use client'
 
-import { Input } from '@/components/ui/input'
-import { Label } from '@/components/ui/label'
-import { Search } from 'lucide-react'
-import { useRouter, useSearchParams } from 'next/navigation'
-import { useEffect, useState, Suspense } from 'react'
+import { Suspense, useEffect, useState } from 'react'
+
 import { useDebouncedCallback } from 'use-debounce'
+import { useRouter, useSearchParams } from 'next/navigation'
+import { Search } from 'lucide-react'
+
+import { Label } from '@/components/ui/label'
+import { Input } from '@/components/ui/input'
 
 export function SearchParams() {
   const [initialValue, setInitialValue] = useState<string>('')

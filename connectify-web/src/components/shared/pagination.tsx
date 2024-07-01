@@ -1,5 +1,10 @@
 'use client'
 
+import { useEffect, useState } from 'react'
+
+import { useDebouncedCallback } from 'use-debounce'
+import { usePathname, useRouter, useSearchParams } from 'next/navigation'
+
 import {
   Pagination as PaginationComponent,
   PaginationContent,
@@ -8,9 +13,6 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from '@/components/ui/pagination'
-import { usePathname, useRouter, useSearchParams } from 'next/navigation'
-import { useEffect, useState } from 'react'
-import { useDebouncedCallback } from 'use-debounce'
 
 type PaginationProps = {
   countAllItems: number

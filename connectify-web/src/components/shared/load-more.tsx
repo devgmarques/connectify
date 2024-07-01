@@ -1,11 +1,13 @@
 'use client'
 
 import { useCallback, useEffect, useState } from 'react'
+
 import { useInView } from 'react-intersection-observer'
 
-import { fetchPosts } from '@/actions/fetch-posts'
 import { Post } from '@/types/post'
+import { fetchPosts } from '@/http/fetch-posts'
 import { Grid } from '@/components/pages/feed/grid'
+
 import { Spinner } from './spinner'
 
 export function LoadMore() {
@@ -18,12 +20,12 @@ export function LoadMore() {
   const loadMoreCustomer = useCallback(async () => {
     const nextPage = page + 1
 
-    const newProducts = (await fetchPosts(nextPage)) ?? []
+    const { posts: newPosts } = (await fetchPosts({ page: nextPage })) ?? []
 
-    if (newProducts.length < 1) {
+    if (newPosts.length < 1) {
       setLoading(false)
     }
-    setPosts((prevProducts: Post[]) => [...prevProducts, ...newProducts])
+    setPosts((prevProducts: Post[]) => [...prevProducts, ...newPosts])
     setPage(nextPage)
   }, [page])
 

@@ -1,7 +1,9 @@
-import { User } from '@/types/user'
-import { ButtonFollow } from '../follow/button-follow'
-import { Follow } from '@/types/follow'
 import Link from 'next/link'
+
+import { User } from '@/types/user'
+import { Follow } from '@/types/follow'
+
+import { ButtonFollow } from '../follow/button-follow'
 
 type CardUserProps = {
   data: User

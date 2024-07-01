@@ -1,8 +1,9 @@
 'use client'
 
-import { api } from '@/lib/axios'
-import { User } from '@/types/user'
 import { useState } from 'react'
+
+import { User } from '@/types/user'
+import { createFollow } from '@/http/create-follow'
 
 type ButtonFollowProps = {
   data: User
@@ -13,9 +14,9 @@ export function ButtonFollow({ data, isFollowing = false }: ButtonFollowProps) {
   const [isFollowed, setIsFollowed] = useState<boolean>(isFollowing)
 
   async function handleFollow() {
-    const follow = await api.post(`/users/${data.id}/follows`)
+    const { follow } = await createFollow({ userId: data.id! })
 
-    setIsFollowed(follow.data.follow)
+    setIsFollowed(follow)
   }
 
   return (
