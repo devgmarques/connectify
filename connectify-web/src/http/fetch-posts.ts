@@ -14,5 +14,5 @@ export async function fetchPosts({
 }: FetchPostsRequest): Promise<FetchPostsResponse> {
   const posts = await api.get(`/posts/fetch?page=${page}`)
 
-  return posts.data.posts
+  return posts.data
 }

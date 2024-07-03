@@ -15,9 +15,12 @@ type GridProps = {
 }
 
 export function Grid({ posts, users, query }: GridProps) {
+  const userLengthBigger0 = users.length > 0
+  const postLengthBigger0 = posts.length > 0
+
   return (
     <>
-      {users.length === 0 && posts.length === 0 && (
+      {!userLengthBigger0 && !postLengthBigger0 && (
         <div className="w-full overflow-hidden px-7 py-5 flex flex-col bg-background rounded-md border border-foreground/20">
           <Image
             src={searchEngines}
@@ -35,11 +38,11 @@ export function Grid({ posts, users, query }: GridProps) {
         </div>
       )}
 
-      {users.length === 0 && posts.length > 0 && (
+      {!userLengthBigger0 && postLengthBigger0 && (
         <NoResults message="Nenhum usuário foi encontrado" />
       )}
 
-      {users.length > 0 && (
+      {userLengthBigger0 && (
         <section className="w-full px-4 py-3 flex flex-col bg-background rounded-md border border-foreground/20">
           <h2 className="text-foreground text-medium mb-2 text-xl">
             Lista de usuários
@@ -49,7 +52,7 @@ export function Grid({ posts, users, query }: GridProps) {
         </section>
       )}
 
-      {posts.length > 0 && (
+      {postLengthBigger0 && (
         <>
           <div className="mt-5 w-full px-4 py-3 flex bg-background rounded-md border border-foreground/20">
             <h2 className="text-foreground text-medium mb-2 text-xl">
@@ -62,7 +65,7 @@ export function Grid({ posts, users, query }: GridProps) {
         </>
       )}
 
-      {posts.length === 0 && users.length > 0 && (
+      {!postLengthBigger0 && userLengthBigger0 && (
         <NoResults message="Nenhuma publicação foi encontrada" />
       )}
     </>
