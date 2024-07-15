@@ -25,7 +25,8 @@ export function LoadMore() {
     if (newPosts.length < 1) {
       setLoading(false)
     }
-    setPosts((prevProducts: Post[]) => [...prevProducts, ...newPosts])
+
+    setPosts((prevProducts) => [...prevProducts, ...newPosts])
     setPage(nextPage)
   }, [page])
 

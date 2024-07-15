@@ -27,6 +27,7 @@ export function ToggleTheme() {
           </Button>
         </div>
       </DropdownMenuTrigger>
+
       <DropdownMenuContent align="end">
         <DropdownMenuItem onClick={() => setTheme('light')}>
           Claro

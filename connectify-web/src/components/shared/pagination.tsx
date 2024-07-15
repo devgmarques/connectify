@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 import { useDebouncedCallback } from 'use-debounce'
 import { usePathname, useRouter, useSearchParams } from 'next/navigation'
@@ -60,7 +60,7 @@ export function Pagination({ countAllItems }: PaginationProps) {
           }
           className={`${assetNumber > 1 ? 'cursor-pointer' : 'cursor-no-drop text-slate-300 hover:text-slate-300'}`}
         >
-          <PaginationPrevious className="" />
+          <PaginationPrevious />
         </PaginationItem>
 
         {Array.from({ length: pages }).map((_, i) => {
