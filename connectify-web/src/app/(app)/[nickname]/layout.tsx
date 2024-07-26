@@ -1,7 +1,6 @@
 import { ReactNode } from 'react'
 
 import { Suggestions } from '@/components/shared/suggestions'
-import { Header } from '@/components/shared/header/header'
 
 type ProfileLayoutProps = {
   children: ReactNode
@@ -10,8 +9,6 @@ type ProfileLayoutProps = {
 export default async function ProfileLayout({ children }: ProfileLayoutProps) {
   return (
     <div className="min-h-screen flex flex-col">
-      <Header />
-
       <div className="pt-24 flex-1 h-full grid grid-cols-1 sm:grid-cols-[1fr_286px]">
         <div>{children}</div>
 

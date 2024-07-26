@@ -2,6 +2,7 @@ import { ReactNode } from 'react'
 
 import { redirect } from 'next/navigation'
 
+import { Header } from '@/components/shared/header/header'
 import { isAuthenticated } from '@/auth/auth'
 
 type AppLayoutProps = {
@@ -13,5 +14,10 @@ export default function AppLayout({ children }: AppLayoutProps) {
     redirect('/accounts/login')
   }
 
-  return <>{children}</>
+  return (
+    <>
+      <Header />
+      <div className="max-w-7xl m-auto">{children}</div>
+    </>
+  )
 }
