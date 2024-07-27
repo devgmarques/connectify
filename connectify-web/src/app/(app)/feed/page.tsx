@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 export default async function Feed() {
   const { posts } = await fetchPosts({ page: 1 })
 
-  if (!posts) {
+  if (posts.length === 0) {
     return (
       <section className="flex m-auto max-w-[750px] flex-col gap-5 items-center py-5 px-5 sm:px-10">
         <header className="w-full px-4 py-3 bg-background rounded-md border border-foreground/20">

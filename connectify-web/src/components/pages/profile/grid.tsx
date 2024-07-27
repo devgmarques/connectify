@@ -30,9 +30,13 @@ export function Grid({ data: { follows, posts, user } }: GridProps) {
   const [postsState, setPostsState] = useState<Post[]>(posts ?? [])
 
   useEffect(() => {
-    const { nickname } = getTokenData()
+    async function onLoad() {
+      const { nickname } = await getTokenData()
 
-    setIsMyProfile(user.nickname === nickname)
+      setIsMyProfile(user.nickname === nickname)
+    }
+
+    onLoad()
   }, [user.nickname])
 
   return (

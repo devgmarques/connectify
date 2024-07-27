@@ -20,10 +20,6 @@ export default async function Users({ searchParams: { q, page } }: UsersProps) {
     page,
   })
 
-  if (!users) {
-    return <p>loading...</p>
-  }
-
   return (
     <section className="flex m-auto max-w-[750px] flex-col gap-5 items-center py-5 px-5 sm:px-10">
       <Grid users={users.users} meta={users.meta} />

@@ -21,7 +21,7 @@ export function UsersList({ users, query }: UsersListProps) {
   const [follows, setFollows] = useState<Follow>()
 
   const fetchData = useCallback(async () => {
-    const { nickname } = getTokenData()
+    const { nickname } = await getTokenData()
     const { follows } = await getProfile({
       nickname,
     })

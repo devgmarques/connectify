@@ -20,8 +20,12 @@ export function Header() {
   const [nickname, setNickname] = useState<string>()
 
   useEffect(() => {
-    const { nickname } = getTokenData()
-    setNickname(nickname as string)
+    async function onLoad() {
+      const { nickname } = await getTokenData()
+      setNickname(nickname)
+    }
+
+    onLoad()
   }, [])
 
   return (

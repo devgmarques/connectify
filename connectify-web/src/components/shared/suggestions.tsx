@@ -1,13 +1,11 @@
 'use client'
 
-import { useCallback, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 
 import Link from 'next/link'
 
-import { getTokenData } from '@/utils/get-token-data'
 import { User } from '@/types/user'
 import { Follow } from '@/types/follow'
-import { getProfile } from '@/http/get-profile'
 import { fetchUsers } from '@/http/fetch-users'
 import { Separator } from '@/components/ui/separator'
 
@@ -15,25 +13,22 @@ import { ButtonFollow } from './follow/button-follow'
 
 import { Skeleton } from '../ui/skeleton'
 
-export function Suggestions() {
+type SuggestionsProps = {
+  follows: Follow
+}
+
+export function Suggestions({ follows }: SuggestionsProps) {
   const [users, setUsers] = useState<User[]>([])
-  const [follows, setFollows] = useState<Follow>()
-
-  const fetchData = useCallback(async () => {
-    const { nickname } = getTokenData()
-
-    const [usersResponse, meResponse] = await Promise.all([
-      fetchUsers(),
-      getProfile({ nickname }),
-    ])
-
-    setFollows(meResponse.follows)
-    setUsers(usersResponse.users)
-  }, [])
 
   useEffect(() => {
+    async function fetchData() {
+      const usersResponse = await fetchUsers()
+
+      setUsers(usersResponse.users)
+    }
+
     fetchData()
-  }, [fetchData])
+  }, [])
 
   if (!users || !follows) {
     return (

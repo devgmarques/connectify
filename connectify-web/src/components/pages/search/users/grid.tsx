@@ -21,7 +21,7 @@ export function Grid({ meta, users }: GridProps) {
   const [follows, setFollows] = useState<Follow>()
 
   const fetchData = useCallback(async () => {
-    const { nickname } = getTokenData()
+    const { nickname } = await getTokenData()
     const { follows } = await getProfile({
       nickname,
     })

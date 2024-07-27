@@ -17,8 +17,6 @@ type ButtonLikeProps = {
 export function ButtonLike({ data, setData }: ButtonLikeProps) {
   const [isPostLiked, setIsPostLiked] = useState<boolean>(false)
 
-  const { sub } = getTokenData()
-
   async function handleClick() {
     const { like: isLiked } = await createLike({ postId: data.id })
 
@@ -36,10 +34,16 @@ export function ButtonLike({ data, setData }: ButtonLikeProps) {
   }
 
   useEffect(() => {
-    const userLikedPost = data.likes.find((item) => item.userId === sub)
+    async function onLoad() {
+      const { sub } = await getTokenData()
 
-    setIsPostLiked(!!userLikedPost)
-  }, [data.likes, sub])
+      const userLikedPost = data.likes.find((item) => item.userId === sub)
+
+      setIsPostLiked(!!userLikedPost)
+    }
+
+    onLoad()
+  }, [data.likes])
 
   return (
     <Toggle

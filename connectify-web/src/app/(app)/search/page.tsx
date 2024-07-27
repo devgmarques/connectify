@@ -20,7 +20,7 @@ export default async function Search({ searchParams: { q } }: SearchProps) {
     searchPosts({ query: q ?? '' }),
   ])
 
-  if (!posts && !users) {
+  if (posts.posts.length === 0 && users.users.length === 0) {
     return (
       <section className="flex m-auto max-w-[750px] flex-col items-center py-5 px-5 sm:px-10">
         <div className="w-full overflow-hidden px-7 py-5 flex flex-col bg-background rounded-md border border-foreground/20">
