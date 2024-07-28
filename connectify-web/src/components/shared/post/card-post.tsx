@@ -21,7 +21,14 @@ type CardPostProps = {
 export function CardPost({ data, isMe = false }: CardPostProps) {
   const [post, setPost] = useState<Post>(data)
 
-  if (post.id === -1) {
+  const howManyWordsInBody = post.body.split(' ').length < 30
+
+  const [bodyIsVisible, setBodyIsVisible] =
+    useState<boolean>(howManyWordsInBody)
+
+  const indexBelow0ToIndicateThatThisIsDeletedPost = -1
+
+  if (post.id === indexBelow0ToIndicateThatThisIsDeletedPost) {
     return null
   }
 
@@ -70,9 +77,20 @@ export function CardPost({ data, isMe = false }: CardPostProps) {
         </span>
       </Link>
 
-      <p className="m-auto text-foreground text-medium py-5 break-words overflow-auto">
-        {post.body}
-      </p>
+      {!bodyIsVisible ? (
+        <>
+          <p className="m-auto text-foreground text-medium py-5 break-words overflow-auto">
+            {post.body.split(' ', 30).join(' ')}
+          </p>
+          <button onClick={() => setBodyIsVisible((state) => !state)}>
+            ...ler mais
+          </button>
+        </>
+      ) : (
+        <p className="m-auto text-foreground text-medium py-5 break-words overflow-auto">
+          {post.body}
+        </p>
+      )}
 
       <div className="flex flex-col pt-3 gap-2">
         <div className="flex items-center justify-between">
