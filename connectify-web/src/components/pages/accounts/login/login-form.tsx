@@ -99,7 +99,10 @@ export function LoginForm() {
 
         <span className="text-sm sm:hidden">
           Ainda não possui conta?{' '}
-          <Link href="/accounts/register" className="text-primary">
+          <Link
+            href="/accounts/register"
+            className="text-blue-400 dark:text-blue-300"
+          >
             clique aqui.
           </Link>
         </span>

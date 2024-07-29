@@ -125,7 +125,10 @@ export function RegisterForm() {
 
         <span className="text-sm sm:hidden">
           Já possui conta?{' '}
-          <Link href="/accounts/login" className="text-primary">
+          <Link
+            href="/accounts/login"
+            className="text-blue-400 dark:text-blue-300"
+          >
             clique aqui.
           </Link>
         </span>
