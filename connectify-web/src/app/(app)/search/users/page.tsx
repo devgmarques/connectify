@@ -9,14 +9,14 @@ export const metadata: Metadata = {
 
 type UsersProps = {
   searchParams: {
-    q: string
+    q?: string
     page?: number
   }
 }
 
 export default async function Users({ searchParams: { q, page } }: UsersProps) {
   const users = await searchUsers({
-    query: q,
+    query: q ?? '',
     page,
   })
 

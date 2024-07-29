@@ -44,7 +44,7 @@ export default async function Search({ searchParams: { q } }: SearchProps) {
 
   return (
     <section className="flex m-auto max-w-[750px] flex-col items-center py-5 px-5 sm:px-10">
-      <Grid posts={posts.posts} users={users.users} query={q ?? ''} />
+      <Grid postsData={posts} usersData={users} query={q ?? ''} />
     </section>
   )
 }
