@@ -1,6 +1,6 @@
 'use client'
 
-import { useCallback, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 
 import Link from 'next/link'
 
@@ -9,6 +9,7 @@ import { User } from '@/types/user'
 import { Follow } from '@/types/follow'
 import { getProfile } from '@/http/get-profile'
 import { Button } from '@/components/ui/button'
+import { Spinner } from '@/components/shared/spinner'
 
 import { CardUser } from '../../shared/users/card-user'
 
@@ -20,46 +21,55 @@ type UsersListProps = {
 export function UsersList({ users, query }: UsersListProps) {
   const [follows, setFollows] = useState<Follow>()
 
-  const fetchData = useCallback(async () => {
-    const { nickname } = await getTokenData()
-    const { follows } = await getProfile({
-      nickname,
-    })
+  useEffect(() => {
+    async function fetchData() {
+      const { nickname } = await getTokenData()
+      const { follows } = await getProfile({
+        nickname,
+      })
 
-    setFollows(follows)
+      setFollows(follows)
+    }
+
+    fetchData()
   }, [])
 
-  useEffect(() => {
-    fetchData()
-  }, [fetchData])
-
   if (!follows) {
-    return null
+    return <Spinner />
   }
 
   return (
-    <>
-      {users.length < 5 &&
+    <div className="flex flex-col gap-6">
+      {users.length < 5 ? (
         users.map((item) => (
-          <CardUser follows={follows} data={item} key={item.id} />
-        ))}
-
-      {users.length > 5 && (
-        <div>
+          <CardUser
+            widthAvatar="lg"
+            follows={follows}
+            data={item}
+            key={item.id}
+          />
+        ))
+      ) : (
+        <>
           {users.slice(0, 5).map((item) => (
-            <CardUser follows={follows} data={item} key={item.id} />
+            <CardUser
+              widthAvatar="lg"
+              follows={follows}
+              data={item}
+              key={item.id}
+            />
           ))}
 
           <Button asChild variant="outline">
             <Link
-              href={`${query ? `/users?search=${query}` : '/users'}`}
+              href={`${query ? `/search/users?search=${query}` : '/search/users'}`}
               className="w-full m-auto py-3 text-center text-foreground text-medium mb-2 text-base"
             >
               Ver mais
             </Link>
           </Button>
-        </div>
+        </>
       )}
-    </>
+    </div>
   )
 }

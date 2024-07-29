@@ -64,9 +64,16 @@ export function Grid({ meta, users }: GridProps) {
         Cerca de {meta.countUsers} usuários
       </h2>
 
-      {users.map((item) => (
-        <CardUser follows={follows} data={item} key={item.id} />
-      ))}
+      <div className="flex flex-col gap-6">
+        {users.map((item) => (
+          <CardUser
+            widthAvatar="lg"
+            follows={follows}
+            data={item}
+            key={item.id}
+          />
+        ))}
+      </div>
 
       {meta.countUsers > 10 && <Pagination countAllItems={meta.countUsers} />}
     </section>
