@@ -1,0 +1,5 @@
+export * from './i-create-post'
+export * from './i-update-post'
+export * from './i-fetch-post'
+export * from './i-delete-post'
+export * from './i-search-post'
