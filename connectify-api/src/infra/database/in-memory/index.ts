@@ -1,0 +1,5 @@
+export * from './in-memory-comments-repository'
+export * from './in-memory-users-repository'
+export * from './in-memory-posts-repository'
+export * from './in-memory-follows-repository'
+export * from './in-memory-likes-repository'

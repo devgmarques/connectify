@@ -3,7 +3,7 @@ import { z } from "zod";
 
 import { RegisterUseCase } from "@/use-case/user/register";
 import { UserPrismaRepository } from "@/repositories/prisma/user-prisma-repository";
-import { EmailAlreadyExistError } from "@/use-case/errors/email-already-exist-error";
+import { EmailAlreadyExistError } from "@/use-case/errors";
 import { NicknameAlreadyExistError } from "@/use-case/errors/nickname-already-exist-error";
 
 export async function register(req: FastifyRequest, reply: FastifyReply) {

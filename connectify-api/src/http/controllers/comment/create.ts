@@ -1,7 +1,7 @@
 import { FastifyReply, FastifyRequest } from "fastify";
 import { z } from "zod";
 
-import { CreateCommentInPostUseCase } from "@/use-case/comment/create-comment-in-post";
+import { CreateCommentInPostUseCase } from "@/application/use-case/comments";
 import { CommentPrismaRepository } from "@/repositories/prisma/comment-prisma-repository";
 import { PostPrismaRepository } from "@/repositories/prisma/post-prisma-repository";
 import { PostNotExistError } from "@/use-case/errors/post-not-exist-error";

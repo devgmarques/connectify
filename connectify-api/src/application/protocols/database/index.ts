@@ -1,0 +1,6 @@
+export * from './comments-repository'
+export * from  './posts-repository'
+export * from './follows-repository'
+export * from './likes-repository'
+export * from './users-repository'
+export * from './upload-repository'
