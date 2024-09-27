@@ -77,7 +77,7 @@ export class InMemoryPostsRepository implements PostsRepository {
         .filter((item) => item.title.toLowerCase().includes(input.query.toLowerCase()))
         .slice((input.page - 1) * 20, input.page * 20)
 
-      return posts;
+      return posts
     }
 
     async countAllPosts(input: PostsRepository.CountAllPosts.Input): PostsRepository.CountAllPosts.Output {

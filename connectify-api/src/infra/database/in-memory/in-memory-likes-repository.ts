@@ -30,7 +30,7 @@ export class InMemoryLikesRepository implements LikesRepository {
     }
 
     async delete(input: LikesRepository.Delete.Input): LikesRepository.Delete.Output {
-      const likes = this.database.filter((item) => item.likeId !== input.likeId);
+      const likes = this.database.filter((item) => item.likeId !== input.likeId)
 
       this.database = likes
 

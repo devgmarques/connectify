@@ -1,5 +1,5 @@
-import { CommentRepository, FollowsRepository } from "@/application/protocols/database"
-import { Comment, Follow } from "@/domain/entities"
+import { FollowsRepository } from "@/application/protocols/database"
+import { Follow } from "@/domain/entities"
 
 export class InMemoryFollowsRepository implements FollowsRepository {
     private database: Follow[] = []
@@ -51,10 +51,10 @@ export class InMemoryFollowsRepository implements FollowsRepository {
       const follows = this.database.filter(
         (item) =>
           item.followedId !== input.followedId && item.userId !== input.userId
-      );
+      )
   
       this.database = follows
   
-      return true;
+      return true
     }
 }
