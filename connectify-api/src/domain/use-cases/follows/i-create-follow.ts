@@ -4,8 +4,8 @@ export interface ICreateFollowUseCase {
 
 export namespace ICreateFollowUseCase {
     export type Input = {
-      userId: string;
-      followedId: string;
+      userId: string
+      followedId: string
     }
 
     export type Output = Promise<boolean>

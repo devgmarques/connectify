@@ -7,7 +7,7 @@ import { UsersRepository } from "@/application/protocols/database"
 import { HashRepository } from "@/application/protocols/crypto/hash-repository"
 import { CredentialsInvalidateError, UserNotExistError } from "@/application/errors"
 import { InMemoryUsersRepository } from "@/infra/database/in-memory"
-import { InMemoryHashRepository } from "@/infra/crypto/in-memory/in-memory-hashs-repository"
+import { InMemoryHashRepository } from "@/infra/crypto/in-memory"
 
 let usersRepository: UsersRepository
 let hashRepository: HashRepository

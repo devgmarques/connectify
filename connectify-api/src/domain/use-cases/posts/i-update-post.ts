@@ -12,7 +12,6 @@ export namespace IUpdatePostUseCase {
       body: string,
       title: string,
       author: string,
-      createdAt: string
     }
   }
 

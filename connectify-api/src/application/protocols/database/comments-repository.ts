@@ -1,7 +1,7 @@
 import { Comment } from "@/domain/entities"
 
 export type CommentRepository = {
-  create(Input: CommentRepository.Create.Input): CommentRepository.Create.Output
+  create(input: CommentRepository.Create.Input): CommentRepository.Create.Output
 }
 
 export namespace CommentRepository {

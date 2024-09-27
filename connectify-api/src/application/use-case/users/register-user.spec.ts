@@ -5,7 +5,7 @@ import { IRegisterUserUseCase } from "@/domain/use-cases/users"
 import { UsersRepository } from "@/application/protocols/database"
 import { InMemoryUsersRepository } from "@/infra/database/in-memory"
 import { HashRepository } from "@/application/protocols/crypto"
-import { InMemoryHashRepository } from "@/infra/crypto/in-memory/in-memory-hashs-repository"
+import { InMemoryHashRepository } from "@/infra/crypto/in-memory"
 import { EmailAlreadyExistError, NicknameAlreadyExistError } from "@/application/errors"
 import { User } from "@/domain/entities"
 

@@ -5,7 +5,7 @@ import { UpdateUserUseCase } from "./update-user"
 import { IUpdateUserUseCase } from "@/domain/use-cases/users"
 import { InMemoryUsersRepository } from "@/infra/database/in-memory"
 import { HashRepository } from "@/application/protocols/crypto"
-import { InMemoryHashRepository } from "@/infra/crypto/in-memory/in-memory-hashs-repository"
+import { InMemoryHashRepository } from "@/infra/crypto/in-memory"
 import { NicknameAlreadyExistError, UserNotExistError } from "@/application/errors"
 
 let usersRepository: UsersRepository

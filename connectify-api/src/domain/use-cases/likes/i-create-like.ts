@@ -4,8 +4,8 @@ export interface ICreateLikeUseCase {
 
 export namespace ICreateLikeUseCase {
   export type Input = {
-    postId: number;
-    userId: string;
+    postId: number
+    userId: string
   }
 
   export type Output = Promise<boolean>
