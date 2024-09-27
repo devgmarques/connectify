@@ -1,6 +1,6 @@
 import { SearchPostUseCase } from "@/application/use-case/posts"
 import { PrismaPostsRepository } from "@/infra/database/prisma/repositories"
-import { SearchPostController } from "@/presentation/controllers/post"
+import { SearchPostController } from "@/presentation/controllers/posts"
 
 export function makeSearchPostController() {
     const postsRepository = new PrismaPostsRepository()

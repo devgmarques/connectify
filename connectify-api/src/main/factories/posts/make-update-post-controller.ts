@@ -1,6 +1,6 @@
 import { UpdatePostUseCase } from "@/application/use-case/posts"
 import { PrismaPostsRepository } from "@/infra/database/prisma/repositories"
-import { UpdatePostController } from "@/presentation/controllers/post"
+import { UpdatePostController } from "@/presentation/controllers/posts"
 
 export function makeUpdatePostController() {
     const postsRepository = new PrismaPostsRepository()

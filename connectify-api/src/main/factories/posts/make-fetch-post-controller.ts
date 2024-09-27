@@ -1,6 +1,6 @@
 import { FetchPostUseCase } from "@/application/use-case/posts"
 import { PrismaPostsRepository } from "@/infra/database/prisma/repositories"
-import { FetchPostController } from "@/presentation/controllers/post"
+import { FetchPostController } from "@/presentation/controllers/posts"
 
 export function makeFetchPostController() {
     const postsRepository = new PrismaPostsRepository()
