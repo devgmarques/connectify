@@ -1,0 +1,5 @@
+export * from './prisma-users-repository'
+export * from './prisma-posts-repository'
+export * from './prisma-follows-repository'
+export * from './prisma-comments-repository'
+export * from './prisma-likes-repository'
