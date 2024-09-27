@@ -1,0 +1,5 @@
+export * from './make-create-post-controller'
+export * from './make-delete-post-controller'
+export * from './make-update-post-controller'
+export * from './make-search-post-controller'
+export * from './make-fetch-post-controller'
