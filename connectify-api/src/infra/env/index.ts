@@ -7,13 +7,13 @@ const schemaEnv = z.object({
   PORT: z.coerce.number().default(3333),
   SUPABASE_KEY: z.string(),
   SUPABASE_BASEURL: z.string(),
-  SUPABASE_IMG_BASEUR: z.string()
+  SUPABASE_IMG_BASEURL: z.string()
 })
 
 const _env = schemaEnv.safeParse(process.env)
 
-if (_env.success === false) {
-  console.log("Error environment not passed", _env.error.format)
+if (!_env.success) {
+  console.log("Error environment not passed", _env.error)
 
   throw new Error()
 }

@@ -16,7 +16,7 @@ export class DeletePostController {
       const { postId } = deleteParams.parse(request.params)
         
 
-      const result = await this.deletePostUseCase.execute({
+      await this.deletePostUseCase.execute({
         postId
       })
 
