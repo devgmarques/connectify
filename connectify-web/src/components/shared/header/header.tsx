@@ -6,7 +6,7 @@ import { PiHandshake } from 'react-icons/pi'
 import { LuHome, LuUser } from 'react-icons/lu'
 import { LogOut } from 'lucide-react'
 
-import { getTokenData } from '@/utils/get-token-data'
+import { getTokenData } from '@/utils'
 
 import { SearchInput } from './search-input'
 import { LinkMenu } from './menu-links'
@@ -14,7 +14,7 @@ import { ActiveLink } from './active-link'
 
 import { ToggleTheme } from '../toggle-theme'
 import { ButtonLogout } from '../button-logout'
-import { Separator } from '../../ui/separator'
+import { Separator } from '../../ui'
 
 export function Header() {
   const [nickname, setNickname] = useState<string>()

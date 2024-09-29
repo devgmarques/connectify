@@ -4,14 +4,12 @@ import { useEffect, useState } from 'react'
 
 import Link from 'next/link'
 
-import { getTokenData } from '@/utils/get-token-data'
-import { User } from '@/types/user'
-import { Follow } from '@/types/follow'
-import { getProfile } from '@/http/get-profile'
-import { Button } from '@/components/ui/button'
-import { Spinner } from '@/components/shared/spinner'
-
-import { CardUser } from '../../shared/users/card-user'
+import { getTokenData } from '@/utils'
+import { Follow, User } from '@/types'
+import { getProfile } from '@/http'
+import { Button } from '@/components/ui'
+import { CardUser } from '@/components/shared/users'
+import { Spinner } from '@/components/shared'
 
 type UsersListProps = {
   users: User[]

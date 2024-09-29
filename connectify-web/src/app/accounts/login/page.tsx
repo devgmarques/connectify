@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 
-import { LoginForm } from '@/components/pages/accounts/login/login-form'
+import { LoginForm } from '@/components/pages/accounts/login'
 
 export const metadata: Metadata = {
   title: 'Login | connectify',

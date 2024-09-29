@@ -9,11 +9,8 @@ import Link from 'next/link'
 import { AxiosError } from 'axios'
 import { zodResolver } from '@hookform/resolvers/zod'
 
-import { registerUser } from '@/http/register-user'
-import { authenficate } from '@/http/authentificate'
-import { Label } from '@/components/ui/label'
-import { Input } from '@/components/ui/input'
-import { Button } from '@/components/ui/button'
+import { authenticate, registerUser } from '@/http'
+import { Button, Input, Label } from '@/components/ui'
 
 const schemaRegisterForm = z.object({
   name: z.string().nonempty('O nome deve ser preenchido.'),
@@ -41,7 +38,7 @@ export function RegisterForm() {
     try {
       await registerUser({ email, name, nickname, password })
 
-      const { token } = await authenficate({ email, password })
+      const { token } = await authenticate({ email, password })
 
       setCookie(undefined, 'connectify.token', JSON.stringify(token), {
         maxAge: 30 * 24 * 60 * 60,

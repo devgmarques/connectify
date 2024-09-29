@@ -6,7 +6,7 @@ import { toast } from 'sonner'
 import { destroyCookie } from 'nookies'
 import { useRouter } from 'next/navigation'
 
-import { Button } from '../ui/button'
+import { Button } from '../ui'
 
 interface ButtonLogoutProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   children: ReactNode

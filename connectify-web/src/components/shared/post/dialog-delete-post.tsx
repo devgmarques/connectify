@@ -5,8 +5,7 @@ import { PiTrashBold } from 'react-icons/pi'
 import { AxiosError } from 'axios'
 
 import { Post } from '@/types/post'
-import { deletePost } from '@/http/delete-post'
-import { Button } from '@/components/ui/button'
+import { deletePost } from '@/http'
 import {
   AlertDialog,
   AlertDialogAction,
@@ -17,14 +16,15 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
   AlertDialogTrigger,
-} from '@/components/ui/alert-dialog'
+  Button,
+} from '@/components/ui'
 
-type DeletePostDialog = {
+type DialogDeletePostProps = {
   id: number
   setData: Dispatch<SetStateAction<Post>>
 }
 
-export function DeletePostDialog({ id, setData }: DeletePostDialog) {
+export function DialogDeletePost({ id, setData }: DialogDeletePostProps) {
   async function handleDeletePost() {
     try {
       await deletePost({ postId: id })

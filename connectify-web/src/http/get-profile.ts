@@ -1,7 +1,7 @@
 import { User } from '@/types/user'
 import { Post } from '@/types/post'
 import { Follow } from '@/types/follow'
-import { api } from '@/lib/axios'
+import { api } from '@/lib'
 
 type GetProfileRequest = {
   nickname: string

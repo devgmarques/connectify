@@ -8,37 +8,39 @@ import { useForm } from 'react-hook-form'
 import { AxiosError } from 'axios'
 import { zodResolver } from '@hookform/resolvers/zod'
 
-import { User } from '@/types/user'
-import { uploadAvatar } from '@/http/upload-avatar'
-import { Input } from '@/components/ui/input'
+import { User } from '@/types'
+import { uploadAvatar } from '@/http'
 import {
+  Avatar,
+  AvatarFallback,
+  AvatarImage,
+  Button,
   Dialog,
   DialogContent,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from '@/components/ui/dialog'
-import { Button } from '@/components/ui/button'
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
+  Input,
+} from '@/components/ui'
 
-const schemaEditAvatar = z.object({
+const schemaUpdateAvatar = z.object({
   file: z.any(),
 })
 
-type EditAvatar = z.infer<typeof schemaEditAvatar>
+type UpdateAvatar = z.infer<typeof schemaUpdateAvatar>
 
-type EditAvatarDialogProps = {
+type DialogUpdateAvatarProps = {
   data: User
 }
 
-export function EditAvatarDialog({ data }: EditAvatarDialogProps) {
+export function DialogUpdateAvatar({ data }: DialogUpdateAvatarProps) {
   const [isOpen, setIsOpen] = useState<boolean>(false)
 
-  const { register, handleSubmit } = useForm<EditAvatar>({
-    resolver: zodResolver(schemaEditAvatar),
+  const { register, handleSubmit } = useForm<UpdateAvatar>({
+    resolver: zodResolver(schemaUpdateAvatar),
   })
 
-  async function onSubmit(data: EditAvatar) {
+  async function onSubmit(data: UpdateAvatar) {
     try {
       if (data.file.length < 1) {
         toast.error('Envie o arquivo corretamente.')

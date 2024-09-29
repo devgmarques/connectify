@@ -1,8 +1,8 @@
 import { ReactNode } from 'react'
 
-import { getTokenData } from '@/utils/get-token-data'
-import { getProfile } from '@/http/get-profile'
-import { Suggestions } from '@/components/shared/suggestions'
+import { getTokenData } from '@/utils'
+import { getProfile } from '@/http'
+import { Suggestions } from '@/components/shared'
 
 type ProfileLayoutProps = {
   children: ReactNode

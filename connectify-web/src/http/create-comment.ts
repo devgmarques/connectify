@@ -1,5 +1,5 @@
 import { Comment } from '@/types/comment'
-import { api } from '@/lib/axios'
+import { api } from '@/lib'
 
 type CreateCommentRequest = {
   postId: number

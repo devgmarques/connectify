@@ -2,13 +2,12 @@
 
 import { useCallback, useEffect, useState } from 'react'
 
-import { getTokenData } from '@/utils/get-token-data'
-import { User } from '@/types/user'
-import { Follow } from '@/types/follow'
-import { getProfile } from '@/http/get-profile'
-import { Skeleton } from '@/components/ui/skeleton'
-import { CardUser } from '@/components/shared/users/card-user'
-import { Pagination } from '@/components/shared/pagination'
+import { getTokenData } from '@/utils'
+import { Follow, User } from '@/types'
+import { getProfile } from '@/http'
+import { Skeleton } from '@/components/ui'
+import { CardUser } from '@/components/shared/users'
+import { Pagination } from '@/components/shared'
 
 type GridProps = {
   users: User[]

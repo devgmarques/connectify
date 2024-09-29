@@ -1,5 +1,5 @@
 import { User } from '@/types/user'
-import { api } from '@/lib/axios'
+import { api } from '@/lib'
 
 type SearchUsersRequest = {
   query: string

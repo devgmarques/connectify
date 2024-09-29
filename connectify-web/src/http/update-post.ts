@@ -1,7 +1,7 @@
 import { Post } from '@/types/post'
-import { api } from '@/lib/axios'
+import { api } from '@/lib'
 
-type EditPostRequest = {
+type UpdatePostRequest = {
   body: string
   title: string
   id: number
@@ -10,18 +10,18 @@ type EditPostRequest = {
   createdAt: string
 }
 
-type EditPostResponse = {
+type UpdatePostResponse = {
   post: Post
 }
 
-export async function editPost({
+export async function updatePost({
   body,
   title,
   author,
   createdAt,
   id: postId,
   userId,
-}: EditPostRequest): Promise<EditPostResponse> {
+}: UpdatePostRequest): Promise<UpdatePostResponse> {
   const post = await api.put(`/me/posts/${postId}`, {
     body,
     title,

@@ -7,9 +7,8 @@ import { AxiosError } from 'axios'
 import { zodResolver } from '@hookform/resolvers/zod'
 
 import { Post } from '@/types/post'
-import { createComment } from '@/http/create-comment'
-import { Input } from '@/components/ui/input'
-import { Button } from '@/components/ui/button'
+import { createComment } from '@/http'
+import { Button, Input } from '@/components/ui'
 
 const schemaCommentForm = z.object({
   body: z

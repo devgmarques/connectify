@@ -11,21 +11,20 @@ import { useRouter } from 'next/navigation'
 import { AxiosError } from 'axios'
 import { zodResolver } from '@hookform/resolvers/zod'
 
-import { editProfile } from '@/http/edit-profile'
-import { authenficate } from '@/http/authentificate'
-import { Label } from '@/components/ui/label'
-import { Input } from '@/components/ui/input'
+import { authenticate, updateProfile } from '@/http'
 import {
+  Button,
   Dialog,
   DialogContent,
   DialogDescription,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from '@/components/ui/dialog'
-import { Button } from '@/components/ui/button'
+  Input,
+  Label,
+} from '@/components/ui'
 
-const schemaEditProfile = z.object({
+const schemaUpdateProfile = z.object({
   name: z.string().nonempty('O nome deve ser preenchido.'),
   details: z.string(),
   nickname: z
@@ -34,9 +33,9 @@ const schemaEditProfile = z.object({
   password: z.string().min(6, 'A senha deve conter no mínimo 6 dígitos.'),
 })
 
-type EditProfile = z.infer<typeof schemaEditProfile>
+type UpdateProfile = z.infer<typeof schemaUpdateProfile>
 
-type EditProfileProps = {
+type DialogUpdateProfileProps = {
   data: {
     email: string
     password: string
@@ -46,28 +45,33 @@ type EditProfileProps = {
   }
 }
 
-export function EditProfile({
+export function DialogUpdateProfile({
   data: { details, email, name, nickname, password },
-}: EditProfileProps) {
+}: DialogUpdateProfileProps) {
   const [isOpen, setIsOpen] = useState<boolean>(false)
 
-  const { register, handleSubmit, formState } = useForm<EditProfile>({
+  const { register, handleSubmit, formState } = useForm<UpdateProfile>({
     defaultValues: {
       name,
       details: details ?? '',
       nickname,
       password,
     },
-    resolver: zodResolver(schemaEditProfile),
+    resolver: zodResolver(schemaUpdateProfile),
   })
 
   const router = useRouter()
 
-  async function onSubmit({ details, name, nickname, password }: EditProfile) {
+  async function onSubmit({
+    details,
+    name,
+    nickname,
+    password,
+  }: UpdateProfile) {
     try {
-      await editProfile({ details, email, name, nickname, password })
+      await updateProfile({ details, email, name, nickname, password })
 
-      const { token } = await authenficate({ email, password })
+      const { token } = await authenticate({ email, password })
 
       setCookie(undefined, 'connectify.token', JSON.stringify(token), {
         maxAge: 30 * 24 * 60 * 60,
@@ -100,9 +104,9 @@ export function EditProfile({
 
       <DialogContent className="w-72  sm:w-96">
         <DialogHeader>
-          <DialogTitle>Editar perfil</DialogTitle>
+          <DialogTitle>Updatear perfil</DialogTitle>
           <DialogDescription>
-            Informe os campos necessários para editar perfil
+            Informe os campos necessários para Updatear perfil
           </DialogDescription>
         </DialogHeader>
 
@@ -148,7 +152,7 @@ export function EditProfile({
           </div>
 
           <Button type="submit" variant="default" className="w-full">
-            Editar
+            Updatear
           </Button>
         </form>
       </DialogContent>

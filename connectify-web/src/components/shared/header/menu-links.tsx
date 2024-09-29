@@ -3,12 +3,12 @@ import { LuHome, LuUser } from 'react-icons/lu'
 import { LogOut } from 'lucide-react'
 
 import {
+  Button,
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu'
-import { Button } from '@/components/ui/button'
+} from '@/components/ui'
 
 import { ActiveLink } from './active-link'
 

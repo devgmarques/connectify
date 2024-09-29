@@ -10,33 +10,33 @@ import { AxiosError } from 'axios'
 import { zodResolver } from '@hookform/resolvers/zod'
 
 import { Post } from '@/types/post'
-import { editPost } from '@/http/edit-post'
-import { Textarea } from '@/components/ui/textarea'
-import { Label } from '@/components/ui/label'
-import { Input } from '@/components/ui/input'
+import { updatePost } from '@/http'
 import {
+  Button,
   Dialog,
   DialogContent,
   DialogDescription,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from '@/components/ui/dialog'
-import { Button } from '@/components/ui/button'
+  Input,
+  Label,
+  Textarea,
+} from '@/components/ui'
 
-const schemaEditPost = z.object({
+const schemaUpdatePost = z.object({
   title: z.string().nonempty({ message: 'O titulo não pode ser vazio.' }),
   body: z.string().nonempty({ message: 'O corpo não pode ser vazio.' }),
 })
 
-type CreatePost = z.infer<typeof schemaEditPost>
+type CreatePost = z.infer<typeof schemaUpdatePost>
 
-type EditPostDialogProps = {
+type DialogUpdatePostProps = {
   data: Post
   setData: Dispatch<SetStateAction<Post>>
 }
 
-export function EditPostDialog({ data, setData }: EditPostDialogProps) {
+export function DialogUpdatePost({ data, setData }: DialogUpdatePostProps) {
   const [isOpen, setIsOpen] = useState<boolean>(false)
 
   const { register, handleSubmit, formState } = useForm<CreatePost>({
@@ -44,12 +44,12 @@ export function EditPostDialog({ data, setData }: EditPostDialogProps) {
       title: data.title,
       body: data.body,
     },
-    resolver: zodResolver(schemaEditPost),
+    resolver: zodResolver(schemaUpdatePost),
   })
 
   async function onSubmit({ body, title }: CreatePost) {
     try {
-      const { post } = await editPost({
+      const { post } = await updatePost({
         id: data.id,
         body,
         title,
@@ -58,7 +58,7 @@ export function EditPostDialog({ data, setData }: EditPostDialogProps) {
         createdAt: data.createdAt,
       })
 
-      toast.success('A publicação foi editada com sucesso.')
+      toast.success('A publicação foi Updateada com sucesso.')
 
       setData(post)
     } catch (err) {
@@ -84,15 +84,15 @@ export function EditPostDialog({ data, setData }: EditPostDialogProps) {
           className="flex gap-3 bg-transparent hover:bg-transparent p-0 m-0"
         >
           <PiNotePencilBold className="w-5 h-5" />
-          Editar esta publicação
+          Updatear esta publicação
         </Button>
       </DialogTrigger>
 
       <DialogContent className="w-72 sm:w-96">
         <DialogHeader>
-          <DialogTitle>Editar publicação</DialogTitle>
+          <DialogTitle>Updatear publicação</DialogTitle>
           <DialogDescription>
-            Informe os campos necessários para editar sua publicação
+            Informe os campos necessários para Updatear sua publicação
           </DialogDescription>
         </DialogHeader>
 
@@ -123,7 +123,7 @@ export function EditPostDialog({ data, setData }: EditPostDialogProps) {
             className="w-full"
             disabled={formState.isSubmitting ?? true}
           >
-            Editar
+            Updatear
           </Button>
         </form>
       </DialogContent>

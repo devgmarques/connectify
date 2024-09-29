@@ -4,18 +4,14 @@ import { useEffect, useState } from 'react'
 
 import { PiChatTextBold } from 'react-icons/pi'
 
-import { getTokenData } from '@/utils/get-token-data'
-import { User } from '@/types/user'
-import { Post } from '@/types/post'
-import { Follow } from '@/types/follow'
-import { Separator } from '@/components/ui/separator'
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
-import { CardPost } from '@/components/shared/post/card-post'
+import { getTokenData } from '@/utils'
+import { Follow, Post, User } from '@/types'
+import { Avatar, AvatarFallback, AvatarImage, Separator } from '@/components/ui'
+import { CardPost } from '@/components/shared/post/card'
+import { DialogCreatePost } from '@/components/shared/post'
 
-import { EditProfile } from './edit-profile'
-import { EditAvatarDialog } from './edit-avatar'
-
-import { CreatePostDialog } from '../../shared/post/create-post'
+import { DialogUpdateProfile } from './dialog-update-profile'
+import { DialogUpdateAvatar } from './dialog-update-avatar'
 
 type GridProps = {
   data: {
@@ -45,7 +41,7 @@ export function Grid({ data: { follows, posts, user } }: GridProps) {
         <div className="w-full flex flex-col gap-5 items-center justify-between md:flex-row">
           <div className="flex gap-5 items-center">
             {isMyProfile ? (
-              <EditAvatarDialog data={user} />
+              <DialogUpdateAvatar data={user} />
             ) : (
               <Avatar className="z-0 w-20 h-20">
                 <AvatarImage src={user.url_avatar} alt="Avatar" />
@@ -66,7 +62,7 @@ export function Grid({ data: { follows, posts, user } }: GridProps) {
                 </h2>
 
                 {isMyProfile && (
-                  <EditProfile
+                  <DialogUpdateProfile
                     data={{
                       email: user.email,
                       details: user.details ?? '',
@@ -113,7 +109,7 @@ export function Grid({ data: { follows, posts, user } }: GridProps) {
         <div className="w-full flex justify-between gap-5">
           <h2>Minhas publicações</h2>
 
-          {isMyProfile && <CreatePostDialog setPostsState={setPostsState} />}
+          {isMyProfile && <DialogCreatePost setPostsState={setPostsState} />}
         </div>
       </header>
 

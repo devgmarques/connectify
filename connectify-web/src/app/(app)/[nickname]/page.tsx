@@ -1,8 +1,8 @@
 import { notFound } from 'next/navigation'
 import type { Metadata } from 'next'
 
-import { getProfile } from '@/http/get-profile'
-import { Grid } from '@/components/pages/profile/grid'
+import { getProfile } from '@/http'
+import { Grid } from '@/components/pages/profile'
 
 type ProfileProps = {
   params: { nickname: string }

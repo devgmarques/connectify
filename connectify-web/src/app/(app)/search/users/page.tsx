@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 
-import { searchUsers } from '@/http/search-users'
-import { Grid } from '@/components/pages/search/users/grid'
+import { searchUsers } from '@/http'
+import { Grid } from '@/components/pages/search/users'
 
 export const metadata: Metadata = {
   title: 'Usuários | connectify',

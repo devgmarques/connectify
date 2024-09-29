@@ -1,10 +1,10 @@
 import type { Metadata } from 'next'
 
-import { fetchPosts } from '@/http/fetch-posts'
-import { Skeleton } from '@/components/ui/skeleton'
-import { CreatePostDialog } from '@/components/shared/post/create-post'
-import { LoadMore } from '@/components/shared/load-more'
-import { Grid } from '@/components/pages/feed/grid'
+import { fetchPosts } from '@/http'
+import { Skeleton } from '@/components/ui'
+import { DialogCreatePost } from '@/components/shared/post'
+import { LoadMore } from '@/components/shared'
+import { Grid } from '@/components/pages/feed'
 
 export const metadata: Metadata = {
   title: 'Feed | connectify',
@@ -36,7 +36,7 @@ export default async function Feed() {
     <section className="flex m-auto max-w-[750px] flex-col gap-5 items-center py-5 px-5 sm:px-10">
       <header className="flex justify-between items-center w-full px-4 py-3 bg-background rounded-md border border-foreground/20">
         <p>Digite o que está pensando</p>
-        <CreatePostDialog />
+        <DialogCreatePost />
       </header>
 
       <Grid posts={posts} />

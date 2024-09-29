@@ -8,9 +8,9 @@ import { ptBR } from 'date-fns/locale'
 import { formatDistanceToNow } from 'date-fns'
 
 import { Post } from '@/types/post'
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui'
 
-import { FooterCard } from './footer-card'
+import { FooterCard } from './card-footer'
 import { ButtonOpenOperations } from './button-open-operations'
 
 type CardPostProps = {

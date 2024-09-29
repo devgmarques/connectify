@@ -9,10 +9,8 @@ import Link from 'next/link'
 import { AxiosError } from 'axios'
 import { zodResolver } from '@hookform/resolvers/zod'
 
-import { authenficate } from '@/http/authentificate'
-import { Label } from '@/components/ui/label'
-import { Input } from '@/components/ui/input'
-import { Button } from '@/components/ui/button'
+import { authenticate } from '@/http'
+import { Button, Input, Label } from '@/components/ui'
 
 const schemaLoginForm = z.object({
   email: z.string().email({ message: 'Email invalido' }),
@@ -30,7 +28,7 @@ export function LoginForm() {
 
   async function onSubmit({ email, password }: LoginForm) {
     try {
-      const { token } = await authenficate({ email, password })
+      const { token } = await authenticate({ email, password })
 
       toast.success('Você fez o login com sucesso, aguarde.')
 

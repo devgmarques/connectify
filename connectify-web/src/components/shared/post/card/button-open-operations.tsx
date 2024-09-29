@@ -6,17 +6,17 @@ import { PiDotsThreeVerticalBold } from 'react-icons/pi'
 
 import { Post } from '@/types/post'
 import {
+  Button,
   DropdownMenu,
   DropdownMenuCheckboxItem,
   DropdownMenuContent,
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu'
-import { Button } from '@/components/ui/button'
+} from '@/components/ui'
 
-import { EditPostDialog } from './edit-post'
-import { DeletePostDialog } from './delete-post'
+import { DialogUpdatePost } from '../dialog-update-post'
+import { DialogDeletePost } from '../dialog-delete-post'
 
 type ButtonOpenOperationsProps = {
   data: Post
@@ -53,13 +53,13 @@ export function ButtonOpenOperations({
 
         <DropdownMenuCheckboxItem className="p-2">
           <div onClick={handleDialogClick}>
-            <EditPostDialog data={data} setData={setData} />
+            <DialogUpdatePost data={data} setData={setData} />
           </div>
         </DropdownMenuCheckboxItem>
 
         <DropdownMenuCheckboxItem className="p-2">
           <div onClick={handleDialogClick}>
-            <DeletePostDialog id={data.id} setData={setData} />
+            <DialogDeletePost id={data.id} setData={setData} />
           </div>
         </DropdownMenuCheckboxItem>
       </DropdownMenuContent>

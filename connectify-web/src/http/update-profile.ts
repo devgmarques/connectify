@@ -1,6 +1,6 @@
-import { api } from '@/lib/axios'
+import { api } from '@/lib'
 
-type EditProfileRequest = {
+type UpdateProfileRequest = {
   email: string
   password: string
   details: string | null
@@ -8,14 +8,14 @@ type EditProfileRequest = {
   nickname: string
 }
 
-type EditProfileResponse = void
+type UpdateProfileResponse = void
 
-export async function editProfile({
+export async function updateProfile({
   email,
   name,
   nickname,
   password,
   details,
-}: EditProfileRequest): Promise<EditProfileResponse> {
+}: UpdateProfileRequest): Promise<UpdateProfileResponse> {
   await api.put('/user', { details, name, nickname, password, email })
 }

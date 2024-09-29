@@ -2,8 +2,8 @@ import { ReactNode } from 'react'
 
 import { redirect } from 'next/navigation'
 
-import { Header } from '@/components/shared/header/header'
-import { isAuthenticated } from '@/auth/auth'
+import { Header } from '@/components/shared/header'
+import { isAuthenticated } from '@/auth'
 
 type AppLayoutProps = {
   children: ReactNode

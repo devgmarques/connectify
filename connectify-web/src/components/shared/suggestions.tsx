@@ -2,14 +2,11 @@
 
 import { useEffect, useState } from 'react'
 
-import { User } from '@/types/user'
-import { Follow } from '@/types/follow'
-import { fetchUsers } from '@/http/fetch-users'
-import { Separator } from '@/components/ui/separator'
+import { Follow, User } from '@/types'
+import { fetchUsers } from '@/http'
+import { Separator, Skeleton } from '@/components/ui'
 
-import { CardUser } from './users/card-user'
-
-import { Skeleton } from '../ui/skeleton'
+import { CardUser } from './users'
 
 type SuggestionsProps = {
   follows: Follow

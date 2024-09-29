@@ -3,7 +3,7 @@
 import { useState } from 'react'
 
 import { User } from '@/types/user'
-import { createFollow } from '@/http/create-follow'
+import { createFollow } from '@/http'
 
 type ButtonFollowProps = {
   data: User

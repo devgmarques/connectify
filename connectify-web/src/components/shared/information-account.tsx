@@ -3,20 +3,19 @@
 import { User } from '@/types/user'
 import { Post } from '@/types/post'
 import { Follow } from '@/types/follow'
-import { Separator } from '@/components/ui/separator'
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
+import { Avatar, AvatarFallback, AvatarImage, Separator } from '@/components/ui'
 
-type InformationsAccountProps = {
+type InformationAccountProps = {
   follows: Follow
   posts: Post[]
   user: User
 }
 
-export function InformationsAccount({
+export function InformationAccount({
   follows,
   posts,
   user,
-}: InformationsAccountProps) {
+}: InformationAccountProps) {
   return (
     <aside className="rounded-md w-64 my-5 p-4 bg-background flex flex-col gap-3 justify-center items-center border border-foreground/20">
       <Avatar className="z-0 w-20 h-20">

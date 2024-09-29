@@ -9,19 +9,19 @@ import { AxiosError } from 'axios'
 import { zodResolver } from '@hookform/resolvers/zod'
 
 import { Post } from '@/types/post'
-import { createPost } from '@/http/create-post'
-import { Textarea } from '@/components/ui/textarea'
-import { Label } from '@/components/ui/label'
-import { Input } from '@/components/ui/input'
+import { createPost } from '@/http'
 import {
+  Button,
   Dialog,
   DialogContent,
   DialogDescription,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from '@/components/ui/dialog'
-import { Button } from '@/components/ui/button'
+  Input,
+  Label,
+  Textarea,
+} from '@/components/ui'
 
 const schemaCreatePost = z.object({
   title: z.string().nonempty({ message: 'O titulo não pode ser vazio.' }),
@@ -30,11 +30,11 @@ const schemaCreatePost = z.object({
 
 type CreatePost = z.infer<typeof schemaCreatePost>
 
-type CreatePostDialogProps = {
+type DialogCreatePostProps = {
   setPostsState?: Dispatch<SetStateAction<Post[]>>
 }
 
-export function CreatePostDialog({ setPostsState }: CreatePostDialogProps) {
+export function DialogCreatePost({ setPostsState }: DialogCreatePostProps) {
   const [isOpen, setIsOpen] = useState<boolean>(false)
 
   const { register, handleSubmit, formState } = useForm<CreatePost>({

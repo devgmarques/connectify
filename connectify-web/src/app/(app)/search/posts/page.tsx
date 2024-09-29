@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 
-import { searchPosts } from '@/http/search-posts'
-import { Grid } from '@/components/pages/search/posts/grid'
+import { searchPosts } from '@/http'
+import { Grid } from '@/components/pages/search/posts'
 
 export const metadata: Metadata = {
   title: 'Postagens | connectify',

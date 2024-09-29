@@ -4,10 +4,10 @@ import { Dispatch, SetStateAction, useEffect, useState } from 'react'
 
 import { PiHeartBold } from 'react-icons/pi'
 
-import { getTokenData } from '@/utils/get-token-data'
-import { Post } from '@/types/post'
-import { createLike } from '@/http/create-like'
-import { Toggle } from '@/components/ui/toggle'
+import { getTokenData } from '@/utils'
+import { Post } from '@/types'
+import { createLike } from '@/http'
+import { Toggle } from '@/components/ui'
 
 type ButtonLikeProps = {
   data: Post

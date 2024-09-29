@@ -1,10 +1,9 @@
 import Link from 'next/link'
 
-import { User } from '@/types/user'
-import { Follow } from '@/types/follow'
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
+import { Follow, User } from '@/types'
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui'
 
-import { ButtonFollow } from '../follow/button-follow'
+import { ButtonFollow } from '../follow'
 
 type CardUserProps = {
   data: User
