@@ -7,10 +7,10 @@ import Link from 'next/link'
 import { ptBR } from 'date-fns/locale'
 import { formatDistanceToNow } from 'date-fns'
 
-import { Post } from '@/types'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui'
 import { ButtonLike } from '@/components/shared/like'
 import { ButtonComment, FormComment } from '@/components/shared/comment'
+import { Post } from '@/@types'
 
 type FooterCardProps = {
   data: Post

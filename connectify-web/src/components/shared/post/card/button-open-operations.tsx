@@ -4,7 +4,6 @@ import { Dispatch, SetStateAction, useState } from 'react'
 
 import { PiDotsThreeVerticalBold } from 'react-icons/pi'
 
-import { Post } from '@/types/post'
 import {
   Button,
   DropdownMenu,
@@ -14,6 +13,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui'
+import { Post } from '@/@types'
 
 import { DialogUpdatePost } from '../dialog-update-post'
 import { DialogDeletePost } from '../dialog-delete-post'

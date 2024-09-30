@@ -1,5 +1,5 @@
-import { User } from '@/types/user'
 import { api } from '@/lib'
+import { User } from '@/@types'
 
 type FetchUsersResponse = {
   users: User[]

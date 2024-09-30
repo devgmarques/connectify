@@ -1,8 +1,8 @@
 import Link from 'next/link'
 
-import { Post } from '@/types'
 import { Button } from '@/components/ui'
 import { CardPost } from '@/components/shared/post/card'
+import { Post } from '@/@types'
 
 type PostsList = {
   posts: Post[]

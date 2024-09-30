@@ -2,8 +2,8 @@
 
 import { useState } from 'react'
 
-import { User } from '@/types/user'
 import { createFollow } from '@/http'
+import { User } from '@/@types'
 
 type ButtonFollowProps = {
   data: User

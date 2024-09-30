@@ -7,8 +7,8 @@ import Link from 'next/link'
 import { ptBR } from 'date-fns/locale'
 import { formatDistanceToNow } from 'date-fns'
 
-import { Post } from '@/types/post'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui'
+import { Post } from '@/@types'
 
 import { FooterCard } from './card-footer'
 import { ButtonOpenOperations } from './button-open-operations'

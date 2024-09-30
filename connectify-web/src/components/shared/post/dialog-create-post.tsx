@@ -8,7 +8,6 @@ import { useForm } from 'react-hook-form'
 import { AxiosError } from 'axios'
 import { zodResolver } from '@hookform/resolvers/zod'
 
-import { Post } from '@/types/post'
 import { createPost } from '@/http'
 import {
   Button,
@@ -22,6 +21,7 @@ import {
   Label,
   Textarea,
 } from '@/components/ui'
+import { Post } from '@/@types'
 
 const schemaCreatePost = z.object({
   title: z.string().nonempty({ message: 'O titulo não pode ser vazio.' }),

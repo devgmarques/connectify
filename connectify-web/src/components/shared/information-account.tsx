@@ -1,9 +1,7 @@
 'use client'
 
-import { User } from '@/types/user'
-import { Post } from '@/types/post'
-import { Follow } from '@/types/follow'
 import { Avatar, AvatarFallback, AvatarImage, Separator } from '@/components/ui'
+import { Follow, Post, User } from '@/@types'
 
 type InformationAccountProps = {
   follows: Follow

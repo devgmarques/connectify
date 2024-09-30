@@ -3,11 +3,11 @@
 import { useCallback, useEffect, useState } from 'react'
 
 import { getTokenData } from '@/utils'
-import { Follow, User } from '@/types'
 import { getProfile } from '@/http'
 import { Skeleton } from '@/components/ui'
 import { CardUser } from '@/components/shared/users'
 import { Pagination } from '@/components/shared'
+import { Follow, User } from '@/@types'
 
 type GridProps = {
   users: User[]

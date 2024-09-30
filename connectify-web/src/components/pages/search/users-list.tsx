@@ -5,11 +5,11 @@ import { useEffect, useState } from 'react'
 import Link from 'next/link'
 
 import { getTokenData } from '@/utils'
-import { Follow, User } from '@/types'
 import { getProfile } from '@/http'
 import { Button } from '@/components/ui'
 import { CardUser } from '@/components/shared/users'
 import { Spinner } from '@/components/shared'
+import { Follow, User } from '@/@types'
 
 type UsersListProps = {
   users: User[]

@@ -1,7 +1,7 @@
 import Link from 'next/link'
 
-import { Follow, User } from '@/types'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui'
+import { Follow, User } from '@/@types'
 
 import { ButtonFollow } from '../follow'
 

@@ -1,7 +1,6 @@
 import Image from 'next/image'
 import type { Metadata } from 'next'
 
-import searchEngines from '@/public/images/search-engines.svg'
 import { searchPosts, searchUsers } from '@/http'
 import { Grid } from '@/components/pages/search'
 
@@ -24,7 +23,7 @@ export default async function Search({ searchParams: { q } }: SearchProps) {
       <section className="flex m-auto max-w-[750px] flex-col items-center py-5 px-5 sm:px-10">
         <div className="w-full overflow-hidden px-7 py-5 flex flex-col bg-background rounded-md border border-foreground/20">
           <Image
-            src={searchEngines}
+            src="/images/search-engines.svg"
             alt="Pesquisar novamente"
             className="max-w-full sm:max-w-96 m-auto"
           />

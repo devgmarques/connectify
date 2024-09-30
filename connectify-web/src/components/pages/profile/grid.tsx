@@ -5,10 +5,10 @@ import { useEffect, useState } from 'react'
 import { PiChatTextBold } from 'react-icons/pi'
 
 import { getTokenData } from '@/utils'
-import { Follow, Post, User } from '@/types'
 import { Avatar, AvatarFallback, AvatarImage, Separator } from '@/components/ui'
 import { CardPost } from '@/components/shared/post/card'
 import { DialogCreatePost } from '@/components/shared/post'
+import { Follow, Post, User } from '@/@types'
 
 import { DialogUpdateProfile } from './dialog-update-profile'
 import { DialogUpdateAvatar } from './dialog-update-avatar'

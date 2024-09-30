@@ -1,5 +1,5 @@
-import { Post } from '@/types/post'
 import { api } from '@/lib'
+import { Post } from '@/@types'
 
 type FetchPostsRequest = {
   page: number

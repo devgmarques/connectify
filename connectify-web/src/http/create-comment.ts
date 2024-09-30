@@ -1,5 +1,5 @@
-import { Comment } from '@/types/comment'
 import { api } from '@/lib'
+import { Comment } from '@/@types'
 
 type CreateCommentRequest = {
   postId: number

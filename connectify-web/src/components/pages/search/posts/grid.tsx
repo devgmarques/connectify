@@ -1,6 +1,6 @@
-import { Post } from '@/types/post'
 import { CardPost } from '@/components/shared/post/card'
 import { Pagination } from '@/components/shared'
+import { Post } from '@/@types'
 
 type GridProps = {
   posts: Post[]

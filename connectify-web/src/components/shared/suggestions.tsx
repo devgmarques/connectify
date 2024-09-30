@@ -2,9 +2,9 @@
 
 import { useEffect, useState } from 'react'
 
-import { Follow, User } from '@/types'
 import { fetchUsers } from '@/http'
 import { Separator, Skeleton } from '@/components/ui'
+import { Follow, User } from '@/@types'
 
 import { CardUser } from './users'
 

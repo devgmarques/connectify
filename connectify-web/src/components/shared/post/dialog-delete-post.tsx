@@ -4,7 +4,6 @@ import { toast } from 'sonner'
 import { PiTrashBold } from 'react-icons/pi'
 import { AxiosError } from 'axios'
 
-import { Post } from '@/types/post'
 import { deletePost } from '@/http'
 import {
   AlertDialog,
@@ -18,6 +17,7 @@ import {
   AlertDialogTrigger,
   Button,
 } from '@/components/ui'
+import { Post } from '@/@types'
 
 type DialogDeletePostProps = {
   id: number

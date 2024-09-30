@@ -5,9 +5,9 @@ import { Dispatch, SetStateAction, useEffect, useState } from 'react'
 import { PiHeartBold } from 'react-icons/pi'
 
 import { getTokenData } from '@/utils'
-import { Post } from '@/types'
 import { createLike } from '@/http'
 import { Toggle } from '@/components/ui'
+import { Post } from '@/@types'
 
 type ButtonLikeProps = {
   data: Post

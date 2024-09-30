@@ -6,9 +6,9 @@ import { useForm } from 'react-hook-form'
 import { AxiosError } from 'axios'
 import { zodResolver } from '@hookform/resolvers/zod'
 
-import { Post } from '@/types/post'
 import { createComment } from '@/http'
 import { Button, Input } from '@/components/ui'
+import { Post } from '@/@types'
 
 const schemaCommentForm = z.object({
   body: z

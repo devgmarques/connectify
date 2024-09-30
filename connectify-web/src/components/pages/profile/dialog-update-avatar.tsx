@@ -8,7 +8,6 @@ import { useForm } from 'react-hook-form'
 import { AxiosError } from 'axios'
 import { zodResolver } from '@hookform/resolvers/zod'
 
-import { User } from '@/types'
 import { uploadAvatar } from '@/http'
 import {
   Avatar,
@@ -22,6 +21,7 @@ import {
   DialogTrigger,
   Input,
 } from '@/components/ui'
+import { User } from '@/@types'
 
 const schemaUpdateAvatar = z.object({
   file: z.any(),

@@ -1,8 +1,6 @@
 import Image from 'next/image'
 
-import { User } from '@/types/user'
-import { Post } from '@/types/post'
-import searchEngines from '@/public/images/search-engines.svg'
+import { Post, User } from '@/@types'
 
 import { UsersList } from './users-list'
 import { PostsList } from './posts-list'
@@ -37,7 +35,7 @@ export function Grid({ postsData, usersData, query }: GridProps) {
       {!userLengthBigger0 && !postLengthBigger0 && (
         <div className="w-full overflow-hidden px-7 py-5 flex flex-col bg-background rounded-md border border-foreground/20">
           <Image
-            src={searchEngines}
+            src="/images/search-engines.svg"
             alt="Pesquisar novamente"
             className="max-w-full sm:max-w-96 m-auto"
           />
