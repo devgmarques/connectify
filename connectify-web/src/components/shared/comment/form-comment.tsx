@@ -36,7 +36,7 @@ export function FormComment({
 
   async function onSubmit({ body }: CommentForm) {
     try {
-      const { comment } = await createComment({ body, postId })
+      const comment = await createComment({ body, postId })
 
       toast.success('Você realizou um comentário com sucesso.')
 

@@ -19,7 +19,7 @@ export function Suggestions({ follows }: SuggestionsProps) {
     async function fetchData() {
       const usersResponse = await fetchUsers()
 
-      setUsers(usersResponse.users)
+      setUsers(usersResponse)
     }
 
     fetchData()

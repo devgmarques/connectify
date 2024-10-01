@@ -20,7 +20,7 @@ export function LoadMore() {
   const loadMoreCustomer = useCallback(async () => {
     const nextPage = page + 1
 
-    const { posts: newPosts } = (await fetchPosts({ page: nextPage })) ?? []
+    const newPosts = (await fetchPosts({ page: nextPage })) ?? []
 
     if (newPosts.length < 1) {
       setLoading(false)

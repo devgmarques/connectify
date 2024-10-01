@@ -1,4 +1,4 @@
-import { Upload } from "@/domain/entities/upload"
+import { File } from "@/domain/entities"
 
 export interface IUploadUserUseCase {
   execute(input: IUploadUserUseCase.Input): IUploadUserUseCase.Output
@@ -6,7 +6,7 @@ export interface IUploadUserUseCase {
 
 export namespace IUploadUserUseCase {
   export type Input = {
-    file: Upload.File
+    file: File
     userId: string
   }
 

@@ -18,7 +18,7 @@ export function ButtonLike({ data, setData }: ButtonLikeProps) {
   const [isPostLiked, setIsPostLiked] = useState<boolean>(false)
 
   async function handleClick() {
-    const { like: isLiked } = await createLike({ postId: data.id })
+    const isLiked = await createLike({ postId: data.id })
 
     setData((state) => {
       return {

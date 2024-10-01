@@ -4,9 +4,7 @@ type CreateLikeRequest = {
   postId: number
 }
 
-type CreateLikeResponse = {
-  like: boolean
-}
+type CreateLikeResponse = boolean
 
 export async function createLike({
   postId,

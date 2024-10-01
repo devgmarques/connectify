@@ -6,9 +6,7 @@ type CreateCommentRequest = {
   body: string
 }
 
-type CreateCommentResponse = {
-  comment: Comment
-}
+type CreateCommentResponse = Comment
 
 export async function createComment({
   body,

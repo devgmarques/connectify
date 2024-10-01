@@ -104,9 +104,9 @@ export function DialogUpdateProfile({
 
       <DialogContent className="w-72  sm:w-96">
         <DialogHeader>
-          <DialogTitle>Updatear perfil</DialogTitle>
+          <DialogTitle>Atualizar perfil</DialogTitle>
           <DialogDescription>
-            Informe os campos necessários para Updatear perfil
+            Informe os campos necessários para Atualizar perfil
           </DialogDescription>
         </DialogHeader>
 
@@ -152,7 +152,7 @@ export function DialogUpdateProfile({
           </div>
 
           <Button type="submit" variant="default" className="w-full">
-            Updatear
+            Atualizar
           </Button>
         </form>
       </DialogContent>

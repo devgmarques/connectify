@@ -8,14 +8,15 @@ export class UploadUserController {
   async handle(request: FastifyRequest, reply: FastifyReply) {
     try {
       const file = await request.file()
-
+      
       await this.uploadUserUseCase.execute({
         userId: request.user.sub,
-        file: file
+        file: file as any
       })
 
       return reply.status(201).send()
     } catch (error: any) {
+      console.log(error.message)
       return reply.status(500).send()
     }
   }

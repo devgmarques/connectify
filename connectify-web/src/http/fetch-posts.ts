@@ -5,9 +5,7 @@ type FetchPostsRequest = {
   page: number
 }
 
-type FetchPostsResponse = {
-  posts: Post[]
-}
+type FetchPostsResponse = Post[]
 
 export async function fetchPosts({
   page,

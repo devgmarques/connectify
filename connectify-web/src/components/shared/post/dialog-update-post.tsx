@@ -84,15 +84,15 @@ export function DialogUpdatePost({ data, setData }: DialogUpdatePostProps) {
           className="flex gap-3 bg-transparent hover:bg-transparent p-0 m-0"
         >
           <PiNotePencilBold className="w-5 h-5" />
-          Updatear esta publicação
+          Atualizar esta publicação
         </Button>
       </DialogTrigger>
 
       <DialogContent className="w-72 sm:w-96">
         <DialogHeader>
-          <DialogTitle>Updatear publicação</DialogTitle>
+          <DialogTitle>Atualizar publicação</DialogTitle>
           <DialogDescription>
-            Informe os campos necessários para Updatear sua publicação
+            Informe os campos necessários para Atualizar sua publicação
           </DialogDescription>
         </DialogHeader>
 
@@ -123,7 +123,7 @@ export function DialogUpdatePost({ data, setData }: DialogUpdatePostProps) {
             className="w-full"
             disabled={formState.isSubmitting ?? true}
           >
-            Updatear
+            Atualizar
           </Button>
         </form>
       </DialogContent>

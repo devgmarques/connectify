@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 }
 
 export default async function Feed() {
-  const { posts } = await fetchPosts({ page: 1 })
+  const posts = await fetchPosts({ page: 1 })
 
   if (posts.length === 0) {
     return (
