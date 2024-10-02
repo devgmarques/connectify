@@ -17,7 +17,7 @@ app.register(fastifyJwt, {
   secret: env.JWT_SECRET,
 })
 app.register(fastifyMultipart)
-app.register(fastifyCors, { origin: "http://localhost:3000" })
+app.register(fastifyCors, { origin: env.ORIGIN_URL_CORS })
 
 app.register(routesUser)
 app.register(routesPost)

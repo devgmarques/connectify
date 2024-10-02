@@ -1,6 +1,6 @@
 import { UploadUserUseCase } from "@/application/use-case/users"
 import { PrismaUserRepository } from "@/infra/database/prisma/repositories"
-import { SupabaseUploadUserRepository } from "@/infra/database/supabase/repositories/supabase-upload-user-repository"
+import { SupabaseUploadUserRepository } from "@/infra/database/supabase/repositories"
 import { UploadUserController } from "@/presentation/controllers/users"
 
 export function makeUploadUserController() {

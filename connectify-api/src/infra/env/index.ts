@@ -2,6 +2,7 @@ import z from "zod"
 import "dotenv/config"
 
 const schemaEnv = z.object({
+  ORIGIN_URL_CORS: z.string(),
   DATABASE_URL: z.string(),
   JWT_SECRET: z.string(),
   PORT: z.coerce.number().default(3333),
