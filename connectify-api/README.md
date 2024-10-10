@@ -13,8 +13,7 @@
    - [Instalação](#52-instalação)
    - [Execução de Testes](#53-execução-de-testes)
 6. [Rotas da API](#6-rotas-da-api)
-7. [Erros Comuns](#7-erros-comuns)
-8. [Considerações Finais](#8-considerações-finais)
+7. [Considerações Finais](#7-considerações-finais)
 
 ## 1. **Introdução**
 Este projeto foi desenvolvido como aprendizado como desenvolvedor backend. A seguir, detalho as decisões técnicas, tecnologias utilizadas e o processo de desenvolvimento, destacando como as práticas de engenharia de software e padrões arquiteturais foram seguidos.
@@ -103,12 +102,7 @@ Aqui está uma seção detalhando as rotas da API:
 
 A aplicação foi construída utilizando **Fastify** para gerenciar as rotas da API. Todas as rotas seguem o padrão RESTful, com endpoints organizados por recursos. Todas as rotas estão disponíveis em: https://documenter.getpostman.com/view/33097794/2sA3XV8ent.
 
-## 7. **Erros Comuns**
-- **404 Not Found**: Retornado quando um recurso específico (forjador ou anel) não é encontrado.
-- **422 Unprocessable Entity**: Retornado quando o forjador tem a quantidade máxima de aneis permitidos.
-- **500 Internal Server Error**: Quando ocorre algum erro inesperado no servidor.
-
-## 8. **Considerações Finais**
+## 7. **Considerações Finais**
 O projeto foi desenvolvido seguindo os bons padrões de arquitetura e design de código, garantindo escalabilidade, facilidade de manutenção e testes robustos. Todas as decisões foram tomadas visando uma aplicação de alta qualidade, seguindo fielmente os requisitos propostos.
 
 Feito por Guilherme Henrique Marques.
