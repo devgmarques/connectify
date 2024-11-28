@@ -2,7 +2,6 @@
 
 🎉 Bem-vindo ao Connectify! Conecte-se, compartilhe momentos e interaja com outros usuários em uma plataforma social dinâmica e envolvente. Explore, curta, comente e siga seus amigos em uma rede social repleta de funcionalidades incríveis.
 
-
 ## 🚀 Tecnologias
 
 Este projeto foi desenvolvido com as seguintes tecnologias:
