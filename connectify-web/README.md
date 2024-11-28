@@ -1,32 +1,41 @@
-# Connectify - Front-end
+# Documentação do Connectify - Front-end
 
-🎉 Bem-vindo ao Connectify! Conecte-se, compartilhe momentos e interaja com outros usuários em uma plataforma social dinâmica e envolvente. Explore, curta, comente e siga seus amigos em uma rede social repleta de funcionalidades incríveis.
+## 🚀 Introdução
+**Connectify** é uma rede social que permite aos usuários se conectar, compartilhar postagens, curtir, comentar e seguir amigos. Desenvolvido com tecnologias modernas, o projeto inclui um front-end responsivo e uma API eficiente para oferecer uma experiência fluida.
 
-## 🚀 Tecnologias
+## 🛠️ Tecnologias
 
 Este projeto foi desenvolvido com as seguintes tecnologias:
 
-- **Next.js:** Framework React para desenvolvimento de aplicações web.
-- **React.js:** Biblioteca JavaScript para construção de interfaces de usuário.
-- **Axios:** Cliente HTTP para fazer requisições à API.
-- **Tailwind:** Biblioteca para estilização de componentes.
+- **Next.js:** Framework React para aplicações web.
+- **React.js:** Biblioteca para interfaces de usuário.
+- **Axios:** Cliente HTTP para comunicação com a API.
+- **Tailwind CSS:** Framework CSS utilitário.
+- **Shadcn/UI:** Biblioteca de componentes UI moderna e acessível.
 - **React Icons:** Biblioteca de ícones para React.
+- **TypeScript:** Linguagem que adiciona tipagem estática ao JavaScript.
 
-### Requisitos
+## 🔧 Requisitos
 
 - Você precisa instalar o [Node.js](https://nodejs.org/en/download/) para rodar esse projeto.
 
-**Clona o projeto e acessa a pasta**
+## 🛠️ Configuração do Projeto
+
+### Clonar o projeto
 
 ```bash
-$ git clone https://github.com/ghmarquesdev/connectfy && cd connectfy/connectify-web
+$ git clone https://github.com/devgmarques/connectify && cd connectify
 ```
-**Siga os passos abaixo**
 
 ```bash
+bash
+Copy code
+$ cd connectify-web
 # Instalar as dependências
 $ npm i
 # Rodar o projeto
 $ npm run dev
+O aplicativo estará disponível para acesso no navegador em http://localhost:3000.
 ```
-O aplicativo estará disponível para acesso no navegador em `http://localhost:3000`
+
+Desenvolvido por Guilherme Henrique Marques.

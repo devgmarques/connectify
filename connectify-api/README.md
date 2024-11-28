@@ -1,4 +1,4 @@
-# Documentação do Connectify API - Back-end
+# Documentação do Connectify - Back-end
 
 ## Sumário
 1. [Introdução](#1-introdução)
@@ -93,11 +93,6 @@ Para rodar os testes unitários:
 npm run test
 ```
 
-
-Aqui está uma seção detalhando as rotas da API:
-
----
-
 ## 6. **Rotas da API**
 
 A aplicação foi construída utilizando **Fastify** para gerenciar as rotas da API. Todas as rotas seguem o padrão RESTful, com endpoints organizados por recursos. Todas as rotas estão disponíveis em: https://documenter.getpostman.com/view/33097794/2sA3XV8ent.
@@ -105,4 +100,4 @@ A aplicação foi construída utilizando **Fastify** para gerenciar as rotas da 
 ## 7. **Considerações Finais**
 O projeto foi desenvolvido seguindo os bons padrões de arquitetura e design de código, garantindo escalabilidade, facilidade de manutenção e testes robustos. Todas as decisões foram tomadas visando uma aplicação de alta qualidade, seguindo fielmente os requisitos propostos.
 
-Feito por Guilherme Henrique Marques.
+Desenvolvido por Guilherme Henrique Marques.
