@@ -2,7 +2,6 @@ import { NicknameAlreadyExistError, UserNotExistError } from "@/application/erro
 import { HashRepository } from "@/application/protocols/crypto"
 import { UsersRepository } from "@/application/protocols/database"
 import { IUpdateUserUseCase } from "@/domain/use-cases/users"
-import { hash } from "bcryptjs"
 
 export class UpdateUserUseCase implements IUpdateUserUseCase {
   constructor(

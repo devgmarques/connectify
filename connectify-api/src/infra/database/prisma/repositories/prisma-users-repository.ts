@@ -32,7 +32,7 @@ export class PrismaUserRepository implements UsersRepository {
   async updateUser(input: UsersRepository.UpdateUser.Input): UsersRepository.UpdateUser.Output {
     const user = await prisma.user.update({ 
       where: { id: input.userId }, 
-      data: input
+      data: input.data
     })
 
     const correctUserFormat: User = {
