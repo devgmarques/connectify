@@ -12,14 +12,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { authenticate, registerUser } from '@/http'
 import { Button, Input, Label } from '@/components/ui'
 
-const schemaRegisterForm = z.object({
-  name: z.string().nonempty('O nome deve ser preenchido.'),
-  nickname: z
-    .string()
-    .min(3, 'O nome de usuário deve conter nom mínimo 3 dígitos.'),
-  email: z.string().email({ message: 'Email invalido.' }),
-  password: z.string().min(6, 'A senha deve conter no mínimo 6 dígitos.'),
-})
+import { schemaRegisterForm } from './schema'
 
 type RegisterForm = z.infer<typeof schemaRegisterForm>
 
@@ -72,12 +65,18 @@ export function RegisterForm() {
       </Button>
 
       <div className="py-10 max-w-72 sm:w-96 space-y-6">
-        <h2 className="font-bold text-lg">Faça seu registro agora mesmo!</h2>
+        <h2 className="font-bold text-lg">Registre-se agora mesmo!</h2>
 
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
           <div className="space-y-2">
             <Label htmlFor="name">Digite seu nome</Label>
-            <Input id="name" type="text" {...register('name')} />
+
+            <Input
+              id="name"
+              type="text"
+              {...register('name')}
+              placeholder="Nome"
+            />
             {errors.name && (
               <span className="mt-2 text-sm text-[#e51e3e]">
                 {errors.name.message}
@@ -87,7 +86,14 @@ export function RegisterForm() {
 
           <div className="space-y-2">
             <Label htmlFor="nickname">Digite seu nome de usuário</Label>
-            <Input id="nickname" type="text" {...register('nickname')} />
+
+            <Input
+              id="nickname"
+              type="text"
+              {...register('nickname')}
+              placeholder="Nome de usuário"
+            />
+
             {errors.nickname && (
               <span className="mt-2 text-sm text-[#e51e3e]">
                 {errors.nickname.message}
@@ -96,8 +102,14 @@ export function RegisterForm() {
           </div>
 
           <div className="space-y-2">
-            <Label htmlFor="email">Digite seu email</Label>
-            <Input id="email" type="email" {...register('email')} />
+            <Label htmlFor="email">Digite seu e-mail</Label>
+
+            <Input
+              id="email"
+              type="email"
+              {...register('email')}
+              placeholder="E-mail"
+            />
             {errors.email && (
               <span className="mt-2 text-sm text-[#e51e3e]">
                 {errors.email.message}
@@ -107,7 +119,13 @@ export function RegisterForm() {
 
           <div className="space-y-2">
             <Label htmlFor="password">Digite sua senha</Label>
-            <Input id="password" type="password" {...register('password')} />
+
+            <Input
+              id="password"
+              type="password"
+              {...register('password')}
+              placeholder="Senha"
+            />
             {errors.password && (
               <span className="mt-2 text-sm text-[#e51e3e]">
                 {errors.password.message}
@@ -116,7 +134,7 @@ export function RegisterForm() {
           </div>
 
           <Button type="submit" variant="default" className="w-full">
-            Entrar
+            Registrar-se
           </Button>
         </form>
 
