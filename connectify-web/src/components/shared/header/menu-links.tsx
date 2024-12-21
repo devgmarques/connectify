@@ -1,5 +1,5 @@
 import { PiListThin } from 'react-icons/pi'
-import { LuHome, LuUser } from 'react-icons/lu'
+import { LuHouse, LuUser } from 'react-icons/lu'
 import { LogOut } from 'lucide-react'
 
 import {
@@ -34,7 +34,7 @@ export function LinkMenu({ nickname }: LinkMenuProps) {
       <DropdownMenuContent align="end" className="w-56">
         <DropdownMenuItem>
           <ActiveLink href="/feed">
-            <LuHome />
+            <LuHouse />
             <span className="text-sm font-medium">Inicio</span>
           </ActiveLink>
         </DropdownMenuItem>

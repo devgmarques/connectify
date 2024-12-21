@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react'
 
 import { PiHandshake } from 'react-icons/pi'
-import { LuHome, LuUser } from 'react-icons/lu'
+import { LuHouse, LuUser } from 'react-icons/lu'
 import { LogOut } from 'lucide-react'
 
 import { getTokenData } from '@/utils'
@@ -39,7 +39,7 @@ export function Header() {
 
           <nav className="hidden gap-2 items-center md:flex">
             <ActiveLink href="/feed">
-              <LuHome />
+              <LuHouse />
               <span className="text-sm font-medium">Inicio</span>
             </ActiveLink>
 
