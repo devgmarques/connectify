@@ -16,7 +16,7 @@ export default function AccountsLayout({
         </div>
 
         <footer className="text-sm hidden md:block text-background">
-          Direito reservados &copy; connectify - {new Date().getFullYear()}
+          Direito reservados &copy;connectify
         </footer>
       </div>
 

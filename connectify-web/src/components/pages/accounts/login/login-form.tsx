@@ -12,10 +12,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { authenticate } from '@/http'
 import { Button, Input, Label } from '@/components/ui'
 
-const schemaLoginForm = z.object({
-  email: z.string().email({ message: 'Email invalido' }),
-  password: z.string().min(6, 'A senha deve conter no mínimo 6 dígitos'),
-})
+import { schemaLoginForm } from './schema'
 
 type LoginForm = z.infer<typeof schemaLoginForm>
 
@@ -30,7 +27,7 @@ export function LoginForm() {
     try {
       const { token } = await authenticate({ email, password })
 
-      toast.success('Você fez o login com sucesso, aguarde.')
+      toast.success('Você entrou em sua conta com sucesso.')
 
       setCookie(undefined, 'connectify.token', JSON.stringify(token), {
         maxAge: 30 * 24 * 60 * 60,
@@ -58,7 +55,7 @@ export function LoginForm() {
         variant="ghost"
         className="hidden sm:block sm:absolute sm:top-6 sm:right-6"
       >
-        <Link href="/accounts/register">Se cadastrar</Link>
+        <Link href="/accounts/register">Registrar-se</Link>
       </Button>
 
       <div className="pt-5 max-w-72 sm:w-96 space-y-6">
@@ -67,7 +64,13 @@ export function LoginForm() {
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
           <div className="space-y-2">
             <Label htmlFor="email">Digite seu email</Label>
-            <Input id="email" type="email" {...register('email')} />
+
+            <Input
+              id="email"
+              type="email"
+              {...register('email')}
+              placeholder="E-mail"
+            />
             {formState.errors.email && (
               <span className="mt-2 text-sm text-[#e51e3e]">
                 {formState.errors.email.message}
@@ -77,7 +80,13 @@ export function LoginForm() {
 
           <div className="space-y-2">
             <Label htmlFor="password">Digite sua senha</Label>
-            <Input id="password" type="password" {...register('password')} />
+
+            <Input
+              id="password"
+              type="password"
+              {...register('password')}
+              placeholder="Senha"
+            />
             {formState.errors.password && (
               <span className="mt-2 text-sm text-[#e51e3e]">
                 {formState.errors.password.message}

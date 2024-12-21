@@ -40,7 +40,7 @@ export function RegisterForm() {
 
       router.push('/feed')
 
-      toast.success('Você foi cadastrado com sucesso, aguarde.')
+      toast.success('Você registrou-se com sucesso.')
     } catch (err) {
       if (err instanceof AxiosError) {
         if (err.response) {
