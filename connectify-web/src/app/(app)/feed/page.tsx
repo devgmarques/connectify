@@ -7,7 +7,7 @@ import { LoadMore } from '@/components/shared'
 import { Grid } from '@/components/pages/feed'
 
 export const metadata: Metadata = {
-  title: 'Feed | connectify',
+  title: 'Inicio | connectify',
 }
 
 export default async function Feed() {
