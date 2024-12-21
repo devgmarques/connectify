@@ -19,7 +19,11 @@ type LoginForm = z.infer<typeof schemaLoginForm>
 export function LoginForm() {
   const router = useRouter()
 
-  const { register, handleSubmit, formState } = useForm<LoginForm>({
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isSubmitting },
+  } = useForm<LoginForm>({
     resolver: zodResolver(schemaLoginForm),
   })
 
@@ -71,9 +75,9 @@ export function LoginForm() {
               {...register('email')}
               placeholder="E-mail"
             />
-            {formState.errors.email && (
+            {errors.email && (
               <span className="mt-2 text-sm text-[#e51e3e]">
-                {formState.errors.email.message}
+                {errors.email.message}
               </span>
             )}
           </div>
@@ -87,9 +91,9 @@ export function LoginForm() {
               {...register('password')}
               placeholder="Senha"
             />
-            {formState.errors.password && (
+            {errors.password && (
               <span className="mt-2 text-sm text-[#e51e3e]">
-                {formState.errors.password.message}
+                {errors.password.message}
               </span>
             )}
           </div>
@@ -98,7 +102,7 @@ export function LoginForm() {
             type="submit"
             variant="default"
             className="w-full"
-            disabled={formState.isSubmitting ?? true}
+            disabled={isSubmitting}
           >
             Entrar
           </Button>

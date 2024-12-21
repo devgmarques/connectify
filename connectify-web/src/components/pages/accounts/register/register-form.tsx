@@ -22,7 +22,7 @@ export function RegisterForm() {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isSubmitting },
   } = useForm<RegisterForm>({
     resolver: zodResolver(schemaRegisterForm),
   })
@@ -133,7 +133,12 @@ export function RegisterForm() {
             )}
           </div>
 
-          <Button type="submit" variant="default" className="w-full">
+          <Button
+            type="submit"
+            variant="default"
+            className="w-full"
+            disabled={isSubmitting}
+          >
             Registrar-se
           </Button>
         </form>
