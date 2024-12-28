@@ -7,6 +7,7 @@ import Link from 'next/link'
 import { ptBR } from 'date-fns/locale'
 import { formatDistanceToNow } from 'date-fns'
 
+import { formatNameForAvatar } from '@/utils/format-name-for-avatar'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui'
 import { Post } from '@/@types'
 
@@ -48,11 +49,7 @@ export function CardPost({ data, isMe = false }: CardPostProps) {
           <Avatar className="z-0 w-10 h-10">
             <AvatarImage src={post.user.url_avatar ?? ''} alt="Avatar" />
             <AvatarFallback>
-              {post.user.name
-                .split(' ')
-                .slice(0, 2)
-                .map((item) => item[0].toUpperCase())
-                .join('')}
+              {formatNameForAvatar({ name: post.user.name })}
             </AvatarFallback>
           </Avatar>
 

@@ -1,5 +1,6 @@
 'use client'
 
+import { formatNameForAvatar } from '@/utils/format-name-for-avatar'
 import { Avatar, AvatarFallback, AvatarImage, Separator } from '@/components/ui'
 import { Follow, Post, User } from '@/@types'
 
@@ -19,7 +20,7 @@ export function InformationAccount({
       <Avatar className="z-0 w-20 h-20">
         <AvatarImage src={user.url_avatar} alt="Avatar" />
         <AvatarFallback>
-          {user.name.split(' ').map((item) => item[0].toLowerCase())}
+          {formatNameForAvatar({ name: user.name })}
         </AvatarFallback>
       </Avatar>
 
