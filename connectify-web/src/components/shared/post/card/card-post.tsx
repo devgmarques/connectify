@@ -48,7 +48,11 @@ export function CardPost({ data, isMe = false }: CardPostProps) {
           <Avatar className="z-0 w-10 h-10">
             <AvatarImage src={post.user.url_avatar ?? ''} alt="Avatar" />
             <AvatarFallback>
-              {post.user.name.split(' ').map((item) => item[0].toUpperCase())}
+              {post.user.name
+                .split(' ')
+                .slice(0, 2)
+                .map((item) => item[0].toUpperCase())
+                .join('')}
             </AvatarFallback>
           </Avatar>
 

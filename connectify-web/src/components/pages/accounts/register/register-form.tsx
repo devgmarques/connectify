@@ -61,7 +61,7 @@ export function RegisterForm() {
         variant="ghost"
         className="hidden sm:block sm:absolute sm:top-6 sm:right-6"
       >
-        <Link href="/accounts/login">Fazer Login</Link>
+        <Link href="/accounts/login">Entrar</Link>
       </Button>
 
       <div className="py-10 max-w-72 sm:w-96 space-y-6">
