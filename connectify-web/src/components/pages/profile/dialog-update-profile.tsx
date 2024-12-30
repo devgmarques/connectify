@@ -24,14 +24,7 @@ import {
   Label,
 } from '@/components/ui'
 
-const schemaUpdateProfile = z.object({
-  name: z.string().nonempty('O nome deve ser preenchido.'),
-  details: z.string(),
-  nickname: z
-    .string()
-    .min(3, 'O nome de usuário deve conter nom mínimo 3 dígitos.'),
-  password: z.string().min(6, 'A senha deve conter no mínimo 6 dígitos.'),
-})
+import { schemaUpdateProfile } from './schema'
 
 type UpdateProfile = z.infer<typeof schemaUpdateProfile>
 
@@ -143,7 +136,12 @@ export function DialogUpdateProfile({
 
           <div className="space-y-2">
             <Label htmlFor="password">Digite sua senha</Label>
-            <Input id="password" type="password" {...register('password')} />
+            <Input
+              id="password"
+              type="password"
+              {...register('password')}
+              showPasswordToggle
+            />
             {formState.errors.password && (
               <span className="mt-2 text-sm text-[#e51e3e]">
                 {formState.errors.password.message}

@@ -125,6 +125,7 @@ export function RegisterForm() {
               type="password"
               {...register('password')}
               placeholder="Senha"
+              showPasswordToggle
             />
             {errors.password && (
               <span className="mt-2 text-sm text-[#e51e3e]">

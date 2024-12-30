@@ -83,13 +83,14 @@ export function LoginForm() {
           </div>
 
           <div className="space-y-2">
-            <Label htmlFor="password">Digite sua senha</Label>
+            <Label htmlFor="password">Digite senha</Label>
 
             <Input
               id="password"
               type="password"
               {...register('password')}
               placeholder="Senha"
+              showPasswordToggle
             />
             {errors.password && (
               <span className="mt-2 text-sm text-[#e51e3e]">
