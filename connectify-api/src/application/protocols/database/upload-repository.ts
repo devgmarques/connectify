@@ -1,3 +1,5 @@
+import { File } from '@/domain/entities'
+
 export type UploadRepository = {
   upload(input: UploadRepository.Upload.Input): UploadRepository.Upload.Output
 }
@@ -5,7 +7,7 @@ export type UploadRepository = {
 export namespace UploadRepository {
   export namespace Upload { 
     export type Input = { 
-      file: File,
+      file: File
       buffer: Buffer
     }
 

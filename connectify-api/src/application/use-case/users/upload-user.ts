@@ -10,7 +10,7 @@ export class UploadUserUseCase implements IUploadUserUseCase {
   async execute(input: IUploadUserUseCase.Input): IUploadUserUseCase.Output {
     const buffer = await input.file.toBuffer()
 
-    const fullPath = await this.uploadRepository.upload({ file: input.file as any, buffer })
+    const fullPath = await this.uploadRepository.upload({ file: input.file, buffer })
 
     await this.usersRepository.updateUrlAvatar({ fullPath, userId: input.userId })
   }

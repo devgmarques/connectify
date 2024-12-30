@@ -16,7 +16,6 @@ export class UploadUserController {
 
       return reply.status(201).send()
     } catch (error: any) {
-      console.log(error.message)
       return reply.status(500).send()
     }
   }
